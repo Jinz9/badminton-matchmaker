@@ -80,3 +80,19 @@ TV1 đã chính thức phê duyệt **Phương án 2 (Blaze + Cloud Functions)**
 - **Tiêu cực / Ràng buộc cần kiểm soát:**
   - TV1 cần chuẩn bị thẻ Visa/Mastercard để kích hoạt Blaze trên Firebase Console.
   - Cần duy trì script đồng bộ domain giữa thư mục gốc và thư mục functions.
+
+---
+
+## 5. PHỤ LỤC CẬP NHẬT THỰC ĐỊA (UPDATE 2026-11-15: THỰC THI TRÊN GÓI SPARK)
+
+- **Bối cảnh thực tế:** Trong quá trình thiết lập Firebase Console, TV1 không có thẻ thanh toán quốc tế Visa/Mastercard để kích hoạt gói Blaze.
+- **Giải pháp thích ứng chính thức:**
+  1. Dự án Firebase `badminton-danang` hoạt động chính thức trên gói **Spark plan (Miễn phí 100%, không cần thẻ)**:
+     - Firebase Authentication: Bật Google Sign-In & Email/Password.
+     - Cloud Firestore: Đặt tại `asia-southeast1` (Singapore).
+     - Storage Bucket: `badminton-danang.firebasestorage.app`.
+  2. **Chuyển dịch logic nghiệp vụ (Client Domain Engine):**
+     - Toàn bộ thuật toán Elo đôi, tính suất vãng lai và thuật toán chia cặp Session Balancing được thực thi trực tiếp trên ứng dụng Mobile Client từ thư viện chuẩn `src/domain/`.
+     - An toàn dữ liệu được đảm bảo bằng **Firestore Transaction** (chống race-condition tranh chấp suất cuối) và **Firestore Security Rules** (chỉ cho phép Host cập nhật kết quả trận đấu).
+  3. **Môi trường Cloud Functions:** Thư mục `functions/` và bộ test Emulator Suite vẫn được duy trì hoàn chỉnh trong mã nguồn để phục vụ kiểm thử tích hợp trên máy local dev và sẵn sàng deploy lên Cloud nếu sau này nhóm nâng cấp gói Blaze.
+

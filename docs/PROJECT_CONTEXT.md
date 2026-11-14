@@ -103,3 +103,4 @@ Hệ thống hỗ trợ cộng đồng cầu lông phong trào tại Đà Nẵng
 |---|---|---|---|
 | **CR-01** | **Điều chỉnh quy mô chia cặp sân:** Kế hoạch gốc ghi chia cặp 8–16 người một lượt và ca lẻ 9, 11, 13 người. | **Luật thực tế:** Mỗi sân tối đa 8 người, mỗi kèo tối đa 2 sân. Thuật toán cân kèo phải chạy độc lập cho từng sân (4–8 người). Các ca lẻ thực tế trên một sân đấu chỉ gồm **5 người** và **7 người** (xoay tua 1 người nghỉ mỗi hiệp). | Đã duyệt vào luật nghiệp vụ |
 | **CR-02** | **Làm rõ ranh giới Partner Finder và Match Lobby:** Phân định rõ 2 luồng tính năng. | **Giải pháp:** <br>1. **Partner Finder:** Giữ nguyên kế hoạch là tìm bạn đánh cặp cố định (lệch ≤ 150 Elo, bù trừ công thủ cầu trước/cầu sau).<br>2. **Match Lobby:** Bổ sung cơ chế tuyển vãng lai và đặt suất (Host chỉ tuyển khi sân thiếu người, số suất tuyển: `slot = min(4, 8 - số người mặc định)`). | Đã duyệt vào luật nghiệp vụ |
+

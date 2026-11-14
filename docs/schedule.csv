@@ -1,0 +1,31 @@
+WBS,Tên việc,Người phụ trách,Tuần bắt đầu,Tuần kết thúc,Phụ thuộc,Mốc
+1.1,Khảo sát bối cảnh và phỏng vấn host Đà Nẵng,TV1,1,1,-,M1
+1.2,Xây dựng Điều lệ dự án (Charter) và phân tích Stakeholders,TV1,1,1,1.1,M1
+1.3,Thiết lập cơ cấu WBS RACI và tiến độ Gantt,TV1,1,1,1.2,M1
+1.4,Thiết lập Risk Register và môi trường phát triển Git,TV1,1,1,1.3,M1
+2.1,Xây dựng thang trình độ 6 cấp và mô hình toán Elo đôi,TV1,2,2,M1,M2
+2.2,Đặc tả yêu cầu phần mềm SRS và Use Cases chi tiết,TV1,2,2,M1,M2
+2.3,Thiết kế dữ liệu NoSQL Firestore và soạn thảo Data Contract,TV1,2,2,2.1,M2
+2.4,Thiết kế hệ thống Design System và Prototype trên Figma,TV2,2,2,M1,M2
+3.1,Cấu hình Firebase project và CRUD User Profile,TV1,3,3,M2,M3
+4.1,Khởi tạo khung app Expo Router và Theme hệ thống,TV2,3,3,M2,M3
+3.2a,Phát triển thuật toán tìm kiếm bạn chơi Partner Finder,TV1,4,4,3.1,M4
+4.2,Phát triển giao diện Auth Profile và Partner Finder,TV2,4,4,4.1,M4
+3.2b,Phát triển hàm tính suất tuyển và kiểm tra điều kiện đặt suất,TV1,5,5,M4,-
+4.3a,Phát triển giao diện Tạo kèo và Danh sách kèo mở,TV2,5,5,M4,-
+3.2c,Cài đặt Transaction đặt suất nguyên tử và tự động đôn Waitlist,TV1,6,6,3.2b,M5
+4.3b,Phát triển giao diện Match Lobby realtime và duyệt vãng lai,TV2,6,6,4.3a,M5
+3.3,Phát triển thuật toán chia cặp cân kèo sân 4-8 người (Session Balancing),TV1,7,7,M5,M6
+4.4a,Phát triển giao diện Điều khiển sân đấu và Khóa cặp đánh,TV2,7,7,M5,M6
+3.4,Phát triển Module Đánh giá sau trận và tính toán Elo đôi,TV1,8,8,3.3,M7
+4.4b,Phát triển giao diện Nhập tỷ số set đấu và Chấm thẻ đánh giá,TV2,8,8,4.4a,M7
+M8,Feature Freeze đóng băng toàn bộ tính năng mới,Cả hai,8,8,3.4;4.4b,M8
+4.5,Phát triển giao diện Lịch sử thi đấu Bạn ăn ý và Admin in-app,TV2,9,9,M8,M9
+5.1,Xây dựng Test Plan toàn diện (S E B R X) và Unit test domain,TV2,9,9,M8,M9
+5.2,Kiểm thử tích hợp hệ thống và kiểm thử Security Rules Emulator,TV2,10,10,5.1,M10
+5.3,Kiểm thử thực địa (Field test) tại sân cầu lông Đà Nẵng và sửa lỗi,Cả hai,10,10,M9,M10
+5.4a,Tổng hợp hoàn thiện Báo cáo tổng kết đồ án,TV1,11,11,M10,M11
+5.4b,Quay dựng và biên tập Video clip demo thực tế,TV2,11,11,M10,M11
+5.4c,Thiết kế Slide thuyết trình đóng gói mã nguồn và tổng duyệt,TV1,12,12,M11,M12
+M12,Nộp toàn bộ hồ sơ đồ án và bảo vệ trước Hội đồng,Cả hai,12,12,5.4c,M12
+

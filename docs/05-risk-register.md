@@ -248,3 +248,4 @@ flowchart LR
    - Phát hiện các rủi ro mới phát sinh từ phản hồi của Giảng viên hướng dẫn hoặc thực tế kiểm thử.
 3. **Ghi chép và công khai:**
    - Mọi thay đổi về trạng thái rủi ro (Mở ➔ Đang giám sát ➔ Đã kích hoạt dự phòng ➔ Đã đóng) phải được ghi nhận vào biên bản họp tuần tại `docs/meetings/` và cập nhật trực tiếp vào file này.
+

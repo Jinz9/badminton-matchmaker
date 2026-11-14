@@ -203,3 +203,4 @@ Mục này quy định chi tiết Mô tả, Đầu vào, Đầu ra và Tiêu ch�
 | **5.2** | Test tích hợp & Security Rules Emulator | **C** | **A / R** | Chạy kiểm thử trên Firebase Local Emulator |
 | **5.3** | Kiểm thử thực địa sân đấu & Sửa lỗi | **A / R** | **R** | Cả 2 cùng ra sân test thực tế |
 | **5.4** | Báo cáo đồ án, Video demo & Bảo vệ | **A / R** | **R** | TV1 viết báo cáo & slide chính, TV2 quay demo |
+

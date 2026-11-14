@@ -89,9 +89,9 @@ Nhóm thực hiện gồm 2 thành viên thuộc chuyên ngành Công nghệ th�
 
 | Vai trò | Thành viên phụ trách | Trách nhiệm chính |
 |---|---|---|
-| **Giảng viên hướng dẫn** | `[TV1 điền]` | Định hướng học thuật, duyệt kế hoạch, đánh giá tiến độ và nghiệm thu đồ án |
-| **Thành viên 1 (TV1)** | `[TV1 điền]` | **Trưởng nhóm (PM), Phân tích nghiệp vụ (BA), Backend Cloud, Kiến trúc Dữ liệu & Thuật toán:**<br>- Quản lý tiến độ WBS 12 tuần, Project Charter, SRS, Risk Register.<br>- Thiết kế Firestore Database, Security Rules, Cloud Functions.<br>- Phát triển thuật toán pure domain (tính slot, cân kèo, Elo đôi, uy tín).<br>- Định nghĩa API / Data Contract, hỗ trợ TV2 kết nối dữ liệu.<br>- Tổng hợp báo cáo, kịch bản demo, slide bảo vệ. |
-| **Thành viên 2 (TV2)** | `[TV2 điền]` | **Mobile Developer & UI/UX Designer:**<br>- Thiết kế Prototype và Design System trên Figma (WBS 2.4).<br>- Phát triển ứng dụng di động React Native / Expo (Expo Router).<br>- Xây dựng UI Components, màn hình ứng dụng theo chuẩn UI một tay.<br>- Tích hợp State Management, Cache offline và gọi API theo Data Contract của TV1.<br>- Tham gia chạy thử nghiệm thực tế tại sân và sửa lỗi giao diện. |
+| **Giảng viên hướng dẫn** | `[NGUYEN THANH TUAN]` | Định hướng học thuật, duyệt kế hoạch, đánh giá tiến độ và nghiệm thu đồ án |
+| **Thành viên 1 (TV1)** | `[DAO DUY NHAT]` | **Trưởng nhóm (PM), Phân tích nghiệp vụ (BA), Backend Cloud, Kiến trúc Dữ liệu & Thuật toán:**<br>- Quản lý tiến độ WBS 12 tuần, Project Charter, SRS, Risk Register.<br>- Thiết kế Firestore Database, Security Rules, Cloud Functions.<br>- Phát triển thuật toán pure domain (tính slot, cân kèo, Elo đôi, uy tín).<br>- Định nghĩa API / Data Contract, hỗ trợ TV2 kết nối dữ liệu.<br>- Tổng hợp báo cáo, kịch bản demo, slide bảo vệ. |
+| **Thành viên 2 (TV2)** | `[NGUYEN DUC DAT]` | **Mobile Developer & UI/UX Designer:**<br>- Thiết kế Prototype và Design System trên Figma (WBS 2.4).<br>- Phát triển ứng dụng di động React Native / Expo (Expo Router).<br>- Xây dựng UI Components, màn hình ứng dụng theo chuẩn UI một tay.<br>- Tích hợp State Management, Cache offline và gọi API theo Data Contract của TV1.<br>- Tham gia chạy thử nghiệm thực tế tại sân và sửa lỗi giao diện. |
 
 ---
 
@@ -190,9 +190,9 @@ Dự án được xây dựng dựa trên 8 giả định ban đầu (theo `badm
 ## 12. Ngân sách & Chi phí dự kiến (Budget & Cost)
 
 - **Chi phí phát triển:** Nhân lực nội bộ nhóm sinh viên (0 VNĐ).
-- **Chi phí hạ tầng Firebase:** Phụ thuộc vào phương án lựa chọn gói Spark (0 VNĐ) hoặc Blaze Pay-as-you-go: `[TV1 điền]`
-- **Chi phí tài khoản triển khai (nếu có):** Tài khoản Expo (Miễn phí), Android test internal: `[TV1 điền]`
-- **Kinh phí khảo sát thực địa (thuê sân test, nước uống):** `[TV1 điền]`
+- **Chi phí hạ tầng Firebase:** Phụ thuộc vào phương án lựa chọn gói Spark (0 VNĐ) hoặc Blaze Pay-as-you-go: `[phương án lựa chọn gói Spark (0 VNĐ)]`
+- **Chi phí tài khoản triển khai (nếu có):** Tài khoản Expo (Miễn phí), Android test internal: `[Tài khoản Expo (Miễn phí)]`
+- **Kinh phí khảo sát thực địa (thuê sân test, nước uống):** `[đã có trong đầu tôi]`
 
 ---
 
@@ -202,5 +202,6 @@ Dự án được xây dựng dựa trên 8 giả định ban đầu (theo `badm
 |:---:|:---:|
 | *(Ký và ghi rõ họ tên)* | *(Ký và ghi rõ họ tên)* |
 | <br><br><br> | <br><br><br> |
-| **`[TV1 điền]`** | **`[TV1 điền]`** |
+| **`[NGUYEN THANH TUAN]`** | **`[DAO DUY NHAT]`** |
 | Ngày: .... / .... / 2026 | Ngày: 15 / 11 / 2026 |
+

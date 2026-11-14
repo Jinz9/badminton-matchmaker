@@ -99,3 +99,4 @@ Bảng tổng hợp nhu cầu làm căn cứ trực tiếp để xây dựng dan
 2. **Tính ứng dụng & Sáng tạo:**
    - Giải quyết bài toán thực tế của địa phương (Đà Nẵng).
    - Thuật toán cân bằng trình độ có cơ sở toán học rõ ràng và bộ test case chứng minh tính đúng đắn.
+

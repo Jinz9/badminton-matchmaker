@@ -31,6 +31,7 @@
 |---|---|---|---|---|
 | 2026-11-15 | Khởi tạo cấu trúc dự án, kiểm tra bộ skill, tạo bộ nhớ chung (`PROJECT_CONTEXT.md`, `PROGRESS.md`, `DECISIONS-PENDING.md`) | `main` / `dev` | `chore: project context` | TV1 & Trợ lý |
 | 2026-11-15 | Hoàn thành dự thảo Điều lệ dự án (`01-project-charter.md`) và Phân tích bên liên quan (`02-stakeholders.md`) | `docs/charter` | `docs(charter): project charter and stakeholders` | TV1 & Trợ lý |
+| 2026-11-15 | Hoàn thành Cơ cấu WBS & RACI (`03-wbs-raci.md`), Lịch trình Gantt (`04-schedule-gantt.md`) và `schedule.csv` | `docs/wbs-schedule` | `docs(wbs): wbs raci schedule gantt` | TV1 & Trợ lý |
 
 ---
 

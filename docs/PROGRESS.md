@@ -30,6 +30,7 @@
 | Ngày | Công việc thực hiện | Nhánh Git | Commit | Người thực hiện |
 |---|---|---|---|---|
 | 2026-11-15 | Khởi tạo cấu trúc dự án, kiểm tra bộ skill, tạo bộ nhớ chung (`PROJECT_CONTEXT.md`, `PROGRESS.md`, `DECISIONS-PENDING.md`) | `main` / `dev` | `chore: project context` | TV1 & Trợ lý |
+| 2026-11-15 | Hoàn thành dự thảo Điều lệ dự án (`01-project-charter.md`) và Phân tích bên liên quan (`02-stakeholders.md`) | `docs/charter` | `docs(charter): project charter and stakeholders` | TV1 & Trợ lý |
 
 ---
 
@@ -40,3 +41,4 @@
 | **MAN-01** | Tạo dự án Firebase Console | 1. Truy cập https://console.firebase.google.com<br>2. Tạo dự án mới tên `badminton-danang`<br>3. Bật Firebase Authentication, Cloud Firestore (Database region: `asia-southeast1` - Singapore hoặc lân cận)<br>4. Lấy cấu hình `firebaseConfig` dán vào `src/config/firebase.ts` | [TV1 điền] | Chờ xử lý |
 | **MAN-02** | Phỏng vấn 2–3 chủ sân/host thật tại Đà Nẵng | Phỏng vấn xác nhận các giả định A1–A8 trong `badminton-domain-rules` để chốt quy tắc nghiệp vụ cuối cùng | [TV1 điền] | Chờ xử lý |
 | **MAN-03** | Đăng ký tài khoản Figma cho nhóm | Tạo team workspace trên Figma và phân quyền cho TV2 bắt đầu vẽ Prototype | [TV1 điền] | Chờ xử lý |
+

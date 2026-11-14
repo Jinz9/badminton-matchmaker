@@ -1,0 +1,11 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Khởi đầu bảo mật: Chặn toàn bộ truy cập mặc định (Least Privilege)
+    // Sẽ được mở rộng và kiểm thử tự động trong WBS 2.3 (Data Contract) và WBS 5.2 (Rules Emulator)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

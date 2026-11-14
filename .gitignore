@@ -30,6 +30,8 @@ web-build/
 # Build & Test outputs
 coverage/
 .nyc_output/
+functions/lib/
+lib/
 
 # Debug and Logs
 npm-debug.log*

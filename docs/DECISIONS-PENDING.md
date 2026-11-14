@@ -29,7 +29,7 @@
 - **Câu hỏi cần quyết định:** Nhóm sẽ sử dụng gói nào?
   - **Phương án 1 (Khuyên dùng):** Đăng ký gói **Blaze** (không mất phí nếu dùng trong phạm vi đồ án sinh viên) để viết Cloud Functions V2 xử lý cập nhật Elo, bảo đảm an toàn dữ liệu.
   - **Phương án 2:** Dùng gói **Spark miễn phí**, chuyển toàn bộ logic tính Elo về hàm thuần ở Client và khóa chặt bằng Firestore Security Rules (có rủi ro bảo mật hơn nhưng không cần thẻ).
-- **Quyết định của TV1:** `[Spark (Miễn phí), Phương án 1 (Khuyên dùng)]`
+- **Quyết định của TV1:** **ĐÃ DUYỆT CHÍNH THỨC:** Phương án 1 (Gói Blaze Pay-as-you-go + Cloud Functions V2 tại Singapore `asia-southeast1`, chi phí $0 trong hạn ngạch đồ án, bảo vệ an toàn Elo tuyệt đối; chi tiết tại [ADR-001](file:///d:/QLDAPM/docs/adr/ADR-001-backend-approach.md)).
 
 ---
 

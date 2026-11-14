@@ -15,3 +15,4 @@ describe("Config: Firebase Configuration", () => {
     expect(FIREBASE_CONSTANTS.AUTH_PORT).toBe(9099);
   });
 });
+

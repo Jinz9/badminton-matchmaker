@@ -34,6 +34,7 @@
 | 2026-11-15 | Hoàn thành Cơ cấu WBS & RACI (`03-wbs-raci.md`), Lịch trình Gantt (`04-schedule-gantt.md`) và `schedule.csv` | `docs/wbs-schedule` | `docs(wbs): wbs raci schedule gantt` | TV1 & Trợ lý |
 | 2026-11-15 | Hoàn thành Kế hoạch quản trị rủi ro (`05-risk-register.md`) với 14 rủi ro, ma trận 5x5 và quy trình cập nhật tuần | `docs/risk-register` | `docs(risk): 14 risks heatmap and review process` | TV1 & Trợ lý |
 | 2026-11-15 | Thiết lập toàn diện môi trường dự án: TypeScript + Jest cho domain, `.gitignore`, `README.md`, `CONTRIBUTING.md`, PR/Issue Templates, `OWNERSHIP.md`, `board-import.md`, `firebase-setup-checklist.md`, Biên bản họp mẫu & W01 | `chore/workspace` | `chore(workspace): test suite, conventions, board import and meeting notes` | TV1 & Trợ lý |
+| 2026-11-15 | Hoàn thành dự thảo Thang đo trình độ (`06-rating-scale.md`), mã cấu hình (`src/config/rating.ts`), hàm tính điểm ban đầu (`src/domain/rating/initialRating.ts`) và bộ test Jest (28 tests PASS). Đang chờ TV1 duyệt số liệu | `docs/rating-scale` | `docs(rating): rating scale draft, config and initial rating tests` | TV1 & Trợ lý |
 
 ---
 

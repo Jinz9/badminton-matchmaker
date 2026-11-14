@@ -9,7 +9,7 @@
 | Mốc | Tên mốc | Mô tả chi tiết | Trạng thái | Ghi chú |
 |---|---|---|:---:|---|
 | **M1** | Charter & Môi trường Dev | Ký duyệt Charter, thiết lập Git repo, bộ quy tắc, cấu trúc thư mục, môi trường Jest, Board quản lý | 🟢 Hoàn thành | Đã sẵn sàng toàn bộ tài liệu & hạ tầng kiểm thử |
-| **M2** | SRS & Figma Prototype | Hoàn thành tài liệu yêu cầu SRS, Data Contract; TV2 hoàn thành Prototype Figma | ⚪ Chưa bắt đầu | Kế hoạch Tuần 2 (Sprint 1) |
+| **M2** | SRS & Figma Prototype | Hoàn thành tài liệu yêu cầu SRS, Data Contract; TV2 hoàn thành Prototype Figma | 🟡 Đang thực hiện | TV1 hoàn tất SRS/Use Cases/Stories/Screens, sẵn sàng cho TV2 dựng Figma (WBS 2.4) |
 | **M3** | Đăng nhập & Profile Cloud | Xác thực Firebase Auth, lưu thông tin User và hồ sơ cơ bản lên Firestore | ⚪ Chưa bắt đầu | Kế hoạch Tuần 3 (Sprint 2) |
 | **M4** | Module Hồ sơ & Tìm đồng đội | Triển khai thang 6 cấp, thuật toán Partner Finder (lệch ≤ 150 Elo, vị trí đánh) | ⚪ Chưa bắt đầu | Kế hoạch Tuần 4 (Sprint 2) |
 | **M5** | Phòng kèo Realtime & Waitlist | Tạo kèo, tuyển vãng lai, cơ chế đặt suất chống race condition, hàng đợi dự bị | ⚪ Chưa bắt đầu | Kế hoạch Tuần 5–6 (Sprint 3) |
@@ -35,6 +35,7 @@
 | 2026-11-15 | Hoàn thành Kế hoạch quản trị rủi ro (`05-risk-register.md`) với 14 rủi ro, ma trận 5x5 và quy trình cập nhật tuần | `docs/risk-register` | `docs(risk): 14 risks heatmap and review process` | TV1 & Trợ lý |
 | 2026-11-15 | Thiết lập toàn diện môi trường dự án: TypeScript + Jest cho domain, `.gitignore`, `README.md`, `CONTRIBUTING.md`, PR/Issue Templates, `OWNERSHIP.md`, `board-import.md`, `firebase-setup-checklist.md`, Biên bản họp mẫu & W01 | `chore/workspace` | `chore(workspace): test suite, conventions, board import and meeting notes` | TV1 & Trợ lý |
 | 2026-11-15 | Hoàn thành chính thức Thang đo trình độ (`06-rating-scale.md`), mã cấu hình (`src/config/rating.ts`), hàm tính điểm ban đầu (`src/domain/rating/initialRating.ts`) và bộ test Jest (28 tests PASS). Đã áp dụng 5 quyết định phê duyệt chuyên môn từ TV1. | `docs/rating-scale` | `feat(rating): finalize 6-level rating scale, config, domain logic and tests` | TV1 & Trợ lý |
+| 2026-11-15 | Hoàn thành bộ hồ sơ Đặc tả yêu cầu phần mềm: SRS (`07-srs.md`), 14 Use Cases (`08-use-cases.md`), 44 User Stories (`09-user-stories.md`, `user-stories.csv`), Danh mục 13 màn hình (`screens.md`), và Change Request (`CR-01-domain-refinements.md`) | `docs/srs` | `docs(srs): software requirements specification, use cases, user stories and screens` | TV1 & Trợ lý |
 
 ---
 

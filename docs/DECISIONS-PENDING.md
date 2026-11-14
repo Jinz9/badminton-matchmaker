@@ -82,3 +82,17 @@
   - Giai đoạn kiểm thử thực địa Sprint 5 (M9–M10): Build file **Android APK độc lập** qua `eas build --platform android --profile preview` để cài trực tiếp vào máy các tay vợt tại sân mà không cần máy tính.
 - **Quyết định của TV1:** `[Trong quá trình code Sprint 1–4: Chạy live reload qua **Expo Go** (nhẹ, nhanh, quét QR là chạy).]`
 
+---
+
+## 8. Các quyết định về Thang trình độ & Thuật toán Elo (WBS 2.1)
+*(Chờ TV1 - Chuyên môn Cầu lông duyệt trước khi chốt bản chính thức)*
+
+| Hạng mục | Phương án đề xuất hiện tại (Dự thảo) | Cơ sở / Lý do đề xuất | Quyết định của TV1 |
+|---|---|---|:---:|
+| **1. Tên 6 Cấp độ** | **Phương án A (Theo skill):** Mới chơi, Cơ bản, Trung bình, Khá, Giỏi, Rất giỏi.<br>**Phương án B (Theo dân phong trào Đà Nẵng):** Yếu, TB-, TB, TB+, Khá, Tốt / Bán chuyên. | Phương án B gần gũi với ngôn ngữ các cụm sân Đà Nẵng (Kỳ Đồng, Tuyên Sơn); phản ánh thực tế phong trào. | **Đã duyệt: Phương án B** (Cấp 1: Yếu, Cấp 2: TB-, Cấp 3: TB, Cấp 4: TB+, Cấp 5: Khá, Cấp 6: Tốt / Bán chuyên) |
+| **2. Khoảng điểm Elo & Điểm khởi tạo** | - Cấp 1: 1000–1199 (Khởi tạo: 1100)<br>- Cấp 2: 1200–1349 (Khởi tạo: 1275)<br>- Cấp 3: 1350–1499 (Khởi tạo: 1425)<br>- Cấp 4: 1500–1649 (Khởi tạo: 1575)<br>- Cấp 5: 1650–1799 (Khởi tạo: 1725)<br>- Cấp 6: 1800–2000 (Khởi tạo: 1900) | Điểm sàn 800, trần 2200. Mỗi cấp rộng 150–200 điểm Elo, đủ để phân hóa rõ trình độ giữa 2 người chơi. | **Đã duyệt: Giữ nguyên đề xuất** (Sàn 800, Trần 2200, 6 dải điểm & khởi tạo tương ứng) |
+| **3. Trọng số Tay thuận (Partner Finder)** | - Phải + Trái: **+25 điểm thưởng** tương thích.<br>- Phải + Phải: **0 điểm** (trung tính).<br>- Trái + Trái: **0 điểm** (mức chuẩn trung tính). | Cặp 1 phải + 1 trái bao quát hai biên và trục giữa sân tốt nhất trong đánh đôi. 2 tay trái đánh phong trào không phạt điểm. | **Đã duyệt:** Phải + Trái: +25; Phải + Phải: 0; Trái + Trái: 0 |
+| **4. Trọng số Vị trí (Partner Finder)** | - Lưới (Front) + Công (Back): **+40 điểm**.<br>- Linh hoạt (Both) + Bất kỳ: **+20 đến +25 điểm**.<br>- Cùng Lưới + Lưới hoặc cùng Công + Công: **-30 điểm**. | Bù trừ công thủ âm - dương là nguyên tắc cốt lõi giúp đôi không bị giẫm chân nhau. | **Đã duyệt:** Lưới + Công: +40; Linh hoạt + Bất kỳ: +20..+25; Cùng vị trí chuyên: -30 |
+| **5. Số trận hiệu chỉnh $N$ (Provisional)** | **Đề xuất: N = 5 trận** (Dùng $K=40$, gắn nhãn provisional).<br>*(Skill badminton-rating mặc định là N = 10 trận)*. | Trong giải phong trào và đồ án sinh viên, 10 trận là quá dài đối với người chơi vãng lai; 5 trận là vừa đủ để kéo điểm về đúng thực lực nếu khai ảo. | **Đã duyệt: Phương án N = 5 trận** (5 trận đầu dùng K = 40, sau đó K = 24) |
+
+

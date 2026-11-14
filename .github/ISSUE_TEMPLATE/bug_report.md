@@ -30,3 +30,4 @@ assignees: ""
 ## 📋 6. Liên kết WBS & Độ ưu tiên
 - Mã WBS liên quan: `[WBS 3.x / WBS 4.x / WBS 5.x]`
 - Mức độ nghiêm trọng: [ ] Thấp | [ ] Trung bình | [ ] Cao | [ ] Khẩn cấp (Blocker)
+

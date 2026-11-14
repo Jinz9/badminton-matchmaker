@@ -27,3 +27,4 @@ export function isRecruitmentOpen(coreCount: number, currentRecruitsCount: numbe
   const remainingSlots = maxSlots - currentRecruitsCount;
   return Math.max(0, remainingSlots);
 }
+

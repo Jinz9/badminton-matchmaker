@@ -16,3 +16,4 @@ module.exports = {
     "!src/domain/**/*.d.ts"
   ]
 };
+

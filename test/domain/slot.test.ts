@@ -42,3 +42,4 @@ describe("Domain: Tính toán suất tuyển vãng lai (computeSlots)", () => {
     expect(isRecruitmentOpen(6, 2)).toBe(0);
   });
 });
+

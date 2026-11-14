@@ -27,3 +27,4 @@ assignees: ""
 - [ ] Tuân thủ luật nghiệp vụ `badminton-domain-rules`.
 - [ ] Không gây xung đột với Data Contract.
 - [ ] Pull Request được review và merge vào nhánh `dev`.
+

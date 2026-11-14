@@ -35,3 +35,4 @@
 - [ ] Không vi phạm phân quyền thư mục quy định tại `docs/OWNERSHIP.md`.
 - [ ] Nếu có thay đổi kiểu dữ liệu (Schema), đã cập nhật tài liệu Data Contract tương ứng.
 - [ ] Đã kiểm tra tính năng chạy được khi mất kết nối mạng (Offline simulation).
+

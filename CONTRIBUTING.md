@@ -59,3 +59,4 @@ Mỗi commit phải nhỏ gọn, giải quyết trọn vẹn 1 ý và tuân theo
 2. ❌ **Không đưa thông tin bảo mật vào Git:** Tuyệt đối không commit file `.env`, file service account json của Firebase, hoặc private key.
 3. ❌ **Không vi phạm ranh giới thư mục:** TV1 không sửa vào `src/app/`, TV2 không sửa trực tiếp vào `src/domain/` khi chưa có sự thống nhất bằng văn bản.
 4. ❌ **Không bịa dữ liệu thực tế:** Các thông tin biên bản họp, kết quả test thực tế tại sân nếu chưa có phải ghi rõ `[TV1 điền]` hoặc `[TV2 điền]`.
+

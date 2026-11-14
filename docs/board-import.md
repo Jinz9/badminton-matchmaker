@@ -106,3 +106,4 @@ Nếu không dùng Power-Up, có thể tạo nhanh 21 thẻ trong 30 giây:
    - `Fix Version / Milestone` ➔ Cột `Mốc`
    - `Labels` ➔ Cột `WBS`
 5. Bấm **Begin Import** để Jira tự động tạo backlog.
+

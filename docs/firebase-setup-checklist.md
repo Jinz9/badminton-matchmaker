@@ -127,3 +127,4 @@ Tài liệu này hướng dẫn chi tiết các bước thiết lập dự án F
 - ⚠️ **Khuyến nghị an toàn chi phí:**
   - Không tự ý nâng cấp lên gói Blaze (trả phí theo mức dùng) khi chưa có sự thống nhất của cả nhóm.
   - Thiết kế các câu lệnh truy vấn Firestore tối ưu (dùng `limit`, cache offline) để không làm lãng phí lượt đọc.
+

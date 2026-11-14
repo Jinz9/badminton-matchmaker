@@ -65,3 +65,4 @@ TV2 phụ trách phần phát triển ứng dụng di động với **Expo (Reac
 - TV1 cam kết: Cung cấp đầy đủ các Type/Interface và hàm domain thuần túy.
 - TV2 cam kết: Sử dụng đúng các Interface này, không tự ý đổi tên trường dữ liệu (ví dụ: không đổi `reputationScore` thành `reputationPoint` hay `rating`).
 - Nếu cần thêm trường mới trên giao diện: Hai thành viên cùng thống nhất và cập nhật vào Data Contract trước khi viết code.
+

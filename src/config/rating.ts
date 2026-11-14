@@ -1,8 +1,8 @@
 /**
  * Cấu hình hằng số thang điểm, cấp độ và thuật toán Elo
  * Nguồn căn cứ:
- * - Skill `badminton-rating`
- * - Skill `badminton-domain-rules`
+ * - Skill `badminton-rating` & `badminton-domain-rules`
+ * - Quyết định phê duyệt chính thức của TV1 (Chuyên môn Cầu lông) ngày 15/11/2026
  * - Tài liệu đặc tả `docs/06-rating-scale.md`
  */
 
@@ -23,8 +23,8 @@ export const RATING_CONFIG = {
 
   // Số trận đầu tiên xem là giai đoạn hiệu chỉnh (Provisional)
   // Trong giai đoạn này dùng K_FACTOR_PROVISIONAL cao để nhanh chóng đưa rank về đúng thực lực
-  // Nguồn: skill badminton-rating, mục 1 & 3 [ĐỀ XUẤT TV1: 10 trận hoặc 5 trận]
-  PROVISIONAL_MATCHES_THRESHOLD: 10,
+  // TV1 đã chốt: N = 5 trận
+  PROVISIONAL_MATCHES_THRESHOLD: 5,
 
   // Hệ số K-factor trong tính toán Elo đôi
   // Nguồn: skill badminton-rating, mục 3
@@ -51,68 +51,68 @@ export const RATING_CONFIG = {
   },
 
   // Thang 6 cấp độ trình độ phong trào
-  // Nguồn: skill badminton-rating, mục 1
+  // TV1 đã chốt: Phương án B (Theo ngôn ngữ thực tế các sân cầu lông Đà Nẵng)
   LEVELS: [
     {
       level: 1,
-      name: "Mới chơi",
+      name: "Yếu",
       minRating: 1000,
       maxRating: 1199,
       defaultRating: 1100,
-      description: "Còn khó giữ cầu qua lưới, mới bắt đầu làm quen",
+      description: "Mới chơi, còn khó giữ cầu qua lưới, mới bắt đầu làm quen",
     },
     {
       level: 2,
-      name: "Cơ bản",
+      name: "TB-",
       minRating: 1200,
       maxRating: 1349,
       defaultRating: 1275,
-      description: "Đánh được cầu cao, phát cầu ổn định qua lưới",
+      description: "Cơ bản, đánh được cầu cao, phát cầu ổn định qua lưới",
     },
     {
       level: 3,
-      name: "Trung bình",
+      name: "TB",
       minRating: 1350,
       maxRating: 1499,
       defaultRating: 1425,
-      description: "Có clear, drop, smash cơ bản; biết xoay vị trí",
+      description: "Trung bình, có clear, drop, smash cơ bản; biết xoay vị trí",
     },
     {
       level: 4,
-      name: "Khá",
+      name: "TB+",
       minRating: 1500,
       maxRating: 1649,
       defaultRating: 1575,
-      description: "Chủ động tấn công, kiểm soát lưới tốt, phản xạ nhanh",
+      description: "Trung bình khá, chủ động tấn công, kiểm soát lưới tốt, phản xạ nhanh",
     },
     {
       level: 5,
-      name: "Giỏi",
+      name: "Khá",
       minRating: 1650,
       maxRating: 1799,
       defaultRating: 1725,
-      description: "Đánh có chiến thuật, ít lỗi hỏng, thể lực bền bỉ",
+      description: "Khá giỏi, đánh có chiến thuật, ít lỗi hỏng, thể lực bền bỉ",
     },
     {
       level: 6,
-      name: "Rất giỏi",
+      name: "Tốt / Bán chuyên",
       minRating: 1800,
       maxRating: 2000,
       defaultRating: 1900,
-      description: "Trình độ bán chuyên phong trào, cựu năng khiếu",
+      description: "Rất giỏi, trình độ bán chuyên phong trào, cựu năng khiếu",
     },
   ] as const satisfies readonly LevelDefinition[],
 
   // Trọng số tương thích tay thuận (Hand Compatibility Bonus) trong Partner Finder
-  // Nguồn: docs/06-rating-scale.md, mục 3
+  // TV1 đã chốt: Phải + Trái: +25; Phải + Phải: 0; Trái + Trái: 0
   HAND_COMPATIBILITY_BONUS: {
     RIGHT_AND_LEFT: 25,
     RIGHT_AND_RIGHT: 0,
-    LEFT_AND_LEFT: -10,
+    LEFT_AND_LEFT: 0,
   },
 
   // Trọng số tương thích vị trí sở trường (Position Compatibility Bonus)
-  // Nguồn: docs/06-rating-scale.md, mục 4
+  // TV1 đã chốt: Lưới + Công: +40; Linh hoạt + Bất kỳ: +25; Cùng chuyên biệt: -30
   POSITION_COMPATIBILITY_BONUS: {
     FRONT_AND_BACK: 40,
     BOTH_AND_ANY: 25,

@@ -99,3 +99,4 @@ export function calculateInitialRatingFromAnswers(answers: number[]): InitialRat
     isProvisional: true,
   };
 }
+

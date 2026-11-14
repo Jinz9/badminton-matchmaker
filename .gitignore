@@ -3,20 +3,33 @@ node_modules/
 .pnp
 .pnp.js
 
-# Environment and Secrets
+# Environment variables & secrets (BẢO MẬT TUYỆT ĐỐI)
 .env
 .env*.local
 *.pem
 *.key
+*.cert
 *serviceAccount*.json
 *service-account*.json
 google-services.json
 GoogleService-Info.plist
 
-# Expo / React Native
+# Firebase Logs & Cache
+firebase-debug.log*
+firestore-debug.log*
+ui-debug.log*
+.firebase/
+
+# Expo & React Native (TV2 quản lý)
 .expo/
 dist/
 web-build/
+*.jks
+*.keystore
+
+# Build & Test outputs
+coverage/
+.nyc_output/
 
 # Debug and Logs
 npm-debug.log*
@@ -27,3 +40,4 @@ yarn-error.log*
 # OS metadata
 .DS_Store
 Thumbs.db
+Desktop.ini

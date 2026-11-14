@@ -1,0 +1,29 @@
+{
+  "name": "badminton-matchmaker",
+  "version": "1.0.0",
+  "description": "Hệ thống ghép đội và cân bằng kèo cầu lông (Mobile App - Đà Nẵng)",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [
+    "badminton",
+    "expo",
+    "firebase",
+    "matching",
+    "balancing",
+    "elo"
+  ],
+  "author": "DAO DUY NHAT & NGUYEN DUC DAT",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.24",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  }
+}
+

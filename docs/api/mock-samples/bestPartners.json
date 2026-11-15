@@ -1,0 +1,20 @@
+[
+  {
+    "partnerId": "usr_lan_03",
+    "partnerName": "Trần Thị Mai Lan",
+    "partnerAvatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150",
+    "matchesCount": 6,
+    "winsCount": 5,
+    "winRate": 0.833,
+    "lastPlayedAt": "2026-11-18T18:45:00.000Z"
+  },
+  {
+    "partnerId": "usr_dat_02",
+    "partnerName": "Nguyễn Đức Đạt",
+    "partnerAvatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150",
+    "matchesCount": 4,
+    "winsCount": 3,
+    "winRate": 0.75,
+    "lastPlayedAt": "2026-11-15T19:30:00.000Z"
+  }
+]

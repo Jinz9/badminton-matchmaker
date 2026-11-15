@@ -177,3 +177,4 @@ sequenceDiagram
 | `RELIABILITY_TOO_LOW` | Điểm uy tín dưới ngưỡng yêu cầu của sân | Thông báo điểm uy tín không đủ điều kiện để nộp đơn. |
 | `NO_SLOT` | Sân đã kín chỗ chính thức | Hiển thị hộp thoại: "Hết chỗ chính thức. Bạn có muốn đăng ký vào **Danh sách dự bị (Waitlist)** không?". |
 | `OVERBOOKED` | Sân đã đủ tối đa 8 người | Chặn thao tác thêm người mặc định hoặc duyệt vượt quá 8 người. |
+

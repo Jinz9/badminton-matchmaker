@@ -9,3 +9,4 @@ describe("E2E Integration Flow: Full Application Lifecycle (M8 Feature Freeze)",
     await expect(runE2EIntegrationFlow()).resolves.not.toThrow();
   });
 });
+

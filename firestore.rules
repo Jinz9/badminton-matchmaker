@@ -2,8 +2,275 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Khởi đầu bảo mật: Chặn toàn bộ truy cập mặc định (Least Privilege)
-    // Sẽ được mở rộng và kiểm thử tự động trong WBS 2.3 (Data Contract) và WBS 5.2 (Rules Emulator)
+
+    // =========================================================================
+    // 1. HÀM TRỢ GIÚP PHÂN QUYỀN (RBAC & AUTH HELPERS)
+    // =========================================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && (
+        request.auth.token.role == 'admin' ||
+        request.auth.token.admin == true ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+    }
+
+    function isHostOfSession(sessionId) {
+      return isAuthenticated() &&
+        exists(/databases/$(database)/documents/sessions/$(sessionId)) &&
+        get(/databases/$(database)/documents/sessions/$(sessionId)).data.hostId == request.auth.uid;
+    }
+
+    // =========================================================================
+    // 2. COLLECTION: USERS (/users/{uid})
+    // =========================================================================
+    match /users/{uid} {
+      // Người dùng đã đăng nhập được xem hồ sơ người chơi (để tìm đồng đội, xem sảnh)
+      allow read: if isAuthenticated();
+
+      // Tạo hồ sơ cá nhân ban đầu:
+      // - Chỉ tạo đúng uid của mình
+      // - Bắt buộc role là 'player' (không cho tự gán role admin hoặc host lúc khởi tạo)
+      // - Điểm Elo ban đầu nằm trong thang [800, 2200]
+      // - Uy tín ban đầu = 100, matchesPlayed = 0, isProvisional = true
+      // - isDeleted = false
+      allow create: if isOwner(uid) &&
+        request.resource.data.uid == uid &&
+        request.resource.data.role == 'player' &&
+        request.resource.data.displayName is string &&
+        request.resource.data.displayName.size() >= 2 &&
+        request.resource.data.displayName.size() <= 50 &&
+        request.resource.data.gender in ['M', 'F'] &&
+        request.resource.data.position in ['front', 'back', 'both'] &&
+        request.resource.data.dominantHand in ['right', 'left'] &&
+        request.resource.data.selfDeclaredLevel in [1, 2, 3, 4, 5, 6] &&
+        request.resource.data.skill.rating >= 800 &&
+        request.resource.data.skill.rating <= 2200 &&
+        request.resource.data.skill.reliability == 100 &&
+        request.resource.data.skill.matchesPlayed == 0 &&
+        request.resource.data.skill.isProvisional == true &&
+        request.resource.data.isDeleted == false;
+
+      // Cập nhật hồ sơ:
+      // - Admin có toàn quyền (khóa tài khoản, hoàn uy tín theo DECISIONS-PENDING mục 5)
+      // - Người chơi chỉ được sửa thông tin cá nhân của mình, TUYỆT ĐỐI KHÔNG:
+      //   + Đổi uid, createdAt (bất biến)
+      //   + Tự đổi role (leo thang đặc quyền)
+      //   + Tự sửa skill (Elo, matchesPlayed, reliability, isProvisional do Cloud Function/Admin quản lý)
+      //   + Tự sửa cờ isDeleted
+      allow update: if isAdmin() || (
+        isOwner(uid) &&
+        request.resource.data.uid == resource.data.uid &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        request.resource.data.role == resource.data.role &&
+        request.resource.data.isDeleted == resource.data.isDeleted &&
+        request.resource.data.skill == resource.data.skill &&
+        request.resource.data.displayName is string &&
+        request.resource.data.displayName.size() >= 2 &&
+        request.resource.data.displayName.size() <= 50 &&
+        request.resource.data.gender in ['M', 'F'] &&
+        request.resource.data.position in ['front', 'back', 'both'] &&
+        request.resource.data.dominantHand in ['right', 'left']
+      );
+
+      // Cấm xóa cứng tài khoản từ client; xóa mềm do Admin quản lý
+      allow delete: if isAdmin();
+    }
+
+    // =========================================================================
+    // 3. COLLECTION: SESSIONS (/sessions/{sessionId})
+    // =========================================================================
+    match /sessions/{sessionId} {
+      allow read: if isAuthenticated();
+
+      // Host tạo kèo mới:
+      // - hostId phải khớp request.auth.uid
+      // - courtCount tối đa 2 sân (ràng buộc nghiệp vụ FR-12)
+      // - Tiêu đề hợp lệ (3..100 ký tự)
+      allow create: if isAuthenticated() &&
+        request.resource.data.hostId == request.auth.uid &&
+        request.resource.data.courtCount in [1, 2] &&
+        request.resource.data.title is string &&
+        request.resource.data.title.size() >= 3 &&
+        request.resource.data.title.size() <= 100 &&
+        request.resource.data.status in ['open', 'full'] &&
+        request.resource.data.isDeleted == false;
+
+      // Cập nhật kèo:
+      // - Host của kèo hoặc Admin
+      // - Cấm sửa hostId, createdAt (bất biến)
+      // - courtCount giữ nguyên trong [1, 2]
+      allow update: if isAdmin() || (
+        isAuthenticated() &&
+        resource.data.hostId == request.auth.uid &&
+        request.resource.data.hostId == resource.data.hostId &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        request.resource.data.courtCount in [1, 2]
+      );
+
+      allow delete: if isAdmin();
+
+      // =======================================================================
+      // 3.1 SUBCOLLECTION: COURTS (/sessions/{sessionId}/courts/{courtId})
+      // =======================================================================
+      match /courts/{courtId} {
+        allow read: if isAuthenticated();
+
+        // Host tạo sân:
+        // - courtId chỉ là "1" hoặc "2"
+        // - Cấp độ trong thang 1..6 và levelMin <= levelMax
+        // - minReliability trong [0, 100]
+        // - roster tối đa 8 người (Bất biến I1)
+        allow create: if isAdmin() || (
+          isHostOfSession(sessionId) &&
+          courtId in ['1', '2'] &&
+          request.resource.data.courtNumber in [1, 2] &&
+          request.resource.data.category in ['men', 'women', 'mixed'] &&
+          request.resource.data.levelMin >= 1 &&
+          request.resource.data.levelMax <= 6 &&
+          request.resource.data.levelMin <= request.resource.data.levelMax &&
+          request.resource.data.minReliability >= 0 &&
+          request.resource.data.minReliability <= 100 &&
+          request.resource.data.roster.size() <= 8
+        );
+
+        // Cập nhật sân:
+        // - Host của kèo hoặc Admin: quản lý roster (tối đa 8 người), pairs, version
+        // - HOẶC Người chơi hủy suất của chính mình:
+        //   + Chỉ được xóa đúng key uid của mình khỏi map roster
+        //   + Không được thêm hoặc sửa đổi phần tử của người khác
+        //   + Chỉ chạm vào các trường ['roster', 'version', 'updatedAt']
+        //   + Tăng version lên 1 (Optimistic lock)
+        allow update: if isAdmin() || (
+          isHostOfSession(sessionId) &&
+          request.resource.data.sessionId == resource.data.sessionId &&
+          request.resource.data.courtNumber == resource.data.courtNumber &&
+          request.resource.data.roster.size() <= 8
+        ) || (
+          isAuthenticated() &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['roster', 'version', 'updatedAt']) &&
+          request.resource.data.version == resource.data.version + 1 &&
+          request.resource.data.roster.diff(resource.data.roster).removedKeys().hasOnly([request.auth.uid]) &&
+          request.resource.data.roster.diff(resource.data.roster).addedKeys().size() == 0 &&
+          request.resource.data.roster.diff(resource.data.roster).changedKeys().size() == 0
+        );
+
+        allow delete: if isAdmin() || isHostOfSession(sessionId);
+
+        // =====================================================================
+        // 3.2 SUBCOLLECTION: REQUESTS (/sessions/{sessionId}/courts/{courtId}/requests/{requestId})
+        // =====================================================================
+        match /requests/{requestId} {
+          allow read: if isAuthenticated();
+
+          // Người chơi nộp đơn xin tham gia:
+          // - Chỉ nộp đơn cho chính mình (requestId == request.auth.uid)
+          // - Trạng thái ban đầu là 'requested' hoặc 'waitlist'
+          allow create: if isAuthenticated() &&
+            request.auth.uid == requestId &&
+            request.resource.data.userId == request.auth.uid &&
+            request.resource.data.courtId == courtId &&
+            request.resource.data.sessionId == sessionId &&
+            request.resource.data.status in ['requested', 'waitlist'];
+
+          // Cập nhật đơn:
+          // - Host của kèo: duyệt ('confirmed'), từ chối ('declined'), xếp 'waitlist'
+          // - Người chơi nộp đơn: chỉ được rút đơn ('withdrawn' hoặc 'cancelled')
+          // - Người chơi KHÔNG được tự duyệt đơn của mình sang 'confirmed'
+          allow update: if isAdmin() || (
+            isHostOfSession(sessionId) &&
+            request.resource.data.userId == resource.data.userId &&
+            request.resource.data.courtId == resource.data.courtId &&
+            request.resource.data.sessionId == resource.data.sessionId
+          ) || (
+            isAuthenticated() &&
+            resource.data.userId == request.auth.uid &&
+            request.resource.data.userId == resource.data.userId &&
+            request.resource.data.status in ['withdrawn', 'cancelled'] &&
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'note', 'decidedAt'])
+          );
+
+          allow delete: if isAdmin() || (
+            isAuthenticated() && resource.data.userId == request.auth.uid
+          ) || isHostOfSession(sessionId);
+        }
+      }
+
+      // =======================================================================
+      // 3.3 SUBCOLLECTION: MATCHES (/sessions/{sessionId}/matches/{matchId})
+      // =======================================================================
+      match /matches/{matchId} {
+        allow read: if isAuthenticated();
+
+        // Host hoặc Admin tạo trận đấu:
+        // - ratingProcessed ban đầu BẮT BUỘC là false
+        allow create: if (isAdmin() || isHostOfSession(sessionId)) &&
+          request.resource.data.ratingProcessed == false &&
+          request.resource.data.courtId in ['1', '2'] &&
+          request.resource.data.status in ['planned', 'playing', 'finished', 'confirmed'];
+
+        // Cập nhật trận đấu:
+        // - Host: nhập tỷ số, đổi trạng thái. TUYỆT ĐỐI KHÔNG tự đổi ratingProcessed sang true!
+        // - Người chơi trong trận: chỉ được gửi thẻ đánh giá cards (sau trận)
+        // - Admin: có toàn quyền
+        allow update: if isAdmin() || (
+          isHostOfSession(sessionId) &&
+          request.resource.data.ratingProcessed == resource.data.ratingProcessed &&
+          request.resource.data.sessionId == resource.data.sessionId
+        ) || (
+          isAuthenticated() &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['cards', 'updatedAt'])
+        );
+
+        allow delete: if isAdmin() || isHostOfSession(sessionId);
+      }
+    }
+
+    // =========================================================================
+    // 4. COLLECTION: RATINGS (/ratings/{ratingId})
+    // =========================================================================
+    match /ratings/{ratingId} {
+      // Người chơi chỉ được xem nhật ký biến động điểm của chính mình; Admin xem được tất cả
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+
+      // Cấm hoàn toàn client ghi (chỉ Cloud Functions / Firebase Admin SDK ghi)
+      allow write: if false;
+    }
+
+    // =========================================================================
+    // 5. COLLECTION: NOTIFICATIONS (/notifications/{notificationId})
+    // =========================================================================
+    match /notifications/{notificationId} {
+      // Người nhận thông báo hoặc Admin được đọc
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+
+      // Cấm client tự tạo thông báo giả mạo (chỉ Backend / Admin SDK tạo)
+      allow create: if false;
+
+      // Người nhận chỉ được cập nhật trường 'read' (đánh dấu đã đọc)
+      allow update: if isAdmin() || (
+        isAuthenticated() &&
+        resource.data.userId == request.auth.uid &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read']) &&
+        request.resource.data.read is bool
+      );
+
+      // Người nhận hoặc Admin có thể xóa thông báo
+      allow delete: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+    }
+
+    // =========================================================================
+    // 6. CHẶN MẶC ĐỊNH TOÀN BỘ CÁC ĐƯỜNG TRUY CẬP KHÁC (LEAST PRIVILEGE)
+    // =========================================================================
     match /{document=**} {
       allow read, write: if false;
     }

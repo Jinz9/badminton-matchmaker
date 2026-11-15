@@ -102,3 +102,4 @@ Thang đo tiêu chuẩn 10 câu hỏi (Chấm điểm từ 1: Hoàn toàn không
   - *Người chơi B (Vãng lai):* `"[TV1 điền phản hồi thật]"`
 - **Vấn đề / Sự cố phát hiện tại sân (nếu có):**
   - `[TV1 điền hoặc ghi: "Không phát sinh sự cố, ứng dụng chạy ổn định"]`
+

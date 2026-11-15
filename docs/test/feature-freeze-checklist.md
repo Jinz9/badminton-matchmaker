@@ -102,3 +102,4 @@ Chính thức kích hoạt trạng thái **FEATURE FREEZE (MILESTONE M8)** từ 
 |---|---|:---:|:---:|
 | **PM & Technical Lead (TV1)** | Đào Duy Nhật | *(Đã ký duyệt)* | `[TV1 điền: 2026-11-15]` |
 | **Mobile Dev & UI/UX (TV2)** | Nguyễn Đức Đạt | *(Chờ tiếp nhận)* | `[TV2 điền]` |
+

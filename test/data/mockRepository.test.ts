@@ -1,9 +1,9 @@
 import {
   createRepository,
-  FirebaseRepository,
   getConfiguredDataSource,
   MockRepository,
 } from "../../src/data";
+import { FirebaseRepository } from "../../src/data/FirebaseRepository";
 import { RULES } from "../../src/config/rules";
 import { SessionDoc } from "../../src/domain/types";
 
@@ -175,14 +175,16 @@ describe("Data Layer: MockRepository & Data Source Switch", () => {
     expect(resetMinh!.skill.matchesPlayed).toBe(beforeMinh!.skill.matchesPlayed);
   });
 
-  it("chọn nguồn qua EXPO_PUBLIC_DATA_SOURCE=firebase trả về FirebaseRepository và báo chưa nối", async () => {
+  it("chọn nguồn qua EXPO_PUBLIC_DATA_SOURCE=firebase trả về FirebaseRepository và xử lý lỗi quyền truy cập thân thiện", async () => {
     const prev = process.env.EXPO_PUBLIC_DATA_SOURCE;
     process.env.EXPO_PUBLIC_DATA_SOURCE = "firebase";
     try {
       expect(getConfiguredDataSource()).toBe("firebase");
       const fbRepo = createRepository();
       expect(fbRepo).toBeInstanceOf(FirebaseRepository);
-      await expect(fbRepo.listSessions()).rejects.toThrow(/chưa nối/i);
+      await expect(fbRepo.listSessions()).rejects.toThrow(
+        /quy tắc bảo mật|chưa nối|kết nối/i
+      );
     } finally {
       if (prev === undefined) delete process.env.EXPO_PUBLIC_DATA_SOURCE;
       else process.env.EXPO_PUBLIC_DATA_SOURCE = prev;

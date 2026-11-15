@@ -1,10 +1,8 @@
-import { FirebaseRepository } from "./FirebaseRepository";
 import { MockRepository } from "./MockRepository";
 import { DataSourceMode, IDataRepository } from "./types";
 
 export * from "./types";
 export * from "./MockRepository";
-export * from "./FirebaseRepository";
 export * from "./offlineMatchQueue";
 
 /** Đọc nguồn dữ liệu từ biến môi trường EXPO_PUBLIC_DATA_SOURCE (mặc định: "mock") */
@@ -16,7 +14,14 @@ export function getConfiguredDataSource(): DataSourceMode {
 /** Khởi tạo Repository theo nguồn dữ liệu truyền vào hoặc biến môi trường */
 export function createRepository(source?: DataSourceMode): IDataRepository {
   const mode = source ?? getConfiguredDataSource();
-  return mode === "firebase" ? new FirebaseRepository() : new MockRepository();
+  if (mode === "firebase") {
+    // Tải lười để tránh nạp Firebase ESM SDK khi chạy chế độ mock / test UI
+    const { FirebaseRepository } = require("./FirebaseRepository") as {
+      FirebaseRepository: new () => IDataRepository;
+    };
+    return new FirebaseRepository();
+  }
+  return new MockRepository();
 }
 
 let activeRepository: IDataRepository | null = null;

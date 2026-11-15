@@ -153,3 +153,27 @@ chmod +x scripts/emulators-start.sh
 ```
 
 Sau khi chạy, mở trình duyệt vào địa chỉ: **`http://localhost:4000`** để xem giao diện quản lý dữ liệu trực quan của Firebase Emulator Suite (xem danh sách user đã đăng ký, dữ liệu Firestore, và nhật ký thực thi của Functions).
+
+---
+
+## 6. MỞ TƯỜNG LỬA (FIREWALL) KHI TEST TRÊN ĐIỆN THOẠI THẬT (EXPO GO)
+
+Khi chạy Expo Go trên điện thoại thật cùng mạng Wi-Fi, máy tính phải cho phép kết nối vào (Inbound) tại các cổng **4000** (Emulator UI), **8080** (Firestore), **9099** (Auth), và **5001** (Cloud Functions), đồng thời `firebase.json` cần bind `host: "0.0.0.0"` cho từng emulator.
+
+### Trên Windows (PowerShell chạy với quyền Administrator)
+
+```powershell
+New-NetFirewallRule -DisplayName "Firebase Emulator Suite (4000,8080,9099,5001)" `
+  -Direction Inbound -Protocol TCP -LocalPort 4000,8080,9099,5001 -Action Allow
+```
+
+Hoặc mở **Windows Defender Firewall with Advanced Security** -> **Inbound Rules** -> **New Rule...** -> **Port** -> **TCP** -> nhập `4000, 8080, 9099, 5001` -> **Allow the connection**.
+
+### Trên macOS
+
+- Nếu bật macOS Application Firewall (`System Settings > Network > Firewall`): cho phép tiến trình `node` / `java` nhận kết nối đến (Allow incoming connections), hoặc tắt tạm thời khi test nội bộ trong mạng LAN.
+
+### Lưu ý khi chuyển đổi nguồn dữ liệu trên app
+
+- Đặt `EXPO_PUBLIC_DATA_SOURCE=firebase` trong `.env` (không commit `.env` lên Git).
+- Khởi động lại Expo bằng `npx expo start -c` để Metro nạp lại biến môi trường mới.

@@ -94,7 +94,7 @@
 
 Qua kiểm tra cấu trúc và tên thành phần trên trang `0:1`, phát hiện **5 điểm mâu thuẫn / trái luật** cần báo TV1 & TV2 thống nhất (không tự ý sửa Figma):
 
-1. **Vi phạm R2 / CR-01 (Quy mô sân):** Frame `1:4473` (`08 - Sơ Đồ Trực Tiếp 4 Sân Đấu`) thiết kế lưới **4 sân đấu** trong một buổi. Luật cứng **R2** và **CR-01** quy định mỗi kèo chỉ có **1 hoặc tối đa 2 sân** (mỗi sân 4–8 người, tối đa 16 người/kèo).
+1. **Vi phạm R2 / CR-01 (Quy mô sân):** Frame `1:4473` (`08 - Sơ Đồ Trực Tiếp 4 Sân Đấu`) thiết kế lưới **4 sân đấu** trong một buổi; ngoài ra ngay trên Frame `1:3099` (`01 - Home Sân Đấu`), dòng phụ đề cũng ghi **`"16 VĐV có mặt • 4 sân sẵn sàng"`**. Luật cứng **R2** và **CR-01** quy định mỗi kèo chỉ có **1 hoặc tối đa 2 sân** (mỗi sân 4–8 người, tối đa 16 người/kèo).
 2. **Vi phạm R1 (Thể thức thi đấu):** Frame `1:5615` (`12 - Tạo Kèo Thách Đấu & Ghép Trận 1v1 2v2`) và Frame `5:2` (`Match Card 2: Solo 1v1 Ranked Challenge`) có thể thức **1v1 (đánh đơn)**. Luật cứng **R1** quy định **chỉ đánh đôi**, không có đánh đơn trong MVP.
 3. **Mâu thuẫn thang trình độ:** Frame `1:5055` (`10 - Đánh Giá Kỹ Năng & Nâng Hạng Elo`) ghi **"Hệ Thống 5 Cấp Bậc CLB Tiên Sơn"**, trong khi chuẩn nghiệp vụ đã chốt (`06-rating-scale.md`, `DECISIONS-PENDING.md` Mục 8) là **thang 6 cấp** (`Yếu`, `TB-`, `TB`, `TB+`, `Khá`, `Tốt / Bán chuyên`).
 4. **Mâu thuẫn luồng Onboarding (FR-02):** Frame `5:268` (`21 - Đăng Nhập & Khởi Tạo Elo Ban Đầu`) dùng **4 thẻ tự chọn mức Elo**, thay vì **bộ 10 câu hỏi khảo sát** tính điểm tự động theo `calculateInitialRatingFromAnswers()`.
@@ -110,4 +110,5 @@ Qua kiểm tra cấu trúc và tên thành phần trên trang `0:1`, phát hiệ
   - Khung màn hình chính: **`390×...`** (iPhone 14/15 width, riêng `24` là `400px`).
   - Chiều cao nút CTA chính (Primary Thumb-Zone CTA): **`58px`** ở các màn hình tại sân lõi (`01`, `02`, `03`, `06`) và **`56px`** ở các màn hình phụ/xác thực (`04`, `08`, `10`, `21`, `25`, `26`, `27`, `28`).
   - Nút quay lại Header: **`44×44px`**, Header bar cao **`64px`**, ô chọn nhanh người chơi `>= 80×64px`.
-- **Phần đang bị chặn chưa lấy được giá trị thật từ Figma:** `get_variable_defs` trả về `{}` (file chưa khai báo Figma Variables), và `get_design_context` / `get_screenshot` bị chạm **giới hạn quota Starter Plan của Figma MCP** (`mcp_rate_limit_paywall`). Vì vậy bảng mã màu hex chi tiết, font family, cỡ chữ, border radius và shadow **chưa được điền vào `docs/ui/design-tokens.md`** để tuân thủ nguyên tắc *không đoán dữ liệu*.
+- **Phần đã trích xuất thêm từ ảnh PNG & `get_metadata`:** Đã đo được bảng màu `#HEX` thật trực tiếp từ ảnh render 100% của 4 màn hình lõi (`#0B1326`, `#131B2E`, `#171F33`, `#222A3D`, `#A3E636`, `#CCFF80`, `#7BD0FF`, `#00A6E0`, `#FFB783`, `#8E4700`, `#93010B`, `#2E2B5A`, `#DAE2FD`) và toàn bộ kích thước thật (`390px`, padding `16px`, CTA `58px`/`56px`) tại [docs/ui/design-tokens.md](file:///d:/QLDAPM/docs/ui/design-tokens.md). Riêng tên font và giá trị `borderRadius`/`boxShadow` CSS gốc vẫn ghi chú là ước lượng trực quan do Figma chế độ khách khóa bảng Inspect.
+

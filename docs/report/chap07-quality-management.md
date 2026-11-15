@@ -111,3 +111,4 @@ flowchart TD
 - Hệ thống áp dụng quy trình kiểm soát lỗi nghiêm ngặt: Mọi lỗi phát hiện từ kiểm thử thiết bị của TV2 đều được ghi nhận vào `docs/test/bug-log.md`.
 - **Tình trạng hiện tại của phần Backend / Thuật toán (TV1):** Toàn bộ các ca biên phát hiện trong quá trình tích hợp (người về sớm, người đến muộn, tái cân bằng 2 sân, kẹp trần sàn Elo) đã được viết test tái hiện và xử lý triệt để 100%. Không có lỗi nghiêm trọng (Blocker/Critical) nào còn mở thuộc phạm vi TV1.
 - **Phần kiểm thử trên thiết bị di động (TV2):** Tiếp tục theo dõi trong đợt kiểm thử thực địa tại sân (Milestone M10).
+

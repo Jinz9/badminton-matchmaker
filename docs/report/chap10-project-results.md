@@ -45,3 +45,4 @@ Nhóm tiến hành đối chiếu nghiêm túc các kết quả thực tế đ�
 - **Số lượng hiệp đấu vận hành thử nghiệm:** `[TV1 điền: Ví dụ 5 hiệp đấu]`
 - **Thời gian trung bình Host hoàn thành chia cặp:** `[TV1 điền: ~1.2 giây]`
 - **Điểm đánh giá tiện dụng System Usability Scale (SUS):** `[TV1 điền: Ví dụ 82.5 / 100 điểm]` (Mức Tốt / Xuất sắc).
+

@@ -39,7 +39,16 @@ Báo cáo được cấu trúc thành 12 chương chuyên đề và các tài li
 
 ---
 
-## 3. Hướng Dẫn Xuất Bản Báo Cáo Sang Định Dạng Word (.docx) và PDF
+## 3. Tệp Xuất Bản Sẵn Có (Pre-generated Official Artifacts)
+
+Hệ thống đã tự động kết hợp toàn bộ 12 chương và xuất bản sẵn các tài liệu bàn giao chính thức:
+- 📄 **File Báo Cáo Word chính thức (.docx):** [Bao-Cao-Tong-Ket-QLDAPM-Nhom-02.docx](file:///d:/QLDAPM/docs/report/Bao-Cao-Tong-Ket-QLDAPM-Nhom-02.docx) *(Đã định dạng trang bìa học thuật chuẩn, bảng biểu kẻ viền, tô màu header, phân cấp Heading 1–3 rõ ràng)*.
+- 📝 **File Markdown tổng hợp duy nhất (.md):** [Bao-Cao-Tong-Ket-QLDAPM-Nhom-02.md](file:///d:/QLDAPM/docs/report/Bao-Cao-Tong-Ket-QLDAPM-Nhom-02.md) *(Dùng để xem liền mạch hoặc xuất bản lại bất cứ lúc nào)*.
+- ⚙️ **Script xuất bản tự động:** `python scripts/export-report-docx.py`
+
+---
+
+## 4. Hướng Dẫn Tùy Chọn Xuất Bản Khác (Pandoc & VS Code)
 
 Báo cáo được viết hoàn toàn bằng định dạng Markdown tiêu chuẩn GitHub (`.md`). Để xuất bản thành file Word hoặc PDF nộp cho Hội đồng chấm đồ án, thực hiện theo một trong các phương án sau:
 
@@ -69,3 +78,4 @@ pandoc docs/report/chap01-intro.md \
 2. Mở file `.md` trong VS Code.
 3. Nhấp chuột phải chọn **Markdown PDF: Export (pdf)** hoặc **Markdown PDF: Export (docx)**.
 4. Trình xuất bản sẽ tự động định dạng bảng biểu, code blocks và biểu đồ Mermaid sang văn bản in ấn chuẩn mực.
+

@@ -82,3 +82,4 @@ quadrantChart
   - *Chủ kèo (Host Đà Nẵng):* Phỏng vấn sâu ngay từ Sprint 1, kiểm chứng bộ giả định A1–A8, mời tham gia trải nghiệm trực tiếp trong đợt kiểm thử thực địa tại sân (Milestone M10).
 - **Cung cấp thông tin thường xuyên (Keep Informed - Người chơi phong trào):**
   - Cung cấp giao diện trực quan, dễ hiểu, minh bạch cách tính điểm Elo và lý do được xếp cặp / ngồi nghỉ, phát phiếu khảo sát trải nghiệm (SUS form).
+

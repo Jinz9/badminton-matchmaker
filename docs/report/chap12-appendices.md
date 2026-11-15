@@ -72,3 +72,4 @@ Bảng truy vết chứng minh 100% Yêu cầu Chức năng (SRS) đều đượ
 4. **Hợp đồng API & Realtime:** `data-contract.md`, `repository-interfaces.md`, `security-matrix.md`, `match-lobby.md`, `partner-finder.md`, `recruit-slots.md`, `session-balancing.md`, `finish-match.md`, `history-stats.md`, `notifications.md`, `offline-contract.md`.
 5. **Kiểm thử & Báo cáo chất lượng:** `bug-log.md`, `feature-freeze-checklist.md`, `test-cases-mobile.md`, `field-test-guide.md`, 15 bộ test suites domain và rules.
 6. **Biên bản họp tuần:** `docs/meetings/W01.md` đến `W11.md`.
+

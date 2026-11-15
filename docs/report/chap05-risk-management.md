@@ -53,3 +53,4 @@ $$\text{Điểm Rủi Ro (Risk Score)} = \text{Khả Năng Xảy Ra (Likelihood:
 >    - `[TV1 điền: Kích hoạt ngay bản hợp đồng Offline Cache docs/api/offline-contract.md cho TV2 bundle hàm thuần balanceCourt vào client; ban hành Change Request CR-01 điều chỉnh thuật toán chạy riêng từng sân 4-8 người]`
 > 3. **Hiệu quả của biện pháp ứng phó:**  
 >    - `[TV1 điền: Buổi đánh thực địa diễn ra trơn tru, chia cặp tức thì dưới 0.1ms mà không bị treo khi mất sóng; thuật toán phù hợp 100% với văn hóa đánh cầu thực tế tại Đà Nẵng]`
+

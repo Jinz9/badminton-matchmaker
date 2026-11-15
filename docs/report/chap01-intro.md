@@ -52,3 +52,4 @@ Hệ thống được xây dựng nhằm giải quyết triệt để các vấn
 ### 2. Phạm vi địa lý & Kỹ thuật:
 - **Địa bàn triển khai:** 7 quận/huyện TP. Đà Nẵng (Hải Châu, Thanh Khê, Sơn Trà, Ngũ Hành Sơn, Cẩm Lệ, Liên Chiểu, Hòa Vang).
 - **Nền tảng công nghệ:** Ứng dụng di động thuần túy trên iOS và Android sử dụng framework **Expo (React Native)**, cơ sở dữ liệu **Google Cloud Firestore (BaaS)** và Cloud Functions tại Singapore (`asia-southeast1`).
+

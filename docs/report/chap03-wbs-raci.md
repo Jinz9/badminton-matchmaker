@@ -114,3 +114,4 @@ graph TD
 | **5.2** | Kiểm thử Security Rules trên Emulator | **A / R** | I | I |
 | **5.3** | Kiểm thử Thực địa tại Sân Đà Nẵng | R | **A / R** | I |
 | **5.4** | Báo cáo Tổng kết, Video Demo & Bảo vệ | **A / R** | R | **A** (Ký duyệt nghiệm thu) |
+

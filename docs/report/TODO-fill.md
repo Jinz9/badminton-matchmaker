@@ -47,3 +47,4 @@
 2. **Bước 2:** Nhập các số liệu thật vào đúng các vị trí có thẻ `[TV1 điền]` và `[TV2 điền]`.
 3. **Bước 3:** Sau khi điền xong, xóa nhãn `[TV1 điền]` / `[TV2 điền]` và đánh dấu tick `[x]` vào checklist này.
 4. **Bước 4:** Chạy lệnh xuất bản Pandoc hoặc dùng extension VS Code Markdown PDF (theo hướng dẫn tại `docs/report/README.md`) để tạo file Word `.docx` và file `.pdf` đóng bìa nộp cho Nhà trường.
+

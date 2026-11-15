@@ -62,3 +62,4 @@ Trong các dự án phần mềm theo mô hình Agile kết hợp thực địa,
 | **A6** | Chỉ số Elo trong đánh đôi. | **Đã duyệt:** Sử dụng 1 chỉ số Elo chung cho giai đoạn MVP để đơn giản hóa thuật toán. | Tránh làm người dùng bị rối bởi quá nhiều chỉ số điểm. |
 | **A7** | Hủy kèo và Phục hồi điểm uy tín. | **Đã duyệt:** Hủy trước 12h: không phạt; Hủy trong 12h: trừ 5đ; Bùng kèo sát giờ: trừ 15đ; Đi đánh đủ 1 buổi được cộng hồi phục +2đ uy tín. | Răn đe bùng kèo nhưng có cơ chế hoàn lương cho người chơi tích cực. |
 | **A8** | Thanh toán tiền sân. | **Đã duyệt:** App không can thiệp cổng thanh toán; Host nhập STK/Ngân hàng để app tự sinh mã VietQR hiển thị trong phòng kèo. | Không vướng thủ tục pháp lý ví điện tử, thanh toán trực tiếp qua ngân hàng. |
+

@@ -85,3 +85,4 @@ gantt
 > - **Số ngày chậm trễ:** `[TV1 điền]`
 > - **Nguyên nhân cốt lõi (Root Cause):** `[TV1 điền: Ví dụ thời gian khảo sát thực tế host mất nhiều thời gian hơn dự kiến, hoặc việc dựng UI trên Expo mất công chuẩn hóa responsive]`
 > - **Hành động khắc phục đã thực hiện (Corrective Action):** `[TV1 điền: Bàn giao Data Contract sớm với Mock Data JSON độc lập để TV2 dựng UI song song mà không cần chờ backend]`
+

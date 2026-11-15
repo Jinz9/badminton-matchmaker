@@ -45,6 +45,28 @@ Hệ thống hỗ trợ cộng đồng cầu lông phong trào tại Đà Nẵng
 
 ---
 
+## 2b. Phạm vi công việc & Ràng buộc của TV2 (QA Lead, UI/UX & Mobile Developer)
+
+- **Phạm vi WBS của TV2 (Nguyễn Đức Đạt):**
+  - **WBS 2.4:** Thiết kế UI/UX trên Figma (Design System, Design Tokens, Prototype luồng tại sân & MVP).
+  - **WBS 4.1:** Module Auth, Onboarding khảo sát 10 câu & Hồ sơ người chơi (`SCR-01`, `SCR-02`, `SCR-03`).
+  - **WBS 4.2:** Module Tìm đồng đội ăn ý (`SCR-04`).
+  - **WBS 4.3:** Module Sảnh kèo, Chi tiết phòng kèo, Tạo kèo 1–2 sân, Duyệt/Waitlist & Thông báo (`SCR-05`, `SCR-06`, `SCR-07`, `SCR-12`).
+  - **WBS 4.4 (4.4a & 4.4b):** Module Tại sân 3 chạm, Chia cặp, Chấm điểm 1 tay & Chấm thẻ 5 giây, Offline Cache (`SCR-08`, `SCR-09`).
+  - **WBS 4.5:** Module Lịch sử đấu, Đồng đội ăn ý & Quản trị in-app (`SCR-10`, `SCR-11`, `SCR-13`).
+  - **WBS 5.1 & 5.2:** Lập kế hoạch kiểm thử (`Test Plan`), viết & chạy Test Cases thiết bị thật, tổ chức kiểm thử thực địa tại sân Đà Nẵng (`Field Test`) và ghi nhận `bug-log.md`.
+  - **Hỗ trợ WBS 5.4:** Phối hợp quay video demo, thuyết trình phần UI/UX & Kiểm thử và chạy Live Demo trên điện thoại khi bảo vệ.
+- **Thư mục sở hữu của TV2:** `src/app/`, `src/components/`, `src/theme/`, `src/mocks/`, `src/hooks/`, `src/utils/`, `src/data/` (phần UI/hook binding), `docs/ui/`.
+- **Ràng buộc kỹ thuật Expo Go (bắt buộc):**
+  - Toàn bộ ứng dụng chạy trực tiếp trên **Expo Go (SDK 58)** trên iOS và Android (ADR-101, miễn phí $0, không cần Apple Developer $99/năm).
+  - **Không cài** thư viện native tùy chỉnh ngoài Expo Go (như `@react-native-firebase/*`, BLE/HealthKit cho Apple Watch/Garmin); dùng Firebase JS SDK (`firebase/*`), `@react-native-async-storage/async-storage`, `@react-native-community/netinfo`, `expo-haptics`, `expo-keep-awake`, `expo-notifications`, `react-native-svg`, `expo-font`.
+  - **Không viết logic nghiệp vụ trong component:** UI chỉ gọi hàm thuần từ `@domain/*` (`src/domain/`) và đọc cấu hình từ `@config/*` (`src/config/`).
+- **Quy tắc phối hợp dùng chung TV1 & TV2:**
+  - Dùng chung `Data Contract v1.0` (`src/domain/types.ts`, `src/domain/repositories.ts`), không tự ý đổi schema; phát sinh mâu thuẫn giữa Figma/UI và SRS/Luật nghiệp vụ phải ghi vào `docs/DECISIONS-PENDING.md` hoặc mở Change Request, không tự quyết.
+  - Không sửa chéo thư mục của nhau khi chưa trao đổi; mọi tính năng/tài liệu đi theo nhánh riêng (`feat/...`, `docs/...`, `fix/...`), chỉ merge vào `dev` sau khi test `npm test` xanh.
+
+---
+
 ## 3. Phân quyền cây thư mục dự án
 
 Để tránh xung đột mã nguồn giữa 2 thành viên:

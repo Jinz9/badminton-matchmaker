@@ -96,4 +96,18 @@
 | **4. Trọng số Vị trí (Partner Finder)** | - Lưới (Front) + Công (Back): **+40 điểm**.<br>- Linh hoạt (Both) + Bất kỳ: **+20 đến +25 điểm**.<br>- Cùng Lưới + Lưới hoặc cùng Công + Công: **-30 điểm**. | Bù trừ công thủ âm - dương là nguyên tắc cốt lõi giúp đôi không bị giẫm chân nhau. | **Đã duyệt:** Lưới + Công: +40; Linh hoạt + Bất kỳ: +20..+25; Cùng vị trí chuyên: -30 |
 | **5. Số trận hiệu chỉnh $N$ (Provisional)** | **Đề xuất: N = 5 trận** (Dùng $K=40$, gắn nhãn provisional).<br>*(Skill badminton-rating mặc định là N = 10 trận)*. | Trong giải phong trào và đồ án sinh viên, 10 trận là quá dài đối với người chơi vãng lai; 5 trận là vừa đủ để kéo điểm về đúng thực lực nếu khai ảo. | **Đã duyệt: Phương án N = 5 trận** (5 trận đầu dùng K = 40, sau đó K = 24) |
 
+---
+
+## 9. Rà soát chênh lệch Figma Prototype vs SRS & Luật nghiệp vụ (WBS 2.4)
+*(Nguồn: `docs/ui/figma-inventory.md` — Kiểm kê 28 frame Figma trên trang `0:1`)*
+
+| Mã | Màn hình / Điểm mâu thuẫn trên Figma | Quy định chuẩn (SRS / Domain Rules) | Phương án xử lý đề xuất | Quyết định của TV1 & TV2 |
+|---|---|---|---|---|
+| **FIG-01** | Frame `08 - Sơ Đồ Trực Tiếp 4 Sân Đấu` (`1:4473`) vẽ **4 sân** trong 1 buổi. | **R2 / CR-01:** Tối đa **2 sân/kèo**, 4–8 người/sân. | Đưa vào **P2 (bỏ)** hoặc chỉnh Figma về tối đa 2 tab sân (`Sân 1`, `Sân 2`). | `[Chờ quyết định]` |
+| **FIG-02** | Frame `12 - Tạo Kèo 1v1 2v2` (`1:5615`) và `22 - Thông báo` (`5:2`) có thể thức **1v1 (đánh đơn)**. | **R1:** Chỉ đánh đôi (`2v2`), không có đánh đơn trong MVP. | Cắt bỏ tùy chọn `1v1` khi code `SCR-07` / `SCR-12`; sửa Figma `SCR-07` thành form tạo kèo 1–2 sân theo SRS. | `[Chờ quyết định]` |
+| **FIG-03** | Frame `10` (`1:5055`) ghi **5 cấp bậc**, Frame `21` (`5:268`) dùng **4 thẻ chọn Elo** thay vì 10 câu hỏi. | **FR-02 & `06-rating-scale.md`:** Khảo sát 10 câu quy đổi ra **thang 6 cấp**. | Khi code `SCR-02` tuân thủ đúng 10 câu hỏi & 6 cấp; giữ style thị giác của Figma. | `[Chờ quyết định]` |
+| **FIG-04** | Frame `26` (`5:1153`) & `27` (`5:1308`) dùng **SĐT + OTP SMS + Zalo**. | **ADR-002:** Dùng **Google Sign-In + Email/Password** (miễn phí, không tốn SMS). | Bỏ màn `27 - OTP`, dùng luồng Email/Google theo `SCR-01`. | `[Chờ quyết định]` |
+| **FIG-05** | Các màn **P2 ngoài phạm vi SRS** (`05` Thu tiền/Quỹ cầu, `06` VietQR thu chi, `14` Heatmap, `15` Nhịp tim, `17` Watch/Garmin, `18–20` Giải đấu, `24` Trợ giúp). | **SRS 1.2 & `badminton-domain-rules` mục 5:** Ngoài phạm vi MVP. | Bỏ hoàn toàn khỏi MVP (riêng VietQR chỉ giữ dạng modal xem STK đơn giản theo A8 nếu kịp). | `[Chờ quyết định]` |
+| **FIG-06** | Thiếu thiết kế Figma cho **4 màn P0 cốt lõi** trong SRS (`SCR-05` Sảnh kèo, `SCR-06` Chi tiết kèo & Waitlist, `SCR-07` Form tạo kèo 1–2 sân, `SCR-09` Pop-up chấm thẻ 5 giây) và `SCR-04` (Partner Finder), `SCR-13` (Admin). | **SRS & `docs/screens.md`:** Bắt buộc có cho MVP & Demo 5 bước. | TV2 thiết kế bổ sung hoặc code trực tiếp theo `docs/screens.md` bằng bộ Design Tokens của Figma 01–04. | `[Chờ quyết định]` |
+
 

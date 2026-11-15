@@ -1,0 +1,49 @@
+[
+  {
+    "id": "match_kd_01",
+    "sessionId": "session_kd_01",
+    "courtId": "1",
+    "index": 1,
+    "teamA": ["usr_nhat_01", "usr_lan_03"],
+    "teamB": ["usr_dat_02", "ghost_hoa_02"],
+    "sets": [
+      {
+        "setNumber": 1,
+        "scoreA": 21,
+        "scoreB": 18
+      },
+      {
+        "setNumber": 2,
+        "scoreA": 19,
+        "scoreB": 21
+      },
+      {
+        "setNumber": 3,
+        "scoreA": 21,
+        "scoreB": 17
+      }
+    ],
+    "status": "confirmed",
+    "confirmedBy": "usr_nhat_01",
+    "ratingProcessed": true,
+    "cards": [
+      {
+        "fromUserId": "usr_nhat_01",
+        "toUserId": "usr_dat_02",
+        "tag": "plays_better"
+      },
+      {
+        "fromUserId": "usr_dat_02",
+        "toUserId": "usr_nhat_01",
+        "tag": "good_attitude"
+      },
+      {
+        "fromUserId": "usr_dat_02",
+        "toUserId": "usr_lan_03",
+        "tag": "correct_level"
+      }
+    ],
+    "createdAt": "2026-11-18T18:15:00.000Z",
+    "updatedAt": "2026-11-18T18:45:00.000Z"
+  }
+]

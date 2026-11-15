@@ -1,0 +1,187 @@
+[
+  {
+    "id": "1",
+    "sessionId": "session_kd_01",
+    "courtNumber": 1,
+    "category": "mixed",
+    "levelMin": 2,
+    "levelMax": 4,
+    "minReliability": 50,
+    "pairingMode": "auto",
+    "recruitOpen": true,
+    "roster": {
+      "usr_nhat_01": {
+        "memberId": "usr_nhat_01",
+        "displayName": "Đào Duy Nhật",
+        "gender": "M",
+        "type": "core",
+        "rating": 1425,
+        "level": 3,
+        "position": "back",
+        "dominantHand": "right",
+        "isGhost": false,
+        "checkedIn": true,
+        "joinedAt": "2026-11-15T09:00:00.000Z"
+      },
+      "usr_lan_03": {
+        "memberId": "usr_lan_03",
+        "displayName": "Trần Thị Mai Lan",
+        "gender": "F",
+        "type": "core",
+        "rating": 1380,
+        "level": 3,
+        "position": "front",
+        "dominantHand": "right",
+        "isGhost": false,
+        "checkedIn": true,
+        "joinedAt": "2026-11-15T09:00:00.000Z"
+      },
+      "ghost_tuan_01": {
+        "memberId": "ghost_tuan_01",
+        "displayName": "Anh Tuấn (Bạn Nhật)",
+        "gender": "M",
+        "type": "core",
+        "rating": 1400,
+        "level": 3,
+        "position": "back",
+        "dominantHand": "right",
+        "isGhost": true,
+        "checkedIn": false,
+        "joinedAt": "2026-11-15T09:05:00.000Z"
+      },
+      "ghost_hoa_02": {
+        "memberId": "ghost_hoa_02",
+        "displayName": "Chị Hoa (Bạn Nhật)",
+        "gender": "F",
+        "type": "core",
+        "rating": 1300,
+        "level": 2,
+        "position": "front",
+        "dominantHand": "right",
+        "isGhost": true,
+        "checkedIn": false,
+        "joinedAt": "2026-11-15T09:05:00.000Z"
+      },
+      "usr_dat_02": {
+        "memberId": "usr_dat_02",
+        "displayName": "Nguyễn Đức Đạt",
+        "gender": "M",
+        "type": "recruit",
+        "rating": 1575,
+        "level": 4,
+        "position": "front",
+        "dominantHand": "left",
+        "isGhost": false,
+        "checkedIn": false,
+        "joinedAt": "2026-11-15T09:30:00.000Z"
+      }
+    },
+    "pairs": [
+      {
+        "id": "pair_core_01",
+        "a": "usr_nhat_01",
+        "b": "usr_lan_03",
+        "source": "self"
+      }
+    ],
+    "version": 4,
+    "updatedAt": "2026-11-15T09:30:00.000Z"
+  },
+  {
+    "id": "1",
+    "sessionId": "session_ts_02",
+    "courtNumber": 1,
+    "category": "men",
+    "levelMin": 4,
+    "levelMax": 6,
+    "minReliability": 70,
+    "pairingMode": "auto",
+    "recruitOpen": true,
+    "roster": {
+      "usr_minh_04": {
+        "memberId": "usr_minh_04",
+        "displayName": "Lê Quang Minh",
+        "gender": "M",
+        "type": "core",
+        "rating": 1750,
+        "level": 5,
+        "position": "back",
+        "dominantHand": "right",
+        "isGhost": false,
+        "checkedIn": true,
+        "joinedAt": "2026-11-15T10:00:00.000Z"
+      },
+      "usr_tuan_06": {
+        "memberId": "usr_tuan_06",
+        "displayName": "Hoàng Anh Tuấn",
+        "gender": "M",
+        "type": "core",
+        "rating": 1920,
+        "level": 6,
+        "position": "both",
+        "dominantHand": "left",
+        "isGhost": false,
+        "checkedIn": false,
+        "joinedAt": "2026-11-15T10:00:00.000Z"
+      },
+      "ghost_khanh_03": {
+        "memberId": "ghost_khanh_03",
+        "displayName": "Anh Khánh",
+        "gender": "M",
+        "type": "core",
+        "rating": 1650,
+        "level": 5,
+        "position": "front",
+        "dominantHand": "right",
+        "isGhost": true,
+        "checkedIn": false,
+        "joinedAt": "2026-11-15T10:10:00.000Z"
+      }
+    },
+    "pairs": [],
+    "version": 2,
+    "updatedAt": "2026-11-15T10:10:00.000Z"
+  },
+  {
+    "id": "2",
+    "sessionId": "session_ts_02",
+    "courtNumber": 2,
+    "category": "mixed",
+    "levelMin": 3,
+    "levelMax": 5,
+    "minReliability": 60,
+    "pairingMode": "auto",
+    "recruitOpen": true,
+    "roster": {
+      "ghost_thao_04": {
+        "memberId": "ghost_thao_04",
+        "displayName": "Phương Thảo",
+        "gender": "F",
+        "type": "core",
+        "rating": 1450,
+        "level": 3,
+        "position": "front",
+        "dominantHand": "right",
+        "isGhost": true,
+        "checkedIn": false,
+        "joinedAt": "2026-11-15T10:00:00.000Z"
+      },
+      "ghost_nam_05": {
+        "memberId": "ghost_nam_05",
+        "displayName": "Hải Nam",
+        "gender": "M",
+        "type": "core",
+        "rating": 1550,
+        "level": 4,
+        "position": "back",
+        "dominantHand": "right",
+        "isGhost": true,
+        "checkedIn": false,
+        "joinedAt": "2026-11-15T10:00:00.000Z"
+      }
+    },
+    "pairs": [],
+    "version": 1,
+    "updatedAt": "2026-11-15T10:00:00.000Z"
+  }
+]

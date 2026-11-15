@@ -1,0 +1,41 @@
+[
+  {
+    "id": "notif_001",
+    "userId": "usr_dat_02",
+    "type": "request_approved",
+    "title": "Đơn xin tham gia đã được duyệt!",
+    "body": "Host Đào Duy Nhật đã duyệt bạn vào Sân 1 - Sân Cầu Lông Kỳ Đồng lúc 18:00.",
+    "data": {
+      "sessionId": "session_kd_01",
+      "courtId": "1"
+    },
+    "read": false,
+    "createdAt": "2026-11-15T09:30:00.000Z"
+  },
+  {
+    "id": "notif_002",
+    "userId": "usr_vy_07",
+    "type": "waitlist_promoted",
+    "title": "Bạn đã có suất thi đấu chính thức!",
+    "body": "Có người chơi vừa hủy suất, bạn đã được đôn từ danh sách dự bị lên Sân 1 - Sân Kỳ Đồng.",
+    "data": {
+      "sessionId": "session_kd_01",
+      "courtId": "1"
+    },
+    "read": false,
+    "createdAt": "2026-11-15T10:00:00.000Z"
+  },
+  {
+    "id": "notif_003",
+    "userId": "usr_lan_03",
+    "type": "match_reminder",
+    "title": "Nhắc nhở: Lịch đánh cầu lông sắp diễn ra",
+    "body": "Còn 1 tiếng nữa là đến buổi đánh tại Sân Cầu Lông Kỳ Đồng. Hãy chuẩn bị nhé!",
+    "data": {
+      "sessionId": "session_kd_01",
+      "courtId": "1"
+    },
+    "read": true,
+    "createdAt": "2026-11-18T17:00:00.000Z"
+  }
+]

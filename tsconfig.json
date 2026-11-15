@@ -21,6 +21,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "jsx": "react-jsx",
     "paths": {
       "@domain/*": ["src/domain/*"],
       "@config/*": ["src/config/*"]

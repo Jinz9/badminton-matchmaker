@@ -1,0 +1,58 @@
+[
+  {
+    "id": "usr_dat_02",
+    "courtId": "1",
+    "sessionId": "session_kd_01",
+    "userId": "usr_dat_02",
+    "status": "confirmed",
+    "snapshot": {
+      "displayName": "Nguyễn Đức Đạt",
+      "gender": "M",
+      "rating": 1575,
+      "level": 4,
+      "position": "front",
+      "dominantHand": "left",
+      "reliability": 95
+    },
+    "note": "Mình đánh lưới tốt, xin một suất giao lưu nhé!",
+    "createdAt": "2026-11-15T09:15:00.000Z",
+    "decidedAt": "2026-11-15T09:30:00.000Z"
+  },
+  {
+    "id": "usr_huong_05",
+    "courtId": "1",
+    "sessionId": "session_kd_01",
+    "userId": "usr_huong_05",
+    "status": "requested",
+    "snapshot": {
+      "displayName": "Phạm Thu Hương",
+      "gender": "F",
+      "rating": 1275,
+      "level": 2,
+      "position": "both",
+      "dominantHand": "right",
+      "reliability": 88
+    },
+    "note": "Em mới tập lại, xin tham gia sân đôi nam nữ ạ.",
+    "createdAt": "2026-11-15T09:40:00.000Z"
+  },
+  {
+    "id": "usr_vy_07",
+    "courtId": "1",
+    "sessionId": "session_kd_01",
+    "userId": "usr_vy_07",
+    "status": "waitlist",
+    "snapshot": {
+      "displayName": "Đỗ Khánh Vy",
+      "gender": "F",
+      "rating": 1100,
+      "level": 1,
+      "position": "front",
+      "dominantHand": "right",
+      "reliability": 100
+    },
+    "note": "Em xin vào danh sách dự bị, có ai hủy thì đôn em với nhé.",
+    "waitlistPosition": 1,
+    "createdAt": "2026-11-15T09:50:00.000Z"
+  }
+]

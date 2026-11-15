@@ -2,8 +2,6 @@ import {
   UserProfile,
   CourtCategory,
   BadmintonLevel,
-  PlayStyle,
-  Handedness,
 } from "../types";
 
 /**
@@ -87,3 +85,4 @@ export interface PartnerMatchItem {
   breakdown: PartnerScoreBreakdown;
   isProvisional: boolean;    // Ứng viên có đang trong giai đoạn hiệu chỉnh hay không
 }
+

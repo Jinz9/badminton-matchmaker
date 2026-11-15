@@ -260,3 +260,4 @@ const recommendedList = findPartners(
 }
 ```
 Query tự động lọc range Elo và giới tính trên server, đảm bảo chi phí đọc (document read) luôn ở mức tối thiểu.
+

@@ -146,3 +146,4 @@ Khi thuyết trình trực tiếp trước Hội đồng chấm đồ án, nếu
   - Tải lên Google Drive (chế độ Public xem được).
   - Tải lên YouTube (chế độ Không công khai - Unlisted) để nhúng link vào slide và báo cáo.
   - Sao chép 1 bản offline vào USB của TV1 và TV2 khi đi bảo vệ.
+

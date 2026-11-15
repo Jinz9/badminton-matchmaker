@@ -1,8 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { useRouter } from "expo-router";
 import { COLORS, SPACING } from "../../theme";
 
 export default function ProfileScreen() {
+  const router = useRouter();
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <View style={styles.screenTag}>
@@ -77,6 +79,20 @@ export default function ProfileScreen() {
           <Text style={[styles.menuArrow, { color: COLORS.danger }]}>›</Text>
         </TouchableOpacity>
       </View>
+
+      {__DEV__ ? (
+        <TouchableOpacity
+          style={[styles.menuBox, { marginTop: SPACING.md, borderColor: COLORS.primary }]}
+          onPress={() => router.push("/dev/ui-kit" as never)}
+        >
+          <View style={[styles.menuItem, { borderBottomWidth: 0 }]}>
+            <Text style={[styles.menuText, { color: COLORS.primary }]}>
+              [DEV] Mở UI Kit & So sánh 4 màn lõi
+            </Text>
+            <Text style={[styles.menuArrow, { color: COLORS.primary }]}>›</Text>
+          </View>
+        </TouchableOpacity>
+      ) : null}
     </ScrollView>
   );
 }

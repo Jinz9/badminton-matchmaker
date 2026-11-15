@@ -1,3 +1,1 @@
-// Helper utility functions
-export {};
-
+export * from "./haptics";

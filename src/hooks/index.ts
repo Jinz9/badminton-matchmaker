@@ -1,3 +1,1 @@
-// Custom React Hooks
-export {};
-
+export * from "./useHaptics";

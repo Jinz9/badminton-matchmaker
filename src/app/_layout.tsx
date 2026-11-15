@@ -1,22 +1,25 @@
-import React from "react";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { PALETTE, useThemeFonts } from "../theme";
 
 export default function RootLayout() {
+  // Tải font Inter bất đồng bộ; giữ render ngay bằng font hệ thống nếu chưa xong
+  useThemeFonts();
+
   return (
     <SafeAreaProvider>
       <StatusBar style="light" />
       <Stack
         screenOptions={{
           headerShown: false,
-          contentStyle: { backgroundColor: "#0B132B" },
+          contentStyle: { backgroundColor: PALETTE.bg.canvas },
           animation: "fade",
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="dev/ui-kit" options={{ headerShown: false }} />
       </Stack>
     </SafeAreaProvider>
   );
 }
-

@@ -167,11 +167,14 @@ Lưu trữ thông tin các set đấu, tỷ số và thẻ đánh giá sau trậ
 | `index` | `number` | Có | `1` | Thứ tự set đấu trong buổi đánh (1, 2, 3...) | Host |
 | `teamA` | `string[2]` | Có | `["usr_nhat_01", "usr_dat_02"]` | Cặp đấu Đội A (mảng 2 `memberId`) | Host / System |
 | `teamB` | `string[2]` | Có | `["usr_minh_03", "ghost_tuan_01"]` | Cặp đấu Đội B (mảng 2 `memberId`) | Host / System |
-| `sets` | `map[]` | Có | `[ { setNumber: 1, scoreA: 21, scoreB: 18 } ]` | Tỷ số từng set đấu | Host |
+| `playerIds` | `string[4]` | Không | `["usr_nhat_01", "usr_dat_02", "usr_minh_03", "ghost_tuan_01"]` | Mảng 4 VĐV để Firestore query `array-contains` tìm lịch sử đấu | Host / System |
+| `category` | `string` | Không | `"men"` | Nội dung sân: `men`, `women`, `mixed` (phục vụ thống kê) | Host |
+| `sets` | `map[]` | Có | `[ { setNumber: 1, scoreA: 21, scoreB: 18 } ]` | Tỷ số từng set đấu chuẩn BWF | Host |
 | `status` | `string` | Có | `"confirmed"` | Trạng thái: `planned`, `playing`, `finished`, `confirmed` | Host |
+| `winner` | `string` | Không | `"teamA"` | Đội chiến thắng (`teamA` hoặc `teamB`) | Host / System |
 | `confirmedBy` | `string` | Không | `"usr_nhat_01"` | `uid` của Host xác nhận kết quả | Host |
-| `ratingProcessed` | `boolean` | Có | `false` | Cờ chỉ báo đã cập nhật Elo (chỉ chuyển `false` $\to$ `true`) | Backend / Host |
-| `cards` | `map[]` | Không | `[ { fromUserId, toUserId, tag } ]` | Danh sách thẻ đánh giá bạn chơi sau trận | Người chơi |
+| `ratingProcessed` | `boolean` | Có | `false` | Cờ chỉ báo đã cập nhật Elo (chỉ chuyển `false` $\to$ `true`, bảo đảm Idempotency) | Backend / Host |
+| `cards` | `map[]` | Không | `[ { fromUserId, toUserId, tag, reportReason } ]` | Danh sách thẻ đánh giá bạn chơi sau trận | Người chơi |
 | `createdAt` | `Timestamp` | Có | `"2026-11-18T18:30:00Z"`| Thời điểm bắt đầu set đấu | System |
 | `updatedAt` | `Timestamp` | Có | `"2026-11-18T18:50:00Z"`| Thời điểm kết thúc và lưu điểm | System |
 
@@ -213,6 +216,23 @@ Lưu trữ thông báo đẩy gửi tới thiết bị của người dùng.
 
 ---
 
+### 3.8 Subcollection: `users/{userId}/stats/summary` (`UserStatsDoc`)
+Bản ghi tổng hợp số liệu thống kê cá nhân và danh sách đồng đội ăn ý (giảm chi phí đọc Firestore theo P16/P17).
+
+| Tên trường | Kiểu dữ liệu | Bắt buộc | Ví dụ mẫu | Ý nghĩa nghiệp vụ | Quyền ghi |
+|---|---|:---:|---|---|---|
+| `userId` | `string` | Có | `"usr_nhat_01"` | `uid` của người chơi | Backend / Admin |
+| `totalMatches` | `number` | Có | `28` | Tổng số trận đấu đã tham gia | Backend / Admin |
+| `totalWins` | `number` | Có | `18` | Tổng số trận thắng | Backend / Admin |
+| `totalLosses` | `number` | Có | `10` | Tổng số trận thua | Backend / Admin |
+| `overallWinRate` | `number` | Có | `0.6429` | Tỷ lệ thắng chung cuộc (0.00 - 1.00) | Backend / Admin |
+| `byCategory` | `map` | Có | `{ men: {...}, women: {...}, mixed: {...} }` | Thống kê số trận & tỷ lệ thắng theo nội dung | Backend / Admin |
+| `byMonth` | `map` | Có | `{ "2026-11": { matches: 20, wins: 13, winRate: 0.65 } }` | Thống kê số trận & tỷ lệ thắng theo từng tháng | Backend / Admin |
+| `bestPartners` | `map[]` | Có | `[ { partnerId, matchesCount, winsCount, winRate, lastPlayedAt } ]` | Danh sách đồng đội ăn ý nhất ($\ge 5$ trận, winRate $\ge 60\%$) | Backend / Admin |
+| `updatedAt` | `Timestamp` | Có | `"2026-11-15T12:00:00Z"`| Thời điểm cập nhật thống kê | Backend / Admin |
+
+---
+
 ## 4. BẢNG TRUY VẾT DỮ LIỆU ĐẾN YÊU CẦU CHỨC NĂNG (DATA TO FR TRACEABILITY)
 
 Bảng đối chiếu đảm bảo mọi trường dữ liệu đều phục vụ một hoặc nhiều Yêu cầu chức năng trong [docs/07-srs.md](file:///d:/QLDAPM/docs/07-srs.md):
@@ -232,11 +252,12 @@ Bảng đối chiếu đảm bảo mọi trường dữ liệu đều phục v�
 | `courts` | `pairs` (`source: "self" \| "host"`) | FR-09 (Cặp khóa cố định) |
 | `courts` | `version` | NFR-04, NFR-06 (Chống race-condition Transaction) |
 | `requests` | `status` (`requested`, `waitlist`, `confirmed`, `cancelled`), `snapshot` | FR-18 (Xin tham gia), FR-19 (Host duyệt), FR-20 (Waitlist) |
-| `matches` | `courtId`, `index`, `teamA`, `teamB`, `status` | FR-08 (Chia cặp), FR-10 (Xoay vòng người nghỉ) |
+| `matches` | `courtId`, `index`, `teamA`, `teamB`, `playerIds`, `category`, `status`, `winner` | FR-08 (Chia cặp), FR-10 (Xoay vòng người nghỉ), FR-25 (Lịch sử đấu) |
 | `matches` | `sets` (`scoreA`, `scoreB`) | FR-22 (Nhập tỷ số tại sân) |
-| `matches` | `cards` (`tag: "correct_level" \| "plays_better" \| "good_attitude"`) | FR-23 (Chấm thẻ sau trận 5 giây) |
-| `matches` | `ratingProcessed` | FR-24 (Cập nhật Elo an toàn) |
+| `matches` | `cards` (`tag`, `reportReason`) | FR-23 (Chấm thẻ sau trận 5 giây) |
+| `matches` | `ratingProcessed` | FR-24 (Cập nhật Elo an toàn & Idempotent) |
 | `ratings` | `oldRating`, `newRating`, `delta`, `kFactor`, `reason` | FR-24, FR-25 (Lịch sử đấu và biến động Elo) |
+| `users/stats` | `totalMatches`, `overallWinRate`, `byCategory`, `byMonth`, `bestPartners` | FR-26 (Thống kê cá nhân & Đồng đội ăn ý) |
 | `notifications` | `type`, `title`, `body`, `data`, `read` | FR-35 (Push Notification) |
 
 ---
@@ -244,3 +265,4 @@ Bảng đối chiếu đảm bảo mọi trường dữ liệu đều phục v�
 ## 5. LỊCH SỬ THAY ĐỔI & NHẬT KÝ BAN HÀNH (CHANGELOG)
 
 - **2026-11-15 (v1.0 - Gốc):** Ban hành bản chính thức Data Contract đầu tiên phục vụ Sprint 1–3 (TV2 dựng mock data và UI).
+- **2026-11-15 (v1.1 - Chuẩn hóa M8 Feature Freeze):** Bổ sung `playerIds`, `category`, `winner` cho `matches`; `reportReason` cho `cards`; tài liệu chi tiết subcollection `users/{uid}/stats` (`UserStatsDoc`); cập nhật tiêu chí Đồng đội ăn ý ($\ge 5$ trận, winRate $\ge 60\%$). Hoàn toàn khớp với code thực tế.

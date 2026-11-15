@@ -363,16 +363,14 @@ describe("Q05: Màn 01 Home Sân Đấu (Chạm 1) & Màn 02 Chọn Người & C
     expect(elapsedMs).toBeLessThan(1500);
     expect(screen.getByText(/Đã chọn 4\/8 VĐV/i)).toBeTruthy();
 
-    // Bấm Chạm 2: XEM KÈO CÂN BẰNG
+    // Bấm Chạm 2: XEM KÈO CÂN BẰNG -> Điều hướng sang Màn 03 (/court/balance-confirm)
     await fireEvent.press(screen.getByTestId("confirm-select-players-btn"));
     expect(getTapCounterState().currentTaps).toBe(2);
-    expect(screen.getByTestId("balanced-match-plan-sheet")).toBeTruthy();
-
-    // Bấm Chạm 3: VÀO SÂN NGAY -> Đúng 3 chạm từ Home đến phương án chia kèo hoàn chỉnh
-    await fireEvent.press(screen.getByTestId("confirm-tap-3-enter-court-btn"));
-    const tapState = getTapCounterState();
-    expect(tapState.currentTaps).toBe(3);
-    expect(tapState.withinTarget).toBe(true);
+    expect(mockPush).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pathname: "/court/balance-confirm",
+      })
+    );
 
     await screen.unmount();
   });

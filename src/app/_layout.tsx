@@ -26,6 +26,11 @@ export default function RootLayout() {
             name="court/select-players"
             options={{ headerShown: false }}
           />
+          <Stack.Screen
+            name="court/balance-confirm"
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="court/score" options={{ headerShown: false }} />
           <Stack.Screen name="dev/ui-kit" options={{ headerShown: false }} />
         </Stack>
       </AuthProvider>

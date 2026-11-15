@@ -294,7 +294,14 @@ export function SelectPlayersScreen({
     }
     trigger("selectPlayer");
     recordOnCourtTap("select", "XEM KÈO CÂN BẰNG [CHẠM 2]");
-    setMatchPlanSheetVisible(true);
+    router.push({
+      pathname: "/court/balance-confirm",
+      params: {
+        sessionId,
+        courtId: targetCourt?.id ?? courtId,
+        selectedIds: selectedIds.join(","),
+      },
+    } as never);
   };
 
   const handleConfirmTap3EnterCourt = () => {

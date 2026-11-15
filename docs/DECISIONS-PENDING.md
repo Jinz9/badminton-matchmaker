@@ -69,9 +69,10 @@
 
 - **Vấn đề:** Khi nào một cặp người chơi được hệ thống gợi ý hoặc gắn nhãn "Đồng đội ăn ý"?
 - **Đề xuất:**
-  - Số trận tối thiểu đánh cùng nhau: **≥ 3 trận** (hoặc ≥ 5 trận).
-  - Tỷ lệ chiến thắng khi bắt cặp cùng nhau: **≥ 60%** (hoặc ≥ 66%).
-- **Quyết định của TV1:** `[Tỷ lệ chiến thắng khi bắt cặp cùng nhau: **≥ 60%** (hoặc ≥ 66%).]`
+  - Số trận tối thiểu đánh cùng nhau: **≥ 5 trận** (đã duyệt: ngưỡng nghiêm ngặt, phản ánh thực chất phong độ).
+  - Tỷ lệ chiến thắng khi bắt cặp cùng nhau: **≥ 60%** (0.60).
+  - Quy tắc xếp hạng: **Tỷ lệ thắng giảm dần -> Số trận đánh cùng nhiều hơn -> Trận đánh gần nhất** (`winRate DESC -> matchesCount DESC -> lastPlayedAt DESC`).
+- **Quyết định của TV1:** `[Đã duyệt: Ngưỡng tối thiểu ≥ 5 trận; Xếp hạng theo WinRate DESC -> MatchesCount DESC -> LastPlayedAt DESC]`
 
 ---
 

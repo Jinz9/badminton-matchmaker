@@ -255,3 +255,4 @@ const result = await confirmMatchResultTx(
 3. **Phân quyền Bảo mật (Security Rules Compliance):**
    - Client thường không được phép ghi trực tiếp vào trường `skill.rating` hay `skill.reliability` của User.
    - Chỉ Host của buổi đánh (xác thực thông qua `session.hostId`) mới có quyền chốt tỷ số trận đấu.
+

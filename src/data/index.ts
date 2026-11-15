@@ -5,6 +5,7 @@ import { DataSourceMode, IDataRepository } from "./types";
 export * from "./types";
 export * from "./MockRepository";
 export * from "./FirebaseRepository";
+export * from "./offlineMatchQueue";
 
 /** Đọc nguồn dữ liệu từ biến môi trường EXPO_PUBLIC_DATA_SOURCE (mặc định: "mock") */
 export function getConfiguredDataSource(): DataSourceMode {

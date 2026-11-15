@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet, Switch, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -35,6 +35,12 @@ import { getConfiguredDataSource, getRepository } from "../../data";
 import { getAuthService, MOCK_DEMO_ACCOUNTS, MOCK_OTP_CODE } from "../../data/auth";
 import { useHaptics } from "../../hooks";
 import { PALETTE, RADIUS, SPACING, TYPOGRAPHY } from "../../theme";
+import {
+  getTapCounterState,
+  resetTapCounter,
+  subscribeTapCounter,
+  TapCounterState,
+} from "../../utils/tapCounter";
 
 const MOCK_PLAYERS = [
   { id: "p1", name: "Hoàng Anh", level: 4, elo: 1520, subtitle: "Mặc định · Cầu công" },
@@ -60,6 +66,11 @@ export default function DevUiKitScreen() {
   const [simulateError, setSimulateError] = useState(false);
   const [activeBottomTab, setActiveBottomTab] = useState("court");
   const [sheetVisible, setSheetVisible] = useState(false);
+  const [tapState, setTapState] = useState<TapCounterState>(getTapCounterState);
+
+  useEffect(() => {
+    return subscribeTapCounter(setTapState);
+  }, []);
   const [toastState, setToastState] = useState<{
     visible: boolean;
     variant: ToastVariant;
@@ -265,6 +276,44 @@ export default function DevUiKitScreen() {
                 style={{ flex: 1 }}
               />
             </View>
+          </View>
+        </View>
+
+        {/* Bộ đếm chạm tại sân (Q05 & Q15 Field Test: Tối đa 3 chạm từ Home đến phương án chia) */}
+        <View style={styles.hapticCard} testID="dev-tap-counter-card">
+          <View style={{ flex: 1, gap: 4 }}>
+            <Text style={styles.cardHeading}>
+              Đếm chạm tại sân (Field Test Q15): {tapState.currentTaps}/{tapState.maxAllowedTaps} chạm
+            </Text>
+            <Text style={styles.cardSub}>
+              Mục tiêu CR-01: Tối đa 3 chạm từ Home đến lúc có phương án chia kèo cân bằng.{" "}
+              {tapState.history.length > 0
+                ? `Lịch sử: ${tapState.history.map((h) => `#${h.tapNumber} ${h.actionLabel}`).join(" → ")}`
+                : "Chưa ghi nhận chạm nào trong phiên thử hiện tại."}
+            </Text>
+            <View style={[styles.rowWrap, { marginTop: SPACING.xs }]}>
+              <SecondaryButton
+                label="Màn 01: Home Sân"
+                variant="teamA"
+                onPress={() => router.push("/court" as never)}
+                style={{ flex: 1 }}
+              />
+              <SecondaryButton
+                label="Màn 02: Chọn Người"
+                variant="teamA"
+                onPress={() => router.push("/court/select-players" as never)}
+                style={{ flex: 1 }}
+              />
+            </View>
+            <SecondaryButton
+              label="Đặt lại bộ đếm chạm (0/3)"
+              variant="outline"
+              onPress={() => {
+                resetTapCounter();
+                showToast("info", "Đã đặt lại bộ đếm chạm tại sân về 0/3");
+              }}
+              hapticsEnabled={hapticsEnabled}
+            />
           </View>
         </View>
 

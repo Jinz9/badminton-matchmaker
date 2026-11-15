@@ -170,5 +170,52 @@
     "isDeleted": false,
     "createdAt": "2026-11-15T07:00:00.000Z",
     "updatedAt": "2026-11-15T12:30:00.000Z"
+  },
+  {
+    "id": "session_tienson_05",
+    "hostId": "usr_nhat_01",
+    "hostName": "Đào Duy Nhật",
+    "hostAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    "hostReputation": 98,
+    "title": "Tối T3 • Sân Tiên Sơn",
+    "venueName": "Sân Cầu Lông Tiên Sơn - Đà Nẵng",
+    "address": "03 Phan Đăng Lưu, Hải Châu, Đà Nẵng",
+    "district": "Hải Châu",
+    "startsAt": "2026-11-18T19:00:00.000Z",
+    "durationMin": 120,
+    "costPerPlayer": 60000,
+    "status": "in_progress",
+    "courtCount": 2,
+    "courtSummaries": [
+      {
+        "courtId": "1",
+        "category": "mixed",
+        "levelMin": 1,
+        "levelMax": 5,
+        "openSlots": 0,
+        "openByGender": {
+          "M": 0,
+          "F": 0
+        },
+        "recruitOpen": false
+      },
+      {
+        "courtId": "2",
+        "category": "mixed",
+        "levelMin": 3,
+        "levelMax": 6,
+        "openSlots": 2,
+        "openByGender": {
+          "M": 1,
+          "F": 1
+        },
+        "recruitOpen": true
+      }
+    ],
+    "openSlotsTotal": 2,
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-11-15T06:30:00.000Z",
+    "updatedAt": "2026-11-15T12:45:00.000Z"
   }
 ]

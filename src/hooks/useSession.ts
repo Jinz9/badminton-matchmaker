@@ -79,14 +79,19 @@ export function useSession(sessionId: string | null | undefined): UseSessionResu
     const repo = getRepository();
     const unsubSession = repo.subscribe<SessionDoc[]>("sessions", (all) => {
       const found = all.find((s) => s.id === sessionId && !s.isDeleted) ?? null;
-      if (found) setSession(found);
+      if (found) {
+        setSession(found);
+        setLoading(false);
+      }
     });
     const unsubCourts = repo.subscribe<CourtDoc[]>("courts", (all) => {
-      setCourts(
-        all
-          .filter((c) => c.sessionId === sessionId)
-          .sort((a, b) => a.courtNumber - b.courtNumber)
-      );
+      const filtered = all
+        .filter((c) => c.sessionId === sessionId)
+        .sort((a, b) => a.courtNumber - b.courtNumber);
+      setCourts(filtered);
+      if (filtered.length > 0) {
+        setLoading(false);
+      }
     });
     const unsubRequests = repo.subscribe<JoinRequestDoc[]>("requests", (all) => {
       setRequests(all.filter((r) => r.sessionId === sessionId));

@@ -204,5 +204,137 @@
     "isDeleted": false,
     "createdAt": "2026-10-10T08:00:00.000Z",
     "updatedAt": "2026-11-15T08:00:00.000Z"
+  },
+  {
+    "uid": "usr_hoanganh_10",
+    "displayName": "Hoàng Anh",
+    "gender": "M",
+    "phoneNumber": "0905222333",
+    "areaLabel": "Hải Châu",
+    "position": "back",
+    "dominantHand": "right",
+    "selfDeclaredLevel": 4,
+    "role": "player",
+    "skill": {
+      "rating": 1520,
+      "matchesPlayed": 24,
+      "reliability": 98,
+      "isProvisional": false
+    },
+    "fcmTokens": [],
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-10-12T08:00:00.000Z",
+    "updatedAt": "2026-11-15T08:00:00.000Z"
+  },
+  {
+    "uid": "usr_thaovy_11",
+    "displayName": "Thảo Vy",
+    "gender": "F",
+    "phoneNumber": "0905222444",
+    "areaLabel": "Hải Châu",
+    "position": "front",
+    "dominantHand": "right",
+    "selfDeclaredLevel": 2,
+    "role": "player",
+    "skill": {
+      "rating": 1380,
+      "matchesPlayed": 16,
+      "reliability": 96,
+      "isProvisional": false
+    },
+    "fcmTokens": [],
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-10-14T08:00:00.000Z",
+    "updatedAt": "2026-11-15T08:00:00.000Z"
+  },
+  {
+    "uid": "usr_ducmanh_12",
+    "displayName": "Đức Mạnh",
+    "gender": "M",
+    "phoneNumber": "0905222555",
+    "areaLabel": "Sơn Trà",
+    "position": "both",
+    "dominantHand": "right",
+    "selfDeclaredLevel": 4,
+    "role": "player",
+    "skill": {
+      "rating": 1470,
+      "matchesPlayed": 20,
+      "reliability": 95,
+      "isProvisional": false
+    },
+    "fcmTokens": [],
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-10-16T08:00:00.000Z",
+    "updatedAt": "2026-11-15T08:00:00.000Z"
+  },
+  {
+    "uid": "usr_khanhlinh_13",
+    "displayName": "Khánh Linh",
+    "gender": "F",
+    "phoneNumber": "0905222666",
+    "areaLabel": "Thanh Khê",
+    "position": "front",
+    "dominantHand": "right",
+    "selfDeclaredLevel": 3,
+    "role": "player",
+    "skill": {
+      "rating": 1400,
+      "matchesPlayed": 14,
+      "reliability": 94,
+      "isProvisional": false
+    },
+    "fcmTokens": [],
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-10-18T08:00:00.000Z",
+    "updatedAt": "2026-11-15T08:00:00.000Z"
+  },
+  {
+    "uid": "usr_tuankiet_14",
+    "displayName": "Tuấn Kiệt",
+    "gender": "M",
+    "phoneNumber": "0905222777",
+    "areaLabel": "Cẩm Lệ",
+    "position": "back",
+    "dominantHand": "right",
+    "selfDeclaredLevel": 3,
+    "role": "player",
+    "skill": {
+      "rating": 1390,
+      "matchesPlayed": 11,
+      "reliability": 92,
+      "isProvisional": false
+    },
+    "fcmTokens": [],
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-10-20T08:00:00.000Z",
+    "updatedAt": "2026-11-15T08:00:00.000Z"
+  },
+  {
+    "uid": "usr_baotram_15",
+    "displayName": "Bảo Trâm",
+    "gender": "F",
+    "phoneNumber": "0905222888",
+    "areaLabel": "Hải Châu",
+    "position": "front",
+    "dominantHand": "right",
+    "selfDeclaredLevel": 1,
+    "role": "player",
+    "skill": {
+      "rating": 1180,
+      "matchesPlayed": 4,
+      "reliability": 97,
+      "isProvisional": true
+    },
+    "fcmTokens": [],
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-11-01T08:00:00.000Z",
+    "updatedAt": "2026-11-15T08:00:00.000Z"
   }
 ]

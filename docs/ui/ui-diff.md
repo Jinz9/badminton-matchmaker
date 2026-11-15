@@ -35,4 +35,14 @@
 | **21 - Đăng Nhập & Khởi Tạo Elo Ban Đầu** (`5:268`) | `src/app/(auth)/onboarding.tsx` | Chọn tay thuận, vị trí (`Cầu trước` / `Cầu sau` / `Linh hoạt`), nội dung đánh (`Đôi nam` / `Đôi nữ` / `Đôi nam nữ`), khu vực Đà Nẵng (`DA_NANG_DISTRICTS`), hộp giải thích `Provisional K = 40 (5 trận đầu)`, nút `HOÀN TẤT & VÀO SÂN ĐẤU BWF →`. | Thay 4 mức tự chọn cảm tính trong Figma (`Tập Sự 1000`..`Chuyên Nghiệp 1950+`) bằng **10 câu hỏi tự đánh giá nguyên văn từ `docs/06-rating-scale.md`** và tính điểm bằng `calculateInitialRatingFromAnswers` + `levelToRange` của TV1 (`1100–1900`, 6 cấp). |
 | **09 - Tổng quan & 23 - Cài Đặt Tài Khoản** (`9:1903`, `5:483`) | `src/app/(tabs)/profile.tsx` | Thẻ hộ chiếu VĐV với avatar chữ cái, tên, `LevelBadge` kèm khoảng điểm, điểm Elo, điểm Uy tín (`98/100`), 3 ô thống kê (`Tỷ lệ thắng`, `Trận đã đấu`, `Uy tín Fair-Play`), nút `✎ CHỈNH SỬA HỒ SƠ VĐV` và `⎋ ĐĂNG XUẤT TÀI KHOẢN`. | `BottomSheet` chỉnh sửa hồ sơ **chỉ cho phép sửa các trường hợp lệ theo Security Rules** (`displayName`, `phoneNumber`, `gender`, `dominantHand`, `position`, `areaLabel`) và khóa cứng `skill.rating` / `skill.level` / `skill.reliability`. |
 
+---
+
+## 4. Đối chiếu nhóm màn hình Tại Sân: Home Sân Đấu & Chọn Người (`feat/court-home-select` / Q05)
+
+| Màn hình Figma | Route đã dựng | Điểm khớp với Figma | Tinh chỉnh theo Luật nghiệp vụ (`CR-01`) |
+|---|---|---|---|
+| **01 - Home Sân Đấu (Chạm 1)** (`1:3099`) | `src/app/court/index.tsx` & `src/app/(tabs)/index.tsx` | Header `Sân Cầu Lông Tiên Sơn - Đà Nẵng`, trạng thái `TRỰC TIẾP TẠI SÂN`, thông báo, avatar; Context `Tối T3 • Sân Tiên Sơn` + `LIVE • ĐANG HOẠT ĐỘNG`; Card Sân 01 trống kèm `CourtDiagram` SVG + CTA `58px` `CHIA KÈO SÂN 1 [CHẠM 1]`; Card Sân 02 đang đấu (`Minh / Hùng` vs `Lan / Tuấn`, tỷ số `18 - 15`); `Hàng đợi ưu tiên` 6 chip người chơi nhanh; 4 tab điều hướng dưới. | Áp dụng **CR-01** (`RULES.MAX_COURTS_PER_SESSION = 2`, `RULES.COURT_CAPACITY = 8`): thay `"4 sân sẵn sàng"` của Figma gốc bằng tối đa **2 sân/kèo**, tuyệt đối không hiển thị sân thứ 3; thay tab `Thu tiền` ngoài phạm vi bằng tab `Hồ sơ`. |
+| **02 - Chọn Người & Cân Trình (Chạm 2)** (`1:2724`) | `src/app/court/select-players.tsx` | Header nút Quay lại (`44×44` + `hitSlop >= 48dp`), `ProgressBar` `"Chạm 2/3"`, 4 ô xếp hàng đã chọn (xóa từng ô `✕` & nút `Xóa hết`), đồng hồ cân bằng trực tiếp `BalanceMeter` gọi thẳng `balanceCourt`, lưới chọn nhanh `>= 80×64px` vùng ngón cái, pill `Ghi chú cho người điều phối`, thanh hành động cố định dưới (`58px` `NeonCTAButton`), `BottomSheet` Modal hồ sơ VĐV (`75%`, `18`, `6`, độ ổn định, lịch sử 3 trận, nút `THU GỌN`). | Hỗ trợ đầy đủ dải **4–8 người/sân** (`RULES.COURT_CAPACITY = 8`), hiển thị danh sách **Người nghỉ luân phiên** khi chọn ca lẻ **5 hoặc 7 người** (và 6/8 người); chặn chọn quá 8 người/sân bằng thông báo lỗi thân thiện tiếng Việt; tích hợp `tapCounter` (`Chạm 1..3`) hiển thị tại `/dev/ui-kit` phục vụ Field Test (`Q15`). |
+
+
 

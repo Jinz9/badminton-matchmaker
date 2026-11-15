@@ -64,5 +64,24 @@
     "ratingProcessed": false,
     "createdAt": "2026-11-18T19:35:00.000Z",
     "updatedAt": "2026-11-18T19:45:00.000Z"
+  },
+  {
+    "id": "match_tienson_03",
+    "sessionId": "session_tienson_05",
+    "courtId": "2",
+    "index": 1,
+    "teamA": ["usr_minh_04", "ghost_hung_07"],
+    "teamB": ["usr_lan_03", "usr_tuan_06"],
+    "sets": [
+      {
+        "setNumber": 1,
+        "scoreA": 18,
+        "scoreB": 15
+      }
+    ],
+    "status": "playing",
+    "ratingProcessed": false,
+    "createdAt": "2026-11-18T19:10:00.000Z",
+    "updatedAt": "2026-11-18T19:24:00.000Z"
   }
 ]

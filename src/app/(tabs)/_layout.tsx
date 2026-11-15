@@ -39,11 +39,11 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Kèo Đấu",
-          headerTitle: "Sảnh Kèo Cầu Lông Đà Nẵng",
-          tabBarLabel: "Kèo Đấu",
+          headerShown: false,
+          title: "Tại Sân",
+          tabBarLabel: "Sân Đấu",
           tabBarIcon: ({ color }) => (
-            <Text style={{ fontSize: 20 }}>🏸</Text>
+            <Text style={{ fontSize: 20, color }}>🏸</Text>
           ),
         }}
       />

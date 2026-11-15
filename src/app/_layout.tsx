@@ -21,6 +21,11 @@ export default function RootLayout() {
         >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="court/index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="court/select-players"
+            options={{ headerShown: false }}
+          />
           <Stack.Screen name="dev/ui-kit" options={{ headerShown: false }} />
         </Stack>
       </AuthProvider>

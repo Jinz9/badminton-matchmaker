@@ -10,7 +10,7 @@
 |---|---|---|:---:|---|
 | **M1** | Charter & Môi trường Dev | Ký duyệt Charter, thiết lập Git repo, bộ quy tắc, cấu trúc thư mục, môi trường Jest, Board quản lý | 🟢 Hoàn thành | Đã sẵn sàng toàn bộ tài liệu & hạ tầng kiểm thử |
 | **M2** | SRS & Figma Prototype | Hoàn thành tài liệu yêu cầu SRS, Data Contract; TV2 hoàn thành Prototype Figma | 🟡 Đang thực hiện | TV1 hoàn tất SRS/Use Cases/Stories/Screens, sẵn sàng cho TV2 dựng Figma (WBS 2.4) |
-| **M3** | Đăng nhập & Profile Cloud | Xác thực Firebase Auth, lưu thông tin User và hồ sơ cơ bản lên Firestore | ⚪ Chưa bắt đầu | Kế hoạch Tuần 3 (Sprint 2) |
+| **M3** | Đăng nhập & Profile Cloud | Xác thực Firebase Auth, lưu thông tin User và hồ sơ cơ bản lên Firestore | 🟡 Đang thực hiện | Backend & Logic sẵn sàng 100% (WBS 3.1); Chờ TV2 dựng xong màn hình Đăng nhập & Onboarding (WBS 4.1) |
 | **M4** | Module Hồ sơ & Tìm đồng đội | Triển khai thang 6 cấp, thuật toán Partner Finder (lệch ≤ 150 Elo, vị trí đánh) | ⚪ Chưa bắt đầu | Kế hoạch Tuần 4 (Sprint 2) |
 | **M5** | Phòng kèo Realtime & Waitlist | Tạo kèo, tuyển vãng lai, cơ chế đặt suất chống race condition, hàng đợi dự bị | ⚪ Chưa bắt đầu | Kế hoạch Tuần 5–6 (Sprint 3) |
 | **M6** | Thuật toán chia cặp cân kèo | Thuật toán xếp cặp và xoay vòng 4–8 người/sân, hỗ trợ cặp khóa, unit test Jest | ⚪ Chưa bắt đầu | Kế hoạch Tuần 7 (Sprint 4) |
@@ -40,6 +40,7 @@
 | 2026-11-15 | Khởi tạo toàn diện hạ tầng Firebase: ADR-001 (Blaze + Functions tại Singapore), firebase.json, firestore.rules chặn mặc định, functions/ (TypeScript + Jest + chia sẻ domain logic), scripts/ điều khiển emulator, .env.example, hướng dẫn môi trường (`docs/firebase-env.md`), bộ test mẫu emulator đạt 34/34 PASS | `chore/firebase-init` | `chore(firebase): initialize firebase config, functions, emulators and env guide` | TV1 & Trợ lý |
 | 2026-11-15 | Hoàn thành Ban hành Hợp đồng Dữ liệu Data Contract v1.0: `docs/api/data-contract.md`, `src/domain/types.ts`, `src/domain/repositories.ts`, `docs/api/repository-interfaces.md`, 7 file mock JSON mẫu, composite indexes `firestore.indexes.json`, gắn tag git `data-contract-v1` (41/41 tests PASS) | `docs/data-contract` | `feat(api): freeze data contract v1, domain types, repository interfaces and mock samples` | TV1 & Trợ lý |
 | 2026-11-15 | Hoàn thành Bộ quy tắc bảo mật Firestore Production (`firestore.rules`), ma trận phân quyền chi tiết (`docs/api/security-matrix.md`), kịch bản kiểm thử tự động trên Firebase Emulator với 60/60 ca kiểm thử đạt 100% PASS (`test/firebase/securityRules.test.ts`) | `feat/security-rules` | `feat(security): production firestore rules, security matrix and comprehensive unit tests` | TV1 & Trợ lý |
+| 2026-11-15 | Hoàn thành Backend Auth & Profile (WBS 3.1 & M3): ADR-002 (Google + Email/Password), `src/config/districts.ts` (7 quận & 10 sân ĐN), module `userProfile.ts` khởi tạo và validate hồ sơ, script `set-admin.js`, hướng dẫn tích hợp TV2 `auth-profile.md`, 26 unit & integration tests PASS (tổng 127 tests PASS 100%) | `feat/auth-profile` | `feat(auth): user onboarding, profile validation, admin cli, da nang districts and integration tests` | TV1 & Trợ lý |
 
 ---
 

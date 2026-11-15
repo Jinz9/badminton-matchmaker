@@ -219,7 +219,7 @@ export default function DevUiKitScreen() {
             <Text style={styles.cardSub}>
               Bật giả lập lỗi mạng 30% hoặc đặt lại dữ liệu AsyncStorage về mặc định
             </Text>
-            <View style={{ marginTop: SPACING.xs }}>
+            <View style={{ marginTop: SPACING.xs, gap: SPACING.xs }}>
               <SecondaryButton
                 label="Đặt lại dữ liệu mẫu"
                 variant="outline"
@@ -230,6 +230,35 @@ export default function DevUiKitScreen() {
                   }
                   await getAuthService().resetMockAccounts?.();
                   showToast("success", "Đã khôi phục dữ liệu mẫu & tài khoản Auth ban đầu");
+                }}
+                hapticsEnabled={hapticsEnabled}
+              />
+              <SecondaryButton
+                label="Giả lập thiết bị 2: Người khác vào kèo (Realtime)"
+                variant="ghost"
+                onPress={async () => {
+                  try {
+                    const repo = getRepository();
+                    const sessions = await repo.listSessions({ onlyOpenSlots: true });
+                    const target = sessions[0];
+                    if (!target) {
+                      showToast("warning", "Không còn kèo mở để giả lập");
+                      return;
+                    }
+                    const courtId = target.courtSummaries[0]?.courtId ?? "1";
+                    const res = await repo.submitJoinRequest(
+                      target.id,
+                      courtId,
+                      "user_player_02",
+                      "Giả lập từ thiết bị 2"
+                    );
+                    showToast("info", `Realtime: ${res.message}`);
+                  } catch (err) {
+                    showToast(
+                      "warning",
+                      err instanceof Error ? err.message : "Đã giả lập tương tác"
+                    );
+                  }
                 }}
                 hapticsEnabled={hapticsEnabled}
               />

@@ -81,7 +81,7 @@
 - **Phương án:**
   - Trong quá trình code Sprint 1–4: Chạy live reload qua **Expo Go** (nhẹ, nhanh, quét QR là chạy).
   - Giai đoạn kiểm thử thực địa Sprint 5 (M9–M10): Build file **Android APK độc lập** qua `eas build --platform android --profile preview` để cài trực tiếp vào máy các tay vợt tại sân mà không cần máy tính.
-- **Quyết định của TV1:** `[Trong quá trình code Sprint 1–4: Chạy live reload qua **Expo Go** (nhẹ, nhanh, quét QR là chạy).]`
+- **Quyết định của TV1:** **ĐÃ CHỐT CHÍNH THỨC:** Áp dụng **Phương án 100% Expo Go** (quét mã QR chạy trực tiếp trong Expo Go trên cả iOS và Android, hoàn toàn miễn phí $0, không tốn $99/năm Apple Developer, khởi chạy nhanh nhất cho cả demo thực địa và bảo vệ trước Hội đồng). Chi tiết tại `docs/demo/build-guide.md`.
 
 ---
 

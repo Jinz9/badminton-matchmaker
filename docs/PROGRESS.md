@@ -38,6 +38,22 @@
 | 2026-11-15 | Hoàn thành bộ hồ sơ Đặc tả yêu cầu phần mềm: SRS (`07-srs.md`), 14 Use Cases (`08-use-cases.md`), 44 User Stories (`09-user-stories.md`, `user-stories.csv`), Danh mục 13 màn hình (`screens.md`), và Change Request (`CR-01-domain-refinements.md`) | `docs/srs` | `docs(srs): software requirements specification, use cases, user stories and screens` | TV1 & Trợ lý |
 | 2026-11-15 | Soạn thảo bộ công cụ phỏng vấn kiểm chứng thực địa với Host Đà Nẵng: Kế hoạch phỏng vấn, form khảo sát, kịch bản phỏng vấn sâu A1–A8, bảng đối chiếu giả định (`docs/10-host-interview.md`) | `docs/host-validation` | `docs(interview): host validation interview guide, survey form and assumption matrix` | TV1 & Trợ lý |
 | 2026-11-15 | Khởi tạo toàn diện hạ tầng Firebase: ADR-001 (Blaze + Functions tại Singapore), firebase.json, firestore.rules chặn mặc định, functions/ (TypeScript + Jest + chia sẻ domain logic), scripts/ điều khiển emulator, .env.example, hướng dẫn môi trường (`docs/firebase-env.md`), bộ test mẫu emulator đạt 34/34 PASS | `chore/firebase-init` | `chore(firebase): initialize firebase config, functions, emulators and env guide` | TV1 & Trợ lý |
+| 2026-11-15 | Hoàn thành Ban hành Hợp đồng Dữ liệu Data Contract v1.0: `docs/api/data-contract.md`, `src/domain/types.ts`, `src/domain/repositories.ts`, `docs/api/repository-interfaces.md`, 7 file mock JSON mẫu, composite indexes `firestore.indexes.json`, gắn tag git `data-contract-v1` (41/41 tests PASS) | `docs/data-contract` | `feat(api): freeze data contract v1, domain types, repository interfaces and mock samples` | TV1 & Trợ lý |
+
+---
+
+## 4. HƯỚNG DẪN BÀN GIAO DATA CONTRACT CHO TV2 (UI/UX & MOBILE DEV)
+
+> [!IMPORTANT]
+> **THÔNG BÁO CHO TV2 (NGUYỄN ĐỨC ĐẠT):**  
+> Hợp đồng dữ liệu **Data Contract v1.0** đã chính thức được đóng băng (Freeze) và gắn tag git `data-contract-v1`. TV2 có thể sử dụng hoàn toàn độc lập để dựng Prototype Figma (WBS 2.4) và phát triển giao diện Expo Mobile (WBS 4.x) mà không sợ backend thay đổi cấu trúc dữ liệu.
+
+### Cách TV2 sử dụng bộ tài nguyên này:
+1. **Tra cứu tài liệu:** Đọc [docs/api/data-contract.md](file:///d:/QLDAPM/docs/api/data-contract.md) để nắm rõ tên collection, tên trường, kiểu dữ liệu và ý nghĩa nghiệp vụ.
+2. **Sử dụng Type Definitions:** Toàn bộ kiểu dữ liệu và enum đã định nghĩa chuẩn tại [src/domain/types.ts](file:///d:/QLDAPM/src/domain/types.ts). TV2 chỉ cần `import { UserProfile, SessionDoc, CourtDoc, ... } from "../domain/types"`.
+3. **Sử dụng Dữ liệu giả lập (Mock Data):** TV2 sao chép các file JSON trong thư mục [docs/api/mock-samples/](file:///d:/QLDAPM/docs/api/mock-samples/) sang thư mục `src/mocks/` của Expo app để hiển thị dữ liệu lên giao diện.
+4. **Giao diện Repository:** Khi xây dựng màn hình, gọi dữ liệu thông qua các interface trong [src/domain/repositories.ts](file:///d:/QLDAPM/src/domain/repositories.ts) theo hướng dẫn tại [docs/api/repository-interfaces.md](file:///d:/QLDAPM/docs/api/repository-interfaces.md).
+5. **Quy tắc thay đổi:** Backend cam kết không tự ý đổi schema. Nếu có yêu cầu thay đổi từ phía UI, hai thành viên sẽ thảo luận trong buổi họp tuần và ghi nhận vào Changelog.
 
 ---
 

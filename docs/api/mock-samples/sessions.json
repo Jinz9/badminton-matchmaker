@@ -1,0 +1,94 @@
+[
+  {
+    "id": "session_kd_01",
+    "hostId": "usr_nhat_01",
+    "hostName": "Đào Duy Nhật",
+    "hostAvatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150",
+    "hostReputation": 98,
+    "title": "Giao lưu vui vẻ tối T4 Sân Kỳ Đồng",
+    "venueName": "Sân Cầu Lông Kỳ Đồng",
+    "address": "49 Kỳ Đồng, Phường Xuân Hà, Quận Thanh Khê, Đà Nẵng",
+    "district": "Thanh Khê",
+    "startsAt": "2026-11-18T18:00:00.000Z",
+    "durationMin": 120,
+    "costPerPlayer": 50000,
+    "status": "open",
+    "courtCount": 1,
+    "courtSummaries": [
+      {
+        "courtId": "1",
+        "category": "mixed",
+        "levelMin": 2,
+        "levelMax": 4,
+        "openSlots": 2,
+        "openByGender": {
+          "M": 1,
+          "F": 1
+        },
+        "recruitOpen": true
+      }
+    ],
+    "openSlotsTotal": 2,
+    "vietQrInfo": {
+      "bankId": "MB",
+      "accountNumber": "0905111222",
+      "accountName": "DAO DUY NHAT"
+    },
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-11-15T09:00:00.000Z",
+    "updatedAt": "2026-11-15T09:30:00.000Z"
+  },
+  {
+    "id": "session_ts_02",
+    "hostId": "usr_minh_04",
+    "hostName": "Lê Quang Minh",
+    "hostAvatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+    "hostReputation": 92,
+    "title": "Kèo 2 sân Tuyên Sơn tối Thứ 6 - Cần người cân kèo",
+    "venueName": "Cung Thể Thao Tuyên Sơn",
+    "address": "Số 01 Phan Đăng Lưu, Phường Hòa Cường Bắc, Quận Hải Châu, Đà Nẵng",
+    "district": "Hải Châu",
+    "startsAt": "2026-11-20T19:00:00.000Z",
+    "durationMin": 120,
+    "costPerPlayer": 60000,
+    "status": "open",
+    "courtCount": 2,
+    "courtSummaries": [
+      {
+        "courtId": "1",
+        "category": "men",
+        "levelMin": 4,
+        "levelMax": 6,
+        "openSlots": 1,
+        "openByGender": {
+          "M": 1,
+          "F": 0
+        },
+        "recruitOpen": true
+      },
+      {
+        "courtId": "2",
+        "category": "mixed",
+        "levelMin": 3,
+        "levelMax": 5,
+        "openSlots": 2,
+        "openByGender": {
+          "M": 1,
+          "F": 1
+        },
+        "recruitOpen": true
+      }
+    ],
+    "openSlotsTotal": 3,
+    "vietQrInfo": {
+      "bankId": "VCB",
+      "accountNumber": "0041000123456",
+      "accountName": "LE QUANG MINH"
+    },
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-11-15T10:00:00.000Z",
+    "updatedAt": "2026-11-15T11:00:00.000Z"
+  }
+]

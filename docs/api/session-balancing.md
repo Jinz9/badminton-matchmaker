@@ -161,3 +161,4 @@ Theo kết quả đo kiểm thực tế bằng script [scripts/benchmark-balanci
 | **16 người** (Kèo 2 sân CR-01) | 16 hiệp | 14.20 ms | **0.028 ms** | ✅ Đạt xuất sắc |
 
 Tất cả các kịch bản đều phản hồi dưới **0.03 ms**, hoàn toàn mượt mà trên mọi thiết bị di động Android và iOS.
+

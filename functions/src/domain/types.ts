@@ -218,7 +218,8 @@ export interface MatchSetScore {
 export interface PostMatchCard {
   fromUserId: string;
   toUserId: string;
-  tag: ReviewTag;
+  tag?: ReviewTag;
+  reportReason?: ReportReason;
 }
 
 export interface MatchDoc {

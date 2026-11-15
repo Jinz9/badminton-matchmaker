@@ -54,3 +54,4 @@ Nhóm quyết định:
 - Đảm bảo Milestone M6 hoàn thành đúng hạn trong Tuần 7.
 - Hiệu năng đo kiểm thực tế đạt $< 20\text{ ms}$ cho 100 lần chạy liên tiếp (vượt xa chỉ tiêu 1.000 ms).
 - Giao diện TV2 dễ dàng tích hợp tính năng "Chia kèo 3 chạm" và kéo thả đổi người trực quan.
+

@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import { levelToRange } from "../domain/rating/initialRating";
 import {
   FONT_SCALE_LIMIT,
   getLevelColorToken,
@@ -13,6 +14,10 @@ export interface LevelBadgeProps {
   level: number;
   /** Hiển thị dạng ngắn ("TB+") hay đầy đủ ("Cấp 4 · TB+") */
   compact?: boolean;
+  /** Kèm khoảng điểm Elo chuẩn (ví dụ "1500–1649") */
+  showRange?: boolean;
+  /** Kích thước huy hiệu */
+  size?: "sm" | "md";
   /** Style bổ sung */
   style?: ViewStyle;
   /** Định danh kiểm thử */
@@ -25,11 +30,17 @@ export interface LevelBadgeProps {
 export const LevelBadge: React.FC<LevelBadgeProps> = ({
   level,
   compact = false,
+  showRange = false,
+  size = "sm",
   style,
   testID,
 }) => {
   const token = getLevelColorToken(level);
-  const label = compact ? token.name : token.shortLabel;
+  const range = levelToRange(token.level);
+  const baseLabel = compact ? token.name : token.shortLabel;
+  const label = showRange
+    ? `${baseLabel} (${range.minRating}–${range.maxRating})`
+    : baseLabel;
 
   return (
     <View

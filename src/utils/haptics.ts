@@ -3,6 +3,7 @@ import * as Haptics from "expo-haptics";
 
 export type HapticPattern =
   | "selectPlayer"
+  | "selection"
   | "swapTeam"
   | "scorePoint"
   | "success"
@@ -36,6 +37,7 @@ export async function triggerHaptic(
   try {
     switch (pattern) {
       case "selectPlayer":
+      case "selection":
         await Haptics.selectionAsync();
         break;
       case "scorePoint":

@@ -1,10 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import { getRepository } from "../data";
+import { calculatePersonalStats } from "../domain/history/statsCalculation";
+import { PersonalStatsSummary } from "../domain/history/types";
 import { RatingHistoryDoc, UserProfile } from "../domain/types";
 
 export interface UseProfileResult {
   profile: UserProfile | null;
   ratingHistory: RatingHistoryDoc[];
+  /** Thống kê (tỷ lệ thắng...) tính bằng hàm thuần của TV1 */
+  stats: PersonalStatsSummary | null;
   loading: boolean;
   error: string | null;
   refresh: () => Promise<void>;
@@ -13,10 +17,11 @@ export interface UseProfileResult {
   ) => Promise<void>;
 }
 
-/** Hook đọc/cập nhật hồ sơ người chơi và lịch sử Elo */
+/** Hook đọc/cập nhật hồ sơ người chơi, lịch sử Elo và thống kê */
 export function useProfile(uid: string | null | undefined): UseProfileResult {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [ratingHistory, setRatingHistory] = useState<RatingHistoryDoc[]>([]);
+  const [stats, setStats] = useState<PersonalStatsSummary | null>(null);
   const [loading, setLoading] = useState<boolean>(Boolean(uid));
   const [error, setError] = useState<string | null>(null);
 
@@ -24,6 +29,7 @@ export function useProfile(uid: string | null | undefined): UseProfileResult {
     if (!uid) {
       setProfile(null);
       setRatingHistory([]);
+      setStats(null);
       setLoading(false);
       return;
     }
@@ -31,12 +37,14 @@ export function useProfile(uid: string | null | undefined): UseProfileResult {
     setError(null);
     try {
       const repo = getRepository();
-      const [userDoc, history] = await Promise.all([
+      const [userDoc, history, matches] = await Promise.all([
         repo.getProfile(uid),
         repo.getUserRatingHistory(uid, 20),
+        repo.getUserMatches(uid),
       ]);
       setProfile(userDoc);
       setRatingHistory(history);
+      setStats(calculatePersonalStats(uid, matches, history));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Không thể tải hồ sơ người chơi.");
     } finally {
@@ -71,6 +79,5 @@ export function useProfile(uid: string | null | undefined): UseProfileResult {
     [uid, refresh]
   );
 
-  return { profile, ratingHistory, loading, error, refresh, updateProfile };
+  return { profile, ratingHistory, stats, loading, error, refresh, updateProfile };
 }
-

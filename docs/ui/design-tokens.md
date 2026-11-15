@@ -85,3 +85,4 @@
   - Pill trạng thái / Badge nhỏ (`SÂN 01 • ĐANG TRỐNG`, `VS`, `Khá`): `8–999 px` (pill tròn cho status bar, bo `6–8 px` cho badge hạng).
 - **Bóng & Hiệu ứng (`shadow` / `blur`):**
   - Metadata xác nhận có sử dụng `:shadow` trên các nút CTA chính (`02`, `04`, `21`, `27`, `28`) và card nổi (`01` Sân 02, `06` VietQR, `09` Radar, `13` Hexagon, `20` Podium), cùng `Overlay+Blur` (`112×112`, `128×128`, `144×144`) tạo ánh sáng neon nền nhẹ (ambient glow) sau các card tiêu điểm.
+

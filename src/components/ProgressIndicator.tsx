@@ -4,11 +4,17 @@ import { FONT_SCALE_LIMIT, PALETTE, RADIUS, SPACING, TYPOGRAPHY } from "../theme
 
 export interface ProgressIndicatorProps {
   /** Bước hiện tại (1..total) */
-  currentStep: number;
+  currentStep?: number;
+  /** Alias cho currentStep */
+  current?: number;
   /** Tổng số bước (mặc định 3 chạm tại sân) */
   totalSteps?: number;
+  /** Alias cho totalSteps */
+  total?: number;
   /** Nhãn tiền tố (mặc định "Chạm") */
   labelPrefix?: string;
+  /** Alias cho labelPrefix */
+  label?: string;
   /** Chế độ hiển thị: thanh tiến trình hoặc các chấm */
   variant?: "bar" | "dots";
   /** Style bổ sung */
@@ -22,14 +28,16 @@ export interface ProgressIndicatorProps {
  */
 export const ProgressIndicator: React.FC<ProgressIndicatorProps> = ({
   currentStep,
+  current,
   totalSteps = 3,
+  total,
   labelPrefix = "Chạm",
   variant = "bar",
   style,
   testID,
 }) => {
-  const safeTotal = Math.max(1, totalSteps);
-  const safeStep = Math.min(safeTotal, Math.max(1, currentStep));
+  const safeTotal = Math.max(1, total ?? totalSteps);
+  const safeStep = Math.min(safeTotal, Math.max(1, current ?? currentStep ?? 1));
   const percent = (safeStep / safeTotal) * 100;
 
   return (

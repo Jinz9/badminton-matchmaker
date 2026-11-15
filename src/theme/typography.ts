@@ -90,5 +90,50 @@ export const TYPOGRAPHY: Record<string, TextStyle> = {
     fontWeight: "700",
     letterSpacing: 0.5,
   },
+  titleLarge: {
+    fontFamily: FONT_FAMILY.bold,
+    fontSize: 24,
+    lineHeight: 30,
+    fontWeight: "700",
+    fontVariant: ["tabular-nums"],
+  },
+  titleMedium: {
+    fontFamily: FONT_FAMILY.bold,
+    fontSize: 20,
+    lineHeight: 26,
+    fontWeight: "700",
+  },
+  sectionHeader: {
+    fontFamily: FONT_FAMILY.bold,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: "700",
+    letterSpacing: 0.5,
+  },
+  bodySmall: {
+    fontFamily: FONT_FAMILY.regular,
+    fontSize: 13,
+    lineHeight: 18,
+    fontWeight: "400",
+  },
+  bodyBold: {
+    fontFamily: FONT_FAMILY.bold,
+    fontSize: 14,
+    lineHeight: 20,
+    fontWeight: "700",
+  },
+  captionBold: {
+    fontFamily: FONT_FAMILY.bold,
+    fontSize: 12,
+    lineHeight: 16,
+    fontWeight: "700",
+  },
+  micro: {
+    fontFamily: FONT_FAMILY.bold,
+    fontSize: 11,
+    lineHeight: 14,
+    fontWeight: "700",
+    letterSpacing: 0.5,
+  },
 } as const;
 

@@ -5,6 +5,7 @@ import { calculateMatchElo } from "../domain/elo/calculateElo";
 import { MatchTeamPlayer } from "../domain/elo/types";
 import { computeBestPartners } from "../domain/history/bestPartners";
 import { findPartners } from "../domain/partnerFinder/findPartners";
+import { validateUpdateProfileInput } from "../domain/user/userProfile";
 import { validateJoinEligibility } from "../domain/recruit/eligibility";
 import {
   computeSlots,
@@ -238,6 +239,11 @@ export class MockRepository implements IDataRepository {
     data: Partial<Omit<UserProfile, "uid" | "role" | "skill">>
   ): Promise<void> {
     await this.simulateNetwork();
+    // Giống Security Rules: chặn sửa uid/role/skill/rating/reliability...
+    const validation = validateUpdateProfileInput(data as Record<string, unknown>);
+    if (!validation.isValid) {
+      throw new Error(validation.errors.join("; "));
+    }
     const user = this.store.users.find((u) => u.uid === uid);
     if (!user) throw new Error(`Không tìm thấy người chơi ${uid}`);
     Object.assign(user, data, { updatedAt: new Date().toISOString() });
@@ -856,6 +862,15 @@ export class MockRepository implements IDataRepository {
   // ==========================================
   // 5. MATCH & ELO REPOSITORY
   // ==========================================
+
+  async getUserMatches(userId: string): Promise<MatchDoc[]> {
+    await this.simulateNetwork();
+    return deepClone(
+      this.store.matches.filter(
+        (m) => m.teamA.includes(userId) || m.teamB.includes(userId)
+      )
+    );
+  }
 
   async listMatches(sessionId: string, courtId?: string): Promise<MatchDoc[]> {
     await this.simulateNetwork();

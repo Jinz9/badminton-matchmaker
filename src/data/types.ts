@@ -7,6 +7,7 @@ import {
   ISessionRepository,
   IUserRepository,
 } from "../domain/repositories";
+import { MatchDoc } from "../domain/types";
 
 export type DataSourceMode = "mock" | "firebase";
 
@@ -44,6 +45,12 @@ export interface IDataRepository
     channel: RealtimeChannel,
     listener: (data: T) => void
   ): () => void;
+
+  /**
+   * Tiện ích của TV2 (ngoài hợp đồng TV1): lấy mọi trận đã có kết quả của 1 người chơi
+   * để tính tỷ lệ thắng bằng hàm thuần calculatePersonalStats.
+   */
+  getUserMatches(userId: string): Promise<MatchDoc[]>;
 
   /** Đặt lại dữ liệu mẫu về trạng thái ban đầu (chỉ dùng cho MockRepository) */
   resetMockData?: () => Promise<void>;

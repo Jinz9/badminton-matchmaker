@@ -17,6 +17,8 @@ export const PALETTE = {
   bg: {
     canvas: "#0B1326",
     deep: "#060E20",
+    surface: "#131B2E",
+    elevated: "#171F33",
   },
   surface: {
     card: "#131B2E",
@@ -26,7 +28,16 @@ export const PALETTE = {
   },
   border: {
     subtle: "#2E354A",
+    default: "#2E354A",
     strong: "#3E4763",
+    accent: "#A3E636",
+  },
+  accent: {
+    primary: "#A3E636",
+    primarySoft: "#19262A",
+    cyan: "#7BD0FF",
+    cyanSoft: "#0E5579",
+    amber: "#FFB783",
   },
   brand: {
     neonLime: "#A3E636",
@@ -133,9 +144,29 @@ export const LEVEL_COLORS: Record<1 | 2 | 3 | 4 | 5 | 6, LevelColorToken> = {
   },
 };
 
-export function getLevelColorToken(level: number): LevelColorToken {
-  const clamped = Math.min(6, Math.max(1, Math.round(level))) as 1 | 2 | 3 | 4 | 5 | 6;
+export function getLevelColorToken(level: number | undefined): LevelColorToken {
+  const numeric = typeof level === "number" && Number.isFinite(level) ? level : 3;
+  const clamped = Math.min(6, Math.max(1, Math.round(numeric))) as 1 | 2 | 3 | 4 | 5 | 6;
   return LEVEL_COLORS[clamped];
+}
+
+export function getLevelMeta(level: number): {
+  level: 1 | 2 | 3 | 4 | 5 | 6;
+  color: string;
+  bg: string;
+  text: string;
+  shortVi: string;
+  fullVi: string;
+} {
+  const token = getLevelColorToken(level);
+  return {
+    level: token.level,
+    color: token.border,
+    bg: token.bg,
+    text: token.text,
+    shortVi: token.name,
+    fullVi: token.shortLabel,
+  };
 }
 
 /**

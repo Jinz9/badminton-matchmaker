@@ -22,3 +22,17 @@
 - **Hỗ trợ cỡ chữ hệ thống lớn:** Tất cả chữ dùng `allowFontScaling` với `maxFontSizeMultiplier` (`1.4` cho chữ thường, `1.2` cho số điểm cực lớn) và dùng `minHeight` thay `height` cứng cho các nút có chữ.
 - **Tương thích Expo Go (SDK 58):** Toàn bộ icon dựng bằng `react-native-svg`, font Inter tải qua `expo-font` + `@expo-google-fonts/inter`, rung xúc giác qua `expo-haptics` (có thể bật/tắt).
 
+---
+
+## 3. Đối chiếu nhóm màn hình Xác thực & Hồ sơ (`feat/auth-profile-ui` / Q04)
+
+| Màn hình Figma | Route đã dựng | Điểm khớp với Figma | Tinh chỉnh theo Luật nghiệp vụ / ADR-002 |
+|---|---|---|---|
+| **25 - Đăng Nhập VĐV SmashCourt** (`5:997`) | `src/app/(auth)/login.tsx` | Hero card `SMASHCOURT DN`, tiêu đề `CHÀO MỪNG VĐV / TRỞ LẠI SÂN ĐẤU`, ô nhập, checkbox `Ghi nhớ đăng nhập`, link `QUÊN MẬT KHẨU?`, nút `ĐĂNG NHẬP VÀO SÂN →` (`58px`). | Thay nhãn đăng nhập bằng SĐT thành **Email/Mật khẩu** theo `ADR-002` và bảng ràng buộc Expo Go; thêm 2 pill tài khoản mẫu 1 chạm (`host@badminton.vn`, `player@badminton.vn`) để kiểm thử nhanh. |
+| **26 - Đăng Ký Tài Khoản VĐV Mới** (`5:1153`) | `src/app/(auth)/register.tsx` | Header `Bước 1/2: Thông tin đăng ký`, `Tạo Tài Khoản VĐV Mới`, thanh độ mạnh mật khẩu 4 nấc, checkbox `Quy chế Fair-Play & Cân trình Elo`, nút `TIẾP TỤC & NHẬN MÃ OTP →`. | Bổ sung trường **Email đăng nhập** (bắt buộc theo `ADR-002`) và giữ **Số điện thoại** là tùy chọn để Host liên hệ tại sân. |
+| **27 - Xác Thực OTP Kích Hoạt Tài Khoản** (`5:1308`) | `src/app/(auth)/otp.tsx` | 6 ô nhập OTP (`OtpInput`), đồng hồ đếm ngược, hộp cảnh báo `LƯU Ý TRỌNG TÀI SÂN SMASH`, bàn phím số 1 tay (`NumericKeypad`), nút `XÁC NHẬN & VÀO BƯỚC CÂN TRÌNH ELO →`. | Gắn nhãn rõ trong code & UI `"chờ phương án đăng nhập thật theo ADR-002"`, dùng mã OTP giả lập cố định `MOCK_OTP_CODE = "123456"` (hiển thị tại `/dev/ui-kit`). |
+| **28 - Khôi Phục Mật Khẩu & Tài Khoản VĐV** (`5:1437`) | `src/app/(auth)/forgot-password.tsx` | Segmented switcher (`Qua Email` / `Qua SĐT`), thẻ `HỒ SƠ NHẬN DIỆN TỰ ĐỘNG` (`Đào Duy Nhật • 1601 ELO • Hải Châu`), quy trình bảo vệ 2 bước, đặt lại mật khẩu mới. | Dùng mã OTP giả lập `123456` và cập nhật mật khẩu trực tiếp trong `MockAuthService` (`AsyncStorage`). |
+| **21 - Đăng Nhập & Khởi Tạo Elo Ban Đầu** (`5:268`) | `src/app/(auth)/onboarding.tsx` | Chọn tay thuận, vị trí (`Cầu trước` / `Cầu sau` / `Linh hoạt`), nội dung đánh (`Đôi nam` / `Đôi nữ` / `Đôi nam nữ`), khu vực Đà Nẵng (`DA_NANG_DISTRICTS`), hộp giải thích `Provisional K = 40 (5 trận đầu)`, nút `HOÀN TẤT & VÀO SÂN ĐẤU BWF →`. | Thay 4 mức tự chọn cảm tính trong Figma (`Tập Sự 1000`..`Chuyên Nghiệp 1950+`) bằng **10 câu hỏi tự đánh giá nguyên văn từ `docs/06-rating-scale.md`** và tính điểm bằng `calculateInitialRatingFromAnswers` + `levelToRange` của TV1 (`1100–1900`, 6 cấp). |
+| **09 - Tổng quan & 23 - Cài Đặt Tài Khoản** (`9:1903`, `5:483`) | `src/app/(tabs)/profile.tsx` | Thẻ hộ chiếu VĐV với avatar chữ cái, tên, `LevelBadge` kèm khoảng điểm, điểm Elo, điểm Uy tín (`98/100`), 3 ô thống kê (`Tỷ lệ thắng`, `Trận đã đấu`, `Uy tín Fair-Play`), nút `✎ CHỈNH SỬA HỒ SƠ VĐV` và `⎋ ĐĂNG XUẤT TÀI KHOẢN`. | `BottomSheet` chỉnh sửa hồ sơ **chỉ cho phép sửa các trường hợp lệ theo Security Rules** (`displayName`, `phoneNumber`, `gender`, `dominantHand`, `position`, `areaLabel`) và khóa cứng `skill.rating` / `skill.level` / `skill.reliability`. |
+
+

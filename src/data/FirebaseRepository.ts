@@ -161,6 +161,10 @@ export class FirebaseRepository implements IDataRepository {
     notConnected();
   }
 
+  async getUserMatches(_userId: string): Promise<MatchDoc[]> {
+    notConnected();
+  }
+
   async listMatches(_sessionId: string, _courtId?: string): Promise<MatchDoc[]> {
     notConnected();
   }

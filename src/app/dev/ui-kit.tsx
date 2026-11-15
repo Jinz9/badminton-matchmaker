@@ -32,6 +32,7 @@ import {
   UsersIcon,
 } from "../../components";
 import { getConfiguredDataSource, getRepository } from "../../data";
+import { getAuthService, MOCK_DEMO_ACCOUNTS, MOCK_OTP_CODE } from "../../data/auth";
 import { useHaptics } from "../../hooks";
 import { PALETTE, RADIUS, SPACING, TYPOGRAPHY } from "../../theme";
 
@@ -215,8 +216,9 @@ export default function DevUiKitScreen() {
                   const repo = getRepository();
                   if (repo.resetMockData) {
                     await repo.resetMockData();
-                    showToast("success", "Đã khôi phục dữ liệu mẫu ban đầu");
                   }
+                  await getAuthService().resetMockAccounts?.();
+                  showToast("success", "Đã khôi phục dữ liệu mẫu & tài khoản Auth ban đầu");
                 }}
                 hapticsEnabled={hapticsEnabled}
               />
@@ -236,6 +238,34 @@ export default function DevUiKitScreen() {
             trackColor={{ false: PALETTE.surface.interactive, true: PALETTE.teamB.amber }}
             thumbColor={PALETTE.bg.canvas}
           />
+        </View>
+
+        {/* Thông tin Xác thực & Mã OTP cố định (Q04 / ADR-002) */}
+        <View style={styles.hapticCard}>
+          <View style={{ flex: 1, gap: 4 }}>
+            <Text style={styles.cardHeading}>
+              Xác thực & Hồ sơ (Mã OTP cố định: {MOCK_OTP_CODE})
+            </Text>
+            <Text style={styles.cardSub}>
+              Chờ phương án đăng nhập thật theo ADR-002 • Mã OTP giả lập cố định:{" "}
+              {MOCK_OTP_CODE} • Tài khoản mẫu:{" "}
+              {MOCK_DEMO_ACCOUNTS.map((a) => `${a.email} (${a.password})`).join(" | ")}
+            </Text>
+            <View style={[styles.rowWrap, { marginTop: SPACING.xs }]}>
+              <SecondaryButton
+                label="Mở Đăng Nhập"
+                variant="outline"
+                onPress={() => router.push("/(auth)/login" as never)}
+                style={{ flex: 1 }}
+              />
+              <SecondaryButton
+                label="Mở Đăng Ký"
+                variant="outline"
+                onPress={() => router.push("/(auth)/register" as never)}
+                style={{ flex: 1 }}
+              />
+            </View>
+          </View>
         </View>
 
         {devTab === "components" ? (

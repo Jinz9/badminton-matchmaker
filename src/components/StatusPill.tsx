@@ -60,7 +60,7 @@ export const StatusPill: React.FC<StatusPillProps> = ({
   style,
   testID,
 }) => {
-  const palette = STATUS_MAP[variant];
+  const palette = STATUS_MAP[variant] ?? STATUS_MAP.live;
 
   return (
     <View

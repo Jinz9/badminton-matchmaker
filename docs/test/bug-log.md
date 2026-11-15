@@ -59,3 +59,4 @@ Khi phát hiện lỗi trên ứng dụng di động hoặc trong quá trình g�
 - **Lỗi Blocker / Critical:** 0
 - **Lỗi đã giải quyết (Resolved/Closed):** 0
 - **Tỷ lệ đóng lỗi:** 100%
+

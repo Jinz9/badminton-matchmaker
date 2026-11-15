@@ -70,3 +70,4 @@ export interface GenderSlotAvailability {
   femaleRemaining: number;
   label: string; // "Còn 2 suất: 1 nam, 1 nữ"
 }
+

@@ -42,3 +42,4 @@ export const RULES = {
 } as const;
 
 export type RuleCategory = (typeof RULES.CATEGORIES)[number];
+

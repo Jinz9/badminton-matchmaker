@@ -302,3 +302,4 @@ export function validateJoinEligibility(
     canWaitlist: false,
   };
 }
+

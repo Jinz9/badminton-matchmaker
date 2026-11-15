@@ -198,3 +198,4 @@ export function buildRatingTimeSeries(ratingsLogs: RatingHistoryDoc[]): TimeSeri
 
   return points;
 }
+

@@ -201,3 +201,4 @@ import { DA_NANG_DISTRICTS, DA_NANG_VENUES } from '../config/districts';
 Để TV2 phát triển giao diện offline mà không cần kết nối mạng hoặc không lo ảnh hưởng database thật:
 1. Chạy lệnh: `npm run emulators:start` tại máy tính.
 2. Expo app kết nối Auth và Firestore qua IP máy host (Android Emulator: `10.0.2.2:9099`, Thiết bị thật qua IP LAN: `192.168.x.x:9099`). Chi tiết xem tại [docs/firebase-env.md](file:///d:/QLDAPM/docs/firebase-env.md).
+

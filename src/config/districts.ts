@@ -161,3 +161,4 @@ export function searchVenues(query: string): BadmintonVenue[] {
       venue.district.toLowerCase().includes(normalized)
   );
 }
+

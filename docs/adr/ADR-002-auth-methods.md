@@ -71,3 +71,4 @@ Nhóm quyết định lựa chọn **PHƯƠNG ÁN KẾT HỢP: GOOGLE SIGN-IN + 
 ### Nhiệm vụ phát sinh:
 - **TV1 (Backend):** Cung cấp hàm khởi tạo Profile và Skill chuẩn khi có `uid` mới từ Auth (hỗ trợ cả tài khoản Google lẫn Email/Password).
 - **TV2 (Mobile Dev):** Cấu hình `expo-auth-session` cho Google Sign-In trên ứng dụng Expo theo tài liệu hướng dẫn [docs/api/auth-profile.md](file:///d:/QLDAPM/docs/api/auth-profile.md).
+

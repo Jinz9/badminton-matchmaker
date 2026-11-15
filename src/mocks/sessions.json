@@ -20,15 +20,15 @@
         "category": "mixed",
         "levelMin": 2,
         "levelMax": 4,
-        "openSlots": 2,
+        "openSlots": 3,
         "openByGender": {
-          "M": 1,
+          "M": 2,
           "F": 1
         },
         "recruitOpen": true
       }
     ],
-    "openSlotsTotal": 2,
+    "openSlotsTotal": 3,
     "vietQrInfo": {
       "bankId": "MB",
       "accountNumber": "0905111222",
@@ -90,5 +90,85 @@
     "isDeleted": false,
     "createdAt": "2026-11-15T10:00:00.000Z",
     "updatedAt": "2026-11-15T11:00:00.000Z"
+  },
+  {
+    "id": "session_full_03",
+    "hostId": "usr_nhat_01",
+    "hostName": "Đào Duy Nhật",
+    "hostReputation": 98,
+    "title": "Kèo Đủ 8 Người Có Waitlist - Sân Quân Khu 5",
+    "venueName": "Sân Cầu Lông Quân Khu 5",
+    "address": "07 Duy Tân, Hòa Cường Bắc, Hải Châu, Đà Nẵng",
+    "district": "Hải Châu",
+    "startsAt": "2026-11-19T18:30:00.000Z",
+    "durationMin": 120,
+    "costPerPlayer": 55000,
+    "status": "full",
+    "courtCount": 1,
+    "courtSummaries": [
+      {
+        "courtId": "1",
+        "category": "mixed",
+        "levelMin": 2,
+        "levelMax": 5,
+        "openSlots": 0,
+        "openByGender": {
+          "M": 0,
+          "F": 0
+        },
+        "recruitOpen": true
+      }
+    ],
+    "openSlotsTotal": 0,
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-11-15T08:00:00.000Z",
+    "updatedAt": "2026-11-15T12:00:00.000Z"
+  },
+  {
+    "id": "session_odd_04",
+    "hostId": "usr_minh_04",
+    "hostName": "Lê Quang Minh",
+    "hostReputation": 92,
+    "title": "Kèo 2 Sân Đang Đánh (Ca lẻ 5 & 7 người) - Sơn Trà",
+    "venueName": "Sân Cầu Lông Sơn Trà",
+    "address": "120 Ngô Quyền, Sơn Trà, Đà Nẵng",
+    "district": "Sơn Trà",
+    "startsAt": "2026-11-18T19:30:00.000Z",
+    "durationMin": 120,
+    "costPerPlayer": 50000,
+    "status": "in_progress",
+    "courtCount": 2,
+    "courtSummaries": [
+      {
+        "courtId": "1",
+        "category": "men",
+        "levelMin": 3,
+        "levelMax": 5,
+        "openSlots": 3,
+        "openByGender": {
+          "M": 3,
+          "F": 0
+        },
+        "recruitOpen": true
+      },
+      {
+        "courtId": "2",
+        "category": "mixed",
+        "levelMin": 2,
+        "levelMax": 5,
+        "openSlots": 1,
+        "openByGender": {
+          "M": 1,
+          "F": 1
+        },
+        "recruitOpen": true
+      }
+    ],
+    "openSlotsTotal": 4,
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-11-15T07:00:00.000Z",
+    "updatedAt": "2026-11-15T12:30:00.000Z"
   }
 ]

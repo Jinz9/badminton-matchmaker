@@ -45,5 +45,24 @@
     ],
     "createdAt": "2026-11-18T18:15:00.000Z",
     "updatedAt": "2026-11-18T18:45:00.000Z"
+  },
+  {
+    "id": "match_odd_02",
+    "sessionId": "session_odd_04",
+    "courtId": "1",
+    "index": 1,
+    "teamA": ["usr_minh_04", "usr_nhat_01"],
+    "teamB": ["usr_dat_02", "ghost_khanh_03"],
+    "sets": [
+      {
+        "setNumber": 1,
+        "scoreA": 18,
+        "scoreB": 17
+      }
+    ],
+    "status": "playing",
+    "ratingProcessed": false,
+    "createdAt": "2026-11-18T19:35:00.000Z",
+    "updatedAt": "2026-11-18T19:45:00.000Z"
   }
 ]

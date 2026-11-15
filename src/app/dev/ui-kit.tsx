@@ -31,6 +31,7 @@ import {
   UserIcon,
   UsersIcon,
 } from "../../components";
+import { getConfiguredDataSource, getRepository } from "../../data";
 import { useHaptics } from "../../hooks";
 import { PALETTE, RADIUS, SPACING, TYPOGRAPHY } from "../../theme";
 
@@ -55,6 +56,7 @@ export default function DevUiKitScreen() {
   const [shuttleCount, setShuttleCount] = useState(2);
   const [matchEnded, setMatchEnded] = useState(false);
   const [endSheetVisible, setEndSheetVisible] = useState(false);
+  const [simulateError, setSimulateError] = useState(false);
   const [activeBottomTab, setActiveBottomTab] = useState("court");
   const [sheetVisible, setSheetVisible] = useState(false);
   const [toastState, setToastState] = useState<{
@@ -192,6 +194,46 @@ export default function DevUiKitScreen() {
             value={hapticsEnabled}
             onValueChange={setHapticsEnabled}
             trackColor={{ false: PALETTE.surface.interactive, true: PALETTE.brand.neonLime }}
+            thumbColor={PALETTE.bg.canvas}
+          />
+        </View>
+
+        {/* Điều khiển dữ liệu giả lập (Data Layer) */}
+        <View style={styles.hapticCard}>
+          <View style={{ flex: 1, gap: 4 }}>
+            <Text style={styles.cardHeading}>
+              Dữ liệu mẫu ({getConfiguredDataSource().toUpperCase()})
+            </Text>
+            <Text style={styles.cardSub}>
+              Bật giả lập lỗi mạng 30% hoặc đặt lại dữ liệu AsyncStorage về mặc định
+            </Text>
+            <View style={{ marginTop: SPACING.xs }}>
+              <SecondaryButton
+                label="Đặt lại dữ liệu mẫu"
+                variant="outline"
+                onPress={async () => {
+                  const repo = getRepository();
+                  if (repo.resetMockData) {
+                    await repo.resetMockData();
+                    showToast("success", "Đã khôi phục dữ liệu mẫu ban đầu");
+                  }
+                }}
+                hapticsEnabled={hapticsEnabled}
+              />
+            </View>
+          </View>
+          <Switch
+            value={simulateError}
+            onValueChange={(next) => {
+              setSimulateError(next);
+              const repo = getRepository();
+              repo.setMockConfig?.({ errorRate: next ? 0.3 : 0 });
+              showToast(
+                next ? "warning" : "info",
+                next ? "Đã bật giả lập lỗi ngẫu nhiên 30%" : "Đã tắt giả lập lỗi mạng"
+              );
+            }}
+            trackColor={{ false: PALETTE.surface.interactive, true: PALETTE.teamB.amber }}
             thumbColor={PALETTE.bg.canvas}
           />
         </View>

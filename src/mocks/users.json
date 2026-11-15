@@ -182,5 +182,27 @@
     "isDeleted": false,
     "createdAt": "2026-09-01T00:00:00.000Z",
     "updatedAt": "2026-11-15T00:00:00.000Z"
+  },
+  {
+    "uid": "usr_lowrep_09",
+    "displayName": "Trần Văn Bùng",
+    "gender": "M",
+    "phoneNumber": "0905000111",
+    "areaLabel": "Liên Chiểu",
+    "position": "both",
+    "dominantHand": "right",
+    "selfDeclaredLevel": 3,
+    "role": "player",
+    "skill": {
+      "rating": 1410,
+      "matchesPlayed": 9,
+      "reliability": 35,
+      "isProvisional": false
+    },
+    "fcmTokens": [],
+    "schemaVersion": 1,
+    "isDeleted": false,
+    "createdAt": "2026-10-10T08:00:00.000Z",
+    "updatedAt": "2026-11-15T08:00:00.000Z"
   }
 ]

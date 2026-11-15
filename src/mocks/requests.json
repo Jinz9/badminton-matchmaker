@@ -54,5 +54,61 @@
     "note": "Em xin vào danh sách dự bị, có ai hủy thì đôn em với nhé.",
     "waitlistPosition": 1,
     "createdAt": "2026-11-15T09:50:00.000Z"
+  },
+  {
+    "id": "req_full_dat_02",
+    "courtId": "1",
+    "sessionId": "session_full_03",
+    "userId": "usr_dat_02",
+    "status": "confirmed",
+    "snapshot": {
+      "displayName": "Nguyễn Đức Đạt",
+      "gender": "M",
+      "rating": 1575,
+      "level": 4,
+      "position": "front",
+      "dominantHand": "left",
+      "reliability": 95
+    },
+    "createdAt": "2026-11-15T08:05:00.000Z",
+    "decidedAt": "2026-11-15T08:10:00.000Z"
+  },
+  {
+    "id": "req_full_huong_05",
+    "courtId": "1",
+    "sessionId": "session_full_03",
+    "userId": "usr_huong_05",
+    "status": "waitlist",
+    "snapshot": {
+      "displayName": "Phạm Thu Hương",
+      "gender": "F",
+      "rating": 1275,
+      "level": 2,
+      "position": "both",
+      "dominantHand": "right",
+      "reliability": 88
+    },
+    "note": "Cho mình xếp hàng dự bị nhé!",
+    "waitlistPosition": 1,
+    "createdAt": "2026-11-15T09:00:00.000Z"
+  },
+  {
+    "id": "req_full_vy_07",
+    "courtId": "1",
+    "sessionId": "session_full_03",
+    "userId": "usr_vy_07",
+    "status": "waitlist",
+    "snapshot": {
+      "displayName": "Đỗ Khánh Vy",
+      "gender": "F",
+      "rating": 1100,
+      "level": 1,
+      "position": "front",
+      "dominantHand": "right",
+      "reliability": 100
+    },
+    "note": "Mình dự bị số 2 nha.",
+    "waitlistPosition": 2,
+    "createdAt": "2026-11-15T09:10:00.000Z"
   }
 ]

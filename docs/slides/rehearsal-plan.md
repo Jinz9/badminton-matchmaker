@@ -146,3 +146,4 @@ Nhóm cam kết thực hiện nghiêm túc **3 buổi tập dượt** trước n
 - [ ] **Tài liệu bản cứng:**
   - [ ] In sẵn 3 bộ Báo cáo Đồ án hoàn chỉnh (từ file xuất Word/PDF) để kính gửi Hội đồng nếu được yêu cầu.
   - [ ] In sẵn 1 bản `docs/slides/qa-bank.md` để hai thành viên xem nhanh trước giờ G.
+

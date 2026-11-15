@@ -787,3 +787,4 @@ def build_presentation(output_path):
 if __name__ == "__main__":
     out_file = os.path.abspath("docs/slides/Slide-Bao-Ve-Do-An-QLDAPM.pptx")
     build_presentation(out_file)
+

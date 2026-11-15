@@ -13,6 +13,7 @@ export interface BalancingMember {
   position?: PlayStyle;       // front | back | both
   dominantHand?: Handedness;  // right | left
   gamesPlayed?: number;       // Số trận đã đánh trong buổi
+  restCount?: number;         // Số lần nghỉ trong buổi (cho ca lẻ 5/7 người)
 }
 
 export interface BalancingLockedPair {
@@ -61,3 +62,4 @@ export interface SwapPlayersResult {
   isValid: boolean;
   warning?: string;
 }
+

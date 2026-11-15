@@ -149,7 +149,7 @@ const handleDragAndDrop = (playerAId: string, playerBId: string) => {
 
 ## 6. Báo cáo đo kiểm hiệu năng (Benchmark Report)
 
-Theo kết quả đo kiểm thực tế bằng script [scripts/benchmark-balancing.js](file:///d:/QLDAPM/scripts/benchmark-balancing.js):
+Theo kết quả đo kiểm thực tế bằng script [scripts/benchmark-balancing.ts](file:///d:/QLDAPM/scripts/benchmark-balancing.ts):
 
 | Quy mô người chơi trên sân | Số hiệp lập lịch | Thời gian thực thi (500 lượt lặp) | Trung bình mỗi lần chia | Tiêu chuẩn ($< 1.000\text{ ms}$) |
 |---|:---:|:---:|:---:|:---:|

@@ -435,3 +435,4 @@
 > - Khi giảng viên hỏi về mặt kỹ thuật/thuật toán, TV1 chủ động đứng lên trả lời và trỏ vào sơ đồ/công thức trên slide.
 > - Khi giảng viên hỏi về trải nghiệm người dùng, lỗi phát sinh thực tế hay kết quả kiểm thử, TV2 trả lời và có thể mở điện thoại thao tác minh họa trực tiếp.
 > - Luôn cảm ơn câu hỏi của Thầy/Cô trước khi trả lời.
+

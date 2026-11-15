@@ -51,6 +51,10 @@ export default function DevUiKitScreen() {
   const [selectedIds, setSelectedIds] = useState<string[]>(["p1", "p3"]);
   const [scoreA, setScoreA] = useState(18);
   const [scoreB, setScoreB] = useState(17);
+  const [scoreHistory, setScoreHistory] = useState<("A" | "B")[]>([]);
+  const [shuttleCount, setShuttleCount] = useState(2);
+  const [matchEnded, setMatchEnded] = useState(false);
+  const [endSheetVisible, setEndSheetVisible] = useState(false);
   const [activeBottomTab, setActiveBottomTab] = useState("court");
   const [sheetVisible, setSheetVisible] = useState(false);
   const [toastState, setToastState] = useState<{
@@ -71,6 +75,60 @@ export default function DevUiKitScreen() {
 
   const showToast = (variant: ToastVariant, message: string) => {
     setToastState({ visible: true, variant, message });
+  };
+
+  const incrementScore = (team: "A" | "B") => {
+    if (matchEnded) {
+      showToast("warning", "Trận đấu đã kết thúc. Hãy bấm Chơi ván mới để thử lại.");
+      return;
+    }
+    if (team === "A") {
+      setScoreA((s) => s + 1);
+    } else {
+      setScoreB((s) => s + 1);
+    }
+    setScoreHistory((prev) => [...prev, team]);
+  };
+
+  const undoScore = () => {
+    if (matchEnded) {
+      showToast("warning", "Trận đấu đã kết thúc, không thể hoàn tác.");
+      return;
+    }
+    if (scoreHistory.length === 0) {
+      showToast("info", "Chưa có điểm mới nào để hoàn tác.");
+      return;
+    }
+    const lastTeam = scoreHistory[scoreHistory.length - 1];
+    if (lastTeam === "A") {
+      setScoreA((s) => Math.max(0, s - 1));
+    } else {
+      setScoreB((s) => Math.max(0, s - 1));
+    }
+    setScoreHistory((prev) => prev.slice(0, -1));
+    showToast("info", `Đã hoàn tác 1 điểm của Đội ${lastTeam}`);
+  };
+
+  const addShuttle = () => {
+    if (matchEnded) {
+      showToast("warning", "Trận đấu đã kết thúc.");
+      return;
+    }
+    setShuttleCount((c) => {
+      const next = c + 1;
+      showToast("success", `Đã đổi cầu mới (Tổng: ${next} quả)`);
+      return next;
+    });
+  };
+
+  const resetMatchDemo = () => {
+    setScoreA(0);
+    setScoreB(0);
+    setScoreHistory([]);
+    setShuttleCount(1);
+    setMatchEnded(false);
+    setEndSheetVisible(false);
+    showToast("info", "Đã tạo ván mới 0 - 0 trên Sân 01");
   };
 
   return (
@@ -174,16 +232,16 @@ export default function DevUiKitScreen() {
             </View>
             <View style={styles.rowWrap}>
               <SecondaryButton
-                label="Hoàn tác"
+                label={`Hoàn tác (${scoreHistory.length})`}
                 icon={<UndoIcon size={16} color={PALETTE.text.primary} />}
-                onPress={() => setScoreA((s) => Math.max(0, s - 1))}
+                onPress={undoScore}
                 hapticsEnabled={hapticsEnabled}
                 style={{ flex: 1 }}
               />
               <SecondaryButton
                 label="KẾT THÚC & TRẢ SÂN"
                 variant="danger"
-                onPress={() => showToast("warning", "Xác nhận kết thúc trận đấu")}
+                onPress={() => setEndSheetVisible(true)}
                 hapticsEnabled={hapticsEnabled}
                 style={{ flex: 1 }}
               />
@@ -295,14 +353,16 @@ export default function DevUiKitScreen() {
                 team="A"
                 teamLabel="ĐỘI A"
                 score={scoreA}
-                onIncrement={() => setScoreA((s) => s + 1)}
+                onIncrement={() => incrementScore("A")}
+                disabled={matchEnded}
                 hapticsEnabled={hapticsEnabled}
               />
               <ScoreBox
                 team="B"
                 teamLabel="ĐỘI B"
                 score={scoreB}
-                onIncrement={() => setScoreB((s) => s + 1)}
+                onIncrement={() => incrementScore("B")}
+                disabled={matchEnded}
                 hapticsEnabled={hapticsEnabled}
               />
             </View>
@@ -436,33 +496,62 @@ export default function DevUiKitScreen() {
               subtitle="2 ô điểm lớn 1 tay + Hoàn tác + Kết thúc & Trả sân"
             />
             <View style={styles.screenFrame}>
-              <StatusPill variant="playing" label="SÂN 01 • LIVE" />
+              <View style={styles.matchStatusRow}>
+                <StatusPill
+                  variant={matchEnded ? "empty" : "playing"}
+                  label={matchEnded ? "SÂN 01 • ĐÃ TRẢ SÂN" : "SÂN 01 • LIVE"}
+                />
+                <StatusPill variant="live" label={`Cầu đã dùng: ${shuttleCount}`} />
+              </View>
               <View style={styles.scoreRow}>
                 <ScoreBox
                   team="A"
                   teamLabel="ĐỘI A"
                   score={scoreA}
-                  onIncrement={() => setScoreA((s) => s + 1)}
+                  onIncrement={() => incrementScore("A")}
+                  disabled={matchEnded}
                   hapticsEnabled={hapticsEnabled}
                 />
                 <ScoreBox
                   team="B"
                   teamLabel="ĐỘI B"
                   score={scoreB}
-                  onIncrement={() => setScoreB((s) => s + 1)}
+                  onIncrement={() => incrementScore("B")}
+                  disabled={matchEnded}
                   hapticsEnabled={hapticsEnabled}
                 />
               </View>
               <View style={styles.rowWrap}>
                 <SecondaryButton
-                  label="Hoàn tác"
+                  label={`Hoàn tác (${scoreHistory.length})`}
                   icon={<UndoIcon size={16} color={PALETTE.text.primary} />}
-                  onPress={() => setScoreA((s) => Math.max(0, s - 1))}
+                  onPress={undoScore}
+                  disabled={matchEnded || scoreHistory.length === 0}
+                  hapticsEnabled={hapticsEnabled}
                   style={{ flex: 1 }}
                 />
-                <SecondaryButton label="+1 Quả cầu" style={{ flex: 1 }} />
+                <SecondaryButton
+                  label={`+1 Quả cầu (${shuttleCount})`}
+                  onPress={addShuttle}
+                  disabled={matchEnded}
+                  hapticsEnabled={hapticsEnabled}
+                  style={{ flex: 1 }}
+                />
               </View>
-              <SecondaryButton label="KẾT THÚC & TRẢ SÂN" variant="danger" />
+              {matchEnded ? (
+                <NeonCTAButton
+                  label="CHƠI VÁN MỚI (RESET)"
+                  onPress={resetMatchDemo}
+                  hapticsEnabled={hapticsEnabled}
+                />
+              ) : (
+                <SecondaryButton
+                  label="KẾT THÚC & TRẢ SÂN"
+                  variant="danger"
+                  onPress={() => setEndSheetVisible(true)}
+                  hapticsEnabled={hapticsEnabled}
+                />
+              )}
             </View>
           </View>
         )}
@@ -488,6 +577,38 @@ export default function DevUiKitScreen() {
             showToast("success", "Đã chọn Hoàng Anh vào Đội A");
           }}
         />
+      </BottomSheet>
+      <BottomSheet
+        visible={endSheetVisible}
+        onClose={() => setEndSheetVisible(false)}
+        title="Xác nhận kết thúc & trả Sân 01"
+      >
+        <Text style={styles.cardHeading}>
+          Tỷ số chung cuộc: Đội A {scoreA} - {scoreB} Đội B
+        </Text>
+        <Text style={styles.cardSub}>
+          Số quả cầu đã sử dụng: {shuttleCount} quả • Kết quả sẽ được lưu vào lịch sử đấu.
+        </Text>
+        <View style={styles.rowWrap}>
+          <SecondaryButton
+            label="Đánh tiếp"
+            variant="outline"
+            onPress={() => setEndSheetVisible(false)}
+            hapticsEnabled={hapticsEnabled}
+            style={{ flex: 1 }}
+          />
+          <SecondaryButton
+            label="XÁC NHẬN TRẢ SÂN"
+            variant="danger"
+            onPress={() => {
+              setMatchEnded(true);
+              setEndSheetVisible(false);
+              showToast("success", `Đã kết thúc (${scoreA}-${scoreB}) & trả Sân 01`);
+            }}
+            hapticsEnabled={hapticsEnabled}
+            style={{ flex: 1 }}
+          />
+        </View>
       </BottomSheet>
     </SafeAreaView>
   );
@@ -558,6 +679,13 @@ const styles = StyleSheet.create({
   scoreRow: {
     flexDirection: "row",
     gap: SPACING.sm + 4,
+  },
+  matchStatusRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    gap: SPACING.sm,
   },
   skeletonCard: {
     backgroundColor: PALETTE.surface.card,

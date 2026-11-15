@@ -58,5 +58,13 @@
 | **SCR-06 - Chi tiết phòng kèo & Waitlist** | `src/app/lobby/[id].tsx` | `Header`, tab chuyển `Sân 01` / `Sân 02`, `StatusPill`, `LevelBadge`, `SecondaryButton`, `NeonCTAButton`, `BottomSheet` xác nhận hủy & thêm Ghost, `Toast` + banner đôn Waitlist. | Tính suất `computeSlots` (`min(4, 8 - coreCount)`), chặn mở tuyển khi đủ 8 hoặc `< 4` core, Host thêm người mặc định chưa có TK (`Ghost`), duyệt/từ chối đơn (`requested`), tự động vào Waitlist kèm vị trí `#N` khi đầy, hủy cảnh báo phạt uy tín (`< 12h` trừ `-5đ`) và đôn Waitlist kèm thông báo in-app. |
 | **SCR-07 - Form Tạo kèo mới** | `src/app/lobby/create.tsx` | `Header`, chọn nhanh cụm sân Đà Nẵng (`DA_NANG_VENUES`), quận (`DA_NANG_DISTRICTS`), chọn số sân (`1` hoặc `2`), stepper số người mặc định `4–8`, `LevelBadge`, `NeonCTAButton`. | Ràng buộc cứng tối đa **2 sân/kèo**, mỗi sân **4–8 người** (tổng tối đa **16 người**), tự tính suất tuyển `min(4, 8 - coreCount)` và báo lỗi tiếng Việt nếu vượt ngưỡng. |
 
+---
+
+## 6. Đối chiếu màn Tìm Đồng Đội Ăn Ý & BXH Elo CLB (`feat/partner-finder-ui` / Q09)
+
+| Màn hình SRS / Figma | Route đã dựng | Thành phần UI Kit sử dụng | Tuân thủ Luật (`badminton-rating`, `partner-finder.md`) |
+|---|---|---|---|
+| **SCR-04 - Tìm đồng đội ăn ý** (Figma thiếu, dựng theo UI Kit) & **07 - Bảng Xếp Hạng Elo CLB** (`1:4175`, P1) | `src/app/(tabs)/partners.tsx` | `Header`, 2 tab chuyển `Tìm Đồng Đội` / `BXH Elo CLB`, chips lọc khoảng lệch Elo (`≤ 80`, `≤ 150`, `≤ 200`), nội dung (`Đôi nam`, `Đôi nữ`, `Đôi nam nữ`), quận Đà Nẵng (`DA_NANG_DISTRICTS`), `LevelBadge`, `StatusPill`, `BottomSheet` xem hồ sơ VĐV, nút `Gửi lời mời`, `Tải thêm đồng đội` (phân trang), `Skeleton`, `EmptyState`. | Gọi trực tiếp `findPartners` của TV1, mặc định `PARTNER_FINDER_MAX_ELO_DIFF = 150`, hiển thị điểm phù hợp, độ lệch Elo, lý do bù trừ cầu trước/cầu sau & tay thuận, uy tín; tách biệt hoàn toàn khỏi luồng tuyển vãng lai/waitlist phòng kèo (Q08). |
+
 
 

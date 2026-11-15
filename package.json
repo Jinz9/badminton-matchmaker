@@ -10,6 +10,7 @@
     "sync:domain": "node scripts/sync-domain.js",
     "functions:build": "npm --prefix functions run build",
     "functions:test": "npm --prefix functions run test",
+    "test:rules": "firebase emulators:exec --only firestore \"npx jest test/firebase/securityRules.test.ts\"",
     "emulators:start": "node scripts/sync-domain.js && firebase emulators:start",
     "test:all": "npm test",
     "seed": "npx ts-node scripts/seed-placeholder.ts"
@@ -25,6 +26,7 @@
   "author": "DAO DUY NHAT & NGUYEN DUC DAT",
   "license": "ISC",
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^6.0.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "firebase-tools": "^15.36.0",

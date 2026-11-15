@@ -106,3 +106,4 @@ Khi mở ứng dụng, thanh điều hướng dưới cùng (Bottom Tab Bar) g�
 2. 👥 **Tìm Bạn (`SCR-04`):** Gợi ý đồng đội bù trừ vị trí thi đấu (Lưới - Công, Trái - Phải), độ lệch Elo $\le 150$.
 3. 📊 **Lịch Sử (`SCR-10` & `SCR-11`):** Lịch sử các set đấu đã đánh, tỷ số, biến động Elo từng trận và danh hiệu **Đồng đội ăn ý nhất** (Win Rate $\ge 60\%$).
 4. 👤 **Cá Nhân (`SCR-03`):** Thẻ tay vợt thể thao (Player Card) hiển thị điểm Elo 1,601, độ uy tín 98/100, cấp độ TB+, tay thuận và vị trí sở trường.
+

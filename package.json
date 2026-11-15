@@ -18,7 +18,8 @@
     "emulators:start": "node scripts/sync-domain.js && firebase emulators:start",
     "test:all": "npm test",
     "seed": "npx ts-node scripts/seed-placeholder.ts",
-    "set-admin": "node scripts/set-admin.js"
+    "set-admin": "node scripts/set-admin.js",
+    "postinstall": "node scripts/patch-expo-cli.js"
   },
   "keywords": [
     "badminton",

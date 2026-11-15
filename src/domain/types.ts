@@ -229,8 +229,11 @@ export interface MatchDoc {
   index: number;              // Thứ tự trận đấu trong buổi (1, 2, 3...)
   teamA: [string, string];    // [memberId_1, memberId_2]
   teamB: [string, string];    // [memberId_3, memberId_4]
+  playerIds?: string[];       // Danh sách 4 VĐV để Firestore query array-contains
+  category?: CourtCategory;   // "men" | "women" | "mixed"
   sets: MatchSetScore[];
   status: MatchStatus;
+  winner?: "teamA" | "teamB"; // Đội chiến thắng
   confirmedBy?: string;       // hostId xác nhận kết quả
   ratingProcessed: boolean;   // true: Đã cập nhật Elo, false: Chưa cập nhật
   cards?: PostMatchCard[];    // Thẻ đánh giá sau trận
@@ -265,6 +268,37 @@ export interface RatingHistoryDoc {
   newReliability: number;
   reason: "match_result" | "cancel_penalty" | "attendance_reward" | "admin_adjustment";
   createdAt: string;
+}
+
+export interface MonthlyStat {
+  month: string;              // "2026-11"
+  matches: number;
+  wins: number;
+  losses: number;
+  winRate: number;            // 0.0 - 1.0
+}
+
+export interface CategoryStat {
+  matches: number;
+  wins: number;
+  losses: number;
+  winRate: number;            // 0.0 - 1.0
+}
+
+export interface UserStatsDoc {
+  userId: string;
+  totalMatches: number;
+  totalWins: number;
+  totalLosses: number;
+  overallWinRate: number;      // 0.0 - 1.0
+  byCategory: {
+    men: CategoryStat;
+    women: CategoryStat;
+    mixed: CategoryStat;
+  };
+  byMonth: Record<string, MonthlyStat>;
+  bestPartners: BestPartnerStat[];
+  updatedAt: string;
 }
 
 // ==========================================

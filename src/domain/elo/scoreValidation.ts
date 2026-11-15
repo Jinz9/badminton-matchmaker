@@ -180,3 +180,4 @@ export function validateMatchScores(sets: MatchSetScore[]): ScoreValidationResul
     setsWonB,
   };
 }
+

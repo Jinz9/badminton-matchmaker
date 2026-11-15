@@ -64,3 +64,4 @@ export interface ScoreValidationResult {
   setsWonB: number;
   error?: string;
 }
+

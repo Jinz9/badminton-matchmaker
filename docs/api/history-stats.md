@@ -225,3 +225,4 @@ Dữ liệu trích xuất từ hàm thuần `buildRatingTimeSeries`:
 | `HISTORY_PAGING_ERROR` | `lastMatchId` không tồn tại | Tải lại trang đầu tiên (Reset về page 1) |
 | `HISTORY_EMPTY` | Người chơi chưa thi đấu trận nào | Hiển thị Empty State màn hình: "Bạn chưa có trận đấu nào. Hãy tham gia một kèo giao lưu ngay!" |
 | `BEST_PARTNER_EMPTY` | Chưa có ai cùng đánh $\ge 5$ trận hoặc tỷ lệ $< 60\%$ | Hiển thị Card rỗng: "Đánh cùng một bạn chơi từ 5 trận trở lên để tìm ra đồng đội ăn ý nhất!" |
+

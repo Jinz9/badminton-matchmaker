@@ -2,35 +2,30 @@
   "expo": {
     "name": "BadmintonMatchmaker",
     "slug": "badminton-matchmaker",
-    "scheme": "badminton",
     "version": "1.0.0",
     "orientation": "portrait",
-    "userInterfaceStyle": "dark",
-    "newArchEnabled": false,
     "icon": "./assets/icon.png",
+    "scheme": "badminton",
+    "userInterfaceStyle": "dark",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#0B132B"
     },
     "ios": {
-      "supportsTablet": false,
-      "userInterfaceStyle": "dark"
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B132B"
-      },
-      "userInterfaceStyle": "dark"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router",
-      "expo-font",
-      "expo-asset"
+      "expo-router"
     ],
     "experiments": {
       "typedRoutes": true

@@ -66,5 +66,14 @@
 |---|---|---|---|
 | **SCR-04 - Tìm đồng đội ăn ý** (Figma thiếu, dựng theo UI Kit) & **07 - Bảng Xếp Hạng Elo CLB** (`1:4175`, P1) | `src/app/(tabs)/partners.tsx` | `Header`, 2 tab chuyển `Tìm Đồng Đội` / `BXH Elo CLB`, chips lọc khoảng lệch Elo (`≤ 80`, `≤ 150`, `≤ 200`), nội dung (`Đôi nam`, `Đôi nữ`, `Đôi nam nữ`), quận Đà Nẵng (`DA_NANG_DISTRICTS`), `LevelBadge`, `StatusPill`, `BottomSheet` xem hồ sơ VĐV, nút `Gửi lời mời`, `Tải thêm đồng đội` (phân trang), `Skeleton`, `EmptyState`. | Gọi trực tiếp `findPartners` của TV1, mặc định `PARTNER_FINDER_MAX_ELO_DIFF = 150`, hiển thị điểm phù hợp, độ lệch Elo, lý do bù trừ cầu trước/cầu sau & tay thuận, uy tín; tách biệt hoàn toàn khỏi luồng tuyển vãng lai/waitlist phòng kèo (Q08). |
 
+---
+
+## 7. Đối chiếu nhóm màn hình Thống kê, Đồng đội ăn ý & Điều hướng (`feat/history-stats-ui` / Q10 / M8)
+
+| Màn hình Figma / SRS | Route đã dựng | Thành phần & Biểu đồ | Loại trừ P2 theo `figma-inventory.md` |
+|---|---|---|---|
+| **SCR-10 - Lịch sử đấu** & **SCR-11 - Thống kê & Đồng đội ăn ý** (`09 - tổng quan` `9:1903`, `16 - Lịch sử đối đầu` `1:6149`) | `src/app/(tabs)/history.tsx` | 3 tab con: `Lịch sử đấu` (lọc `Tất cả`/`7 ngày`/`30 ngày` & nội dung, phân trang `5` trận/lần, đồng đội, đối thủ, tỷ số set, `+Elo`), `Thống kê & Elo` (tỷ lệ thắng tổng & theo nội dung, biểu đồ đường Elo bằng `react-native-svg`, biểu đồ Radar 5 trục kỹ năng BWF bằng `react-native-svg`), `Đồng đội ăn ý` (gọi `computeBestPartners` chỉ hiện cặp `>= 5` trận & `winRate >= 60%`). | Loại bỏ các phần **P2** theo `figma-inventory.md`: `Smash Velocity` trên frame `09`, `14` (Heatmap), `15` (Nhịp tim), `17` (Apple Watch/Garmin), `18/19/20` (Giải đấu Mini CLB). |
+| **Sơ đồ điều hướng toàn app** | [navigation-map.md](file:///d:/QLDAPM/docs/ui/navigation-map.md) | Mermaid `flowchart TD` nối toàn bộ luồng P0/P1 (`/(auth)/*` → `/(tabs)/*`, `/court/*`, `/lobby/*`, `/dev/ui-kit`) + nút `🌐 Kèo Giao Lưu` trên Home Sân Đấu + Deep link scheme `badminton://`. | Đảm bảo 100% màn P0/P1 có đường đi & nút quay lại, không có màn chết. |
+
 
 

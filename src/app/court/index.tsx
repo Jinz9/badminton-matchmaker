@@ -224,6 +224,13 @@ export function CourtHomeScreen({
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.scenarioScrollContent}
           >
+            <Pressable
+              testID="btn-go-lobby-list"
+              onPress={() => router.push("/lobby" as never)}
+              style={styles.scenarioChip}
+            >
+              <Text style={styles.scenarioChipText}>🌐 Kèo Giao Lưu</Text>
+            </Pressable>
             {SESSION_SCENARIOS.map((sc) => {
               const isSelected = sc.id === activeSessionId;
               return (

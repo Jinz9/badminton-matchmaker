@@ -190,13 +190,7 @@ export function CourtHomeScreen({
         subtitle={session?.address ?? "Quận Hải Châu, Đà Nẵng"}
         status={{ variant: "live", label: "TRỰC TIẾP TẠI SÂN" }}
         notificationCount={3}
-        onNotificationPress={() =>
-          setToast({
-            visible: true,
-            variant: "info",
-            message: "Có 3 vãng lai mới đang chờ duyệt tại sân",
-          })
-        }
+        onNotificationPress={() => router.push("/notifications" as never)}
         userName={user?.displayName ?? "Đào Duy Nhật"}
         onAvatarPress={() => router.push("/(tabs)/profile" as never)}
       />

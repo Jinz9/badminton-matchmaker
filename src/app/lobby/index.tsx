@@ -21,7 +21,7 @@ import {
 import { DA_NANG_DISTRICTS } from "../../config/districts";
 import { RULES } from "../../config/rules";
 import { CourtCategory, SessionDoc } from "../../domain/types";
-import { useHaptics, useLobbies } from "../../hooks";
+import { useAuth, useHaptics, useLobbies, useNotifications } from "../../hooks";
 import { PALETTE, RADIUS, SPACING, TYPOGRAPHY } from "../../theme";
 
 function formatCategoryWithIcon(category: CourtCategory): string {
@@ -43,6 +43,8 @@ function formatDateTime(iso: string): string {
 export function LobbyListScreen() {
   const router = useRouter();
   const { trigger } = useHaptics(true);
+  const { user } = useAuth();
+  const { unreadCount } = useNotifications(user?.uid ?? null);
 
   const [selectedDistrict, setSelectedDistrict] = useState<string | undefined>(
     undefined
@@ -154,6 +156,8 @@ export function LobbyListScreen() {
         title="Kèo Giao Lưu Đà Nẵng"
         subtitle="Tìm kèo đôi gần bạn • Cập nhật realtime"
         onBackPress={() => router.back()}
+        notificationCount={unreadCount}
+        onNotificationPress={() => router.push("/notifications" as never)}
       />
 
       <ScrollView

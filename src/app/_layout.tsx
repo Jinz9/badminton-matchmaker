@@ -36,6 +36,7 @@ export default function RootLayout() {
           <Stack.Screen name="lobby/index" options={{ headerShown: false }} />
           <Stack.Screen name="lobby/create" options={{ headerShown: false }} />
           <Stack.Screen name="lobby/[id]" options={{ headerShown: false }} />
+          <Stack.Screen name="notifications" options={{ headerShown: false }} />
           <Stack.Screen name="dev/ui-kit" options={{ headerShown: false }} />
         </Stack>
       </AuthProvider>

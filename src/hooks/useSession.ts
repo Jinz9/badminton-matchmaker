@@ -2,9 +2,11 @@ import { useCallback, useEffect, useState } from "react";
 import { getRepository } from "../data";
 import {
   buildLocalPlayersFromCourts,
+  cancelSessionReminder,
   loadSessionSnapshot,
   saveSessionSnapshot,
-} from "../data/offline";
+  scheduleSessionReminder,
+} from "../data";
 import { JoinRequestResult } from "../domain/repositories";
 import {
   CourtDoc,
@@ -158,19 +160,23 @@ export function useSession(sessionId: string | null | undefined): UseSessionResu
       if (!sessionId) throw new Error("Thiếu mã phòng kèo.");
       setError(null);
       try {
-        return await getRepository().submitJoinRequest(
+        const res = await getRepository().submitJoinRequest(
           sessionId,
           courtId,
           userId,
           note
         );
+        if (session) {
+          void scheduleSessionReminder(session);
+        }
+        return res;
       } catch (err) {
         const msg = err instanceof Error ? err.message : "Không thể gửi đơn tham gia.";
         setError(msg);
         throw err;
       }
     },
-    [sessionId]
+    [sessionId, session]
   );
 
   const cancelJoin = useCallback(
@@ -178,7 +184,13 @@ export function useSession(sessionId: string | null | undefined): UseSessionResu
       if (!sessionId) throw new Error("Thiếu mã phòng kèo.");
       setError(null);
       try {
-        return await getRepository().cancelParticipation(sessionId, courtId, userId);
+        const res = await getRepository().cancelParticipation(
+          sessionId,
+          courtId,
+          userId
+        );
+        void cancelSessionReminder(sessionId);
+        return res;
       } catch (err) {
         const msg = err instanceof Error ? err.message : "Không thể hủy tham gia.";
         setError(msg);

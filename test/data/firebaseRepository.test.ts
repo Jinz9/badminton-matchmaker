@@ -8,9 +8,9 @@ import { MockRepository } from "../../src/data/MockRepository";
 import {
   getAuthService,
   setAuthService,
-  FirebaseAuthService,
   MockAuthService,
 } from "../../src/data/auth";
+import { FirebaseAuthService } from "../../src/data/auth/FirebaseAuthService";
 import {
   getFirebaseAuth,
   getFirebaseDb,

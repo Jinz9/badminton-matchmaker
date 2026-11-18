@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
 import { getRepository } from "../data";
+import {
+  buildLocalPlayersFromCourts,
+  loadSessionSnapshot,
+  saveSessionSnapshot,
+} from "../data/offline";
 import { JoinRequestResult } from "../domain/repositories";
 import {
   CourtDoc,
@@ -66,8 +71,48 @@ export function useSession(sessionId: string | null | undefined): UseSessionResu
       setCourts(courtList);
       setMatches(matchList);
       setRequests(reqLists.flat());
+
+      if (sessionDoc) {
+        const courtsMap: Record<string, CourtDoc> = {};
+        for (const c of courtList) {
+          courtsMap[c.id] = c;
+        }
+        const maxVersion = courtList.reduce(
+          (max, c) => Math.max(max, c.version ?? 1),
+          1
+        );
+        void saveSessionSnapshot({
+          sessionId: sessionDoc.id,
+          version: maxVersion,
+          updatedAt: new Date().toISOString(),
+          session: sessionDoc,
+          courts: courtsMap,
+          players: buildLocalPlayersFromCourts(courtList),
+          currentRound: matchList.length,
+          completedMatches: matchList.filter(
+            (m) => m.status === "finished" || m.status === "confirmed"
+          ),
+          activeMatches: {},
+        });
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Không thể tải thông tin phòng kèo.");
+      const cached = await loadSessionSnapshot(sessionId);
+      if (cached) {
+        setSession(cached.session);
+        setCourts(
+          Object.values(cached.courts).sort(
+            (a, b) => a.courtNumber - b.courtNumber
+          )
+        );
+        setMatches(cached.completedMatches);
+        setError(null);
+      } else {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Không thể tải thông tin phòng kèo."
+        );
+      }
     } finally {
       setLoading(false);
     }

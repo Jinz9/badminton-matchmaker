@@ -33,7 +33,7 @@ import {
 } from "../../components";
 import { getConfiguredDataSource, getRepository } from "../../data";
 import { getAuthService, MOCK_DEMO_ACCOUNTS, MOCK_OTP_CODE } from "../../data/auth";
-import { useHaptics } from "../../hooks";
+import { useHaptics, useOfflineSync } from "../../hooks";
 import { PALETTE, RADIUS, SPACING, TYPOGRAPHY } from "../../theme";
 import {
   getTapCounterState,
@@ -54,6 +54,13 @@ type DevTab = "components" | "screens";
 export default function DevUiKitScreen() {
   const router = useRouter();
   const { enabled: hapticsEnabled, setEnabled: setHapticsEnabled, trigger } = useHaptics(true);
+  const {
+    isOnline,
+    simulatedOffline,
+    setSimulatedOffline,
+    pendingCount,
+    syncNow,
+  } = useOfflineSync();
 
   const [devTab, setDevTab] = useState<DevTab>("components");
   const [selectedIds, setSelectedIds] = useState<string[]>(["p1", "p3"]);
@@ -206,6 +213,33 @@ export default function DevUiKitScreen() {
             value={hapticsEnabled}
             onValueChange={setHapticsEnabled}
             trackColor={{ false: PALETTE.surface.interactive, true: PALETTE.brand.neonLime }}
+            thumbColor={PALETTE.bg.canvas}
+          />
+        </View>
+
+        {/* Công tắc Ngoại tuyến giả & Hướng dẫn Chế độ máy bay */}
+        <View style={styles.hapticCard}>
+          <View style={{ flex: 1, gap: 4 }}>
+            <Text style={styles.cardHeading}>Ngoại tuyến giả (Offline Simulator)</Text>
+            <Text style={styles.cardSub}>
+              Trạng thái: {isOnline ? "Trực tuyến" : "Đang ngoại tuyến"} · {pendingCount} thao tác chờ đồng bộ.
+              {"\n"}Test trên thiết bị thật: Bật Chế độ máy bay (Airplane Mode) giữa buổi, chia cặp & nhập tỷ số, sau đó tắt Chế độ máy bay để kiểm tra tự đồng bộ.
+            </Text>
+            {pendingCount > 0 && isOnline ? (
+              <View style={{ marginTop: SPACING.xs }}>
+                <SecondaryButton
+                  label="Đồng bộ ngay"
+                  variant="outline"
+                  onPress={() => void syncNow()}
+                />
+              </View>
+            ) : null}
+          </View>
+          <Switch
+            testID="simulated-offline-switch"
+            value={simulatedOffline}
+            onValueChange={(next) => void setSimulatedOffline(next)}
+            trackColor={{ false: PALETTE.surface.interactive, true: PALETTE.semantic.warning }}
             thumbColor={PALETTE.bg.canvas}
           />
         </View>

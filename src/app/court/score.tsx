@@ -554,6 +554,30 @@ export function ScoreMatchScreen({
       });
 
       try {
+        const {
+          enqueueOfflineAction,
+          getNetworkMonitorState,
+          updateSnapshotMatchScore,
+        } = require("../../data/offline") as typeof import("../../data/offline");
+
+        await updateSnapshotMatchScore(
+          activeMatch?.sessionId ?? "session_1",
+          effectiveMatchId,
+          sets
+        );
+
+        if (!getNetworkMonitorState().isOnline) {
+          await enqueueOfflineAction({
+            sessionId: activeMatch?.sessionId ?? "session_1",
+            courtId: activeMatch?.courtId ?? "1",
+            actionType: "FINISH_MATCH",
+            version: 1,
+            idempotencyKey: `finish_${effectiveMatchId}`,
+            payload: { matchId: effectiveMatchId, hostId, sets, cards },
+          });
+          throw new Error("Đang ngoại tuyến — Đã xếp hàng đợi đồng bộ.");
+        }
+
         const repo = getRepository();
         await repo.saveMatchScore(effectiveMatchId, sets);
         await repo.confirmMatchResult(effectiveMatchId, hostId, cards);

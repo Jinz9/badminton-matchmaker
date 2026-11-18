@@ -1,6 +1,7 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { OfflineBanner } from "../components";
 import { AuthProvider } from "../hooks";
 import { PALETTE, useThemeFonts } from "../theme";
 
@@ -12,6 +13,7 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <AuthProvider>
         <StatusBar style="light" />
+        <OfflineBanner />
         <Stack
           screenOptions={{
             headerShown: false,

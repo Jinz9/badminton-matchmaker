@@ -345,13 +345,46 @@ export function BalanceConfirmScreen({
       const courtMatches = matches.filter((m) => m.courtId === targetCourtId);
       const nextIndex = courtMatches.length + 1;
 
-      const matchId = await repo.createMatch({
-        sessionId,
+      const {
+        enqueueOfflineAction,
+        getNetworkMonitorState,
+        updateSnapshotRound,
+      } = require("../../data/offline") as typeof import("../../data/offline");
+
+      let matchId: string;
+      if (!getNetworkMonitorState().isOnline) {
+        matchId = `local_match_${Date.now()}`;
+        await enqueueOfflineAction({
+          sessionId,
+          courtId: targetCourtId,
+          actionType: "GENERATE_ROUND",
+          version: activeCourt?.version ?? 1,
+          idempotencyKey: `round_${sessionId}_${targetCourtId}_${nextIndex}`,
+          payload: {
+            roundIndex: nextIndex,
+            category: effectiveCategory,
+            teamA: currentMatch.teamAIds,
+            teamB: currentMatch.teamBIds,
+          },
+        });
+      } else {
+        matchId = await repo.createMatch({
+          sessionId,
+          courtId: targetCourtId,
+          index: nextIndex,
+          teamA: currentMatch.teamAIds,
+          teamB: currentMatch.teamBIds,
+          sets: [],
+        });
+      }
+
+      await updateSnapshotRound(sessionId, targetCourtId, nextIndex, {
+        matchId,
         courtId: targetCourtId,
-        index: nextIndex,
+        roundIndex: nextIndex,
         teamA: currentMatch.teamAIds,
         teamB: currentMatch.teamBIds,
-        sets: [],
+        restingPlayerIds: currentMatch.restingIds ?? [],
       });
 
       recordOnCourtTap("confirm", "VÀO SÂN NGAY [CHẠM 3]");

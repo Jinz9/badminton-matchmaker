@@ -63,7 +63,10 @@ describe("Bảo mật giao diện & Phân quyền UI (TC-081, TC-082)", () => {
     await render(<ProfileScreen />);
 
     expect(screen.getByText("Nguyễn Đức Đạt")).toBeTruthy();
-    expect(screen.getByText(/1425/)).toBeTruthy();
+    expect(screen.getByTestId("profile-elo-rating")).toBeTruthy();
+    expect(
+      screen.getByText(/người chơi không thể tự chỉnh sửa điểm số/i)
+    ).toBeTruthy();
     // Không có input hay nút cho phép sửa Elo hoặc nâng quyền Admin
     expect(screen.queryByPlaceholderText(/Elo/i)).toBeNull();
     expect(screen.queryByText(/Đổi vai trò|Chỉnh sửa Elo|Nâng quyền/i)).toBeNull();

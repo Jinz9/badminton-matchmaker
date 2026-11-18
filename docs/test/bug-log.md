@@ -4,7 +4,8 @@
 > **Áp dụng cho:** Toàn bộ hệ thống (Mobile App TV2 & Backend/Domain TV1)  
 > **Nguyên tắc ghi nhận:**  
 > - Dữ liệu lỗi được ghi nhận từ kiểm thử thực tế của TV2 trên thiết bị, từ kết quả chạy test tự động, hoặc từ phản hồi thực địa.  
-> - **Tuyệt đối không bịa lỗi:** Chỉ ghi nhận các lỗi thực tế phát sinh trong quá trình tích hợp và kiểm thử.  
+> - **Tuyệt đối không bịa lỗi:** Chỉ ghi nhận các lỗi thực tế phát sinh trong quá trình tích hợp và kiểm thử.
+> - **Phân công xử lý:** Lỗi thuật toán/backend giao **TV1**; lỗi giao diện/trải nghiệm Mobile giao **TV2**.
 > - Quy trình sửa lỗi: *Tạo test tái hiện (Đỏ) $\to$ Sửa mã nguồn $\to$ Test hồi quy thành công (Xanh) $\to$ Đóng lỗi*.
 
 ---

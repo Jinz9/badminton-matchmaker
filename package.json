@@ -17,7 +17,7 @@
     "functions:test": "npm --prefix functions run test",
     "test:rules": "npx firebase --project=demo-badminton emulators:exec --only=firestore scripts\\run-rules-test.cmd",
     "emulators:start": "node scripts/sync-domain.js && firebase emulators:start",
-    "test:all": "npm test",
+    "test:all": "npx jest --testPathIgnorePatterns=test/firebase && npm run test:ui -- --runInBand",
     "seed": "npx ts-node scripts/seed-placeholder.ts",
     "set-admin": "node scripts/set-admin.js",
     "postinstall": "node scripts/patch-expo-cli.js"

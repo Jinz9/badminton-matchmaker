@@ -34,6 +34,14 @@ export default function OtpVerificationScreen() {
 
   const maskedRecipient = user?.email ? maskEmail(user.email) : "qu***@badminton.vn";
 
+  const handleGoBack = () => {
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace("/(auth)/register" as never);
+    }
+  };
+
   const handleDigit = (d: string) => {
     setError(null);
     setCode((prev) => (prev.length < 6 ? prev + d : prev));
@@ -84,7 +92,7 @@ export default function OtpVerificationScreen() {
       {/* Top Bar */}
       <View style={styles.topBar}>
         <Pressable
-          onPress={() => router.back()}
+          onPress={handleGoBack}
           style={styles.backBtn}
           accessibilityRole="button"
           accessibilityLabel="Quay lại"
@@ -104,7 +112,7 @@ export default function OtpVerificationScreen() {
         </Text>
         <View style={styles.recipientRow}>
           <Text style={styles.recipientText}>✉ {maskedRecipient}</Text>
-          <Pressable onPress={() => router.back()} accessibilityRole="button">
+          <Pressable onPress={handleGoBack} accessibilityRole="button">
             <Text style={styles.changeLink}>Đổi Email</Text>
           </Pressable>
         </View>

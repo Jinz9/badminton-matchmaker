@@ -51,7 +51,7 @@ import {
   ReviewTag,
   UserProfile,
 } from "../../domain/types";
-import { useAuth, useHaptics, useSession } from "../../hooks";
+import { useAuth, useCourtKeepAwake, useHaptics, useSession } from "../../hooks";
 import { PALETTE, RADIUS, SHADOWS, SPACING, TYPOGRAPHY } from "../../theme";
 
 export interface ScoreMatchScreenProps {
@@ -109,6 +109,7 @@ export function ScoreMatchScreen({
   currentUserIdOverride,
   disableTimer = false,
 }: ScoreMatchScreenProps) {
+  useCourtKeepAwake("score-match");
   const router = useRouter();
   const params = useLocalSearchParams<{
     matchId?: string;

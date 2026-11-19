@@ -47,7 +47,7 @@ export function getInitials(name: string): string {
  * Thẻ chọn người chơi nhanh bằng 1 tay tại sân (kích thước tối thiểu >= 80x64dp).
  * Khi chọn hiển thị cả viền neon và dấu tích Check để không dựa vào màu đơn thuần.
  */
-export const PlayerChip: React.FC<PlayerChipProps> = ({
+export const PlayerChip: React.FC<PlayerChipProps> = React.memo(({
   name,
   level,
   elo,
@@ -134,7 +134,7 @@ export const PlayerChip: React.FC<PlayerChipProps> = ({
       </View>
     </Pressable>
   );
-};
+});
 
 const styles = StyleSheet.create({
   container: {

@@ -6,3 +6,4 @@ export * from "./useSession";
 export * from "./usePartners";
 export * from "./useNotifications";
 export * from "./useOfflineSync";
+export * from "./useCourtKeepAwake";

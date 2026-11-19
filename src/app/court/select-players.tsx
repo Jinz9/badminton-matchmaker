@@ -26,7 +26,7 @@ import {
 import { RULES } from "../../config/rules";
 import { balanceCourt, BalancingMember, BalancingResult } from "../../domain/balancing";
 import { CourtCategory, RosterMember } from "../../domain/types";
-import { useAuth, useHaptics, useSession } from "../../hooks";
+import { useAuth, useCourtKeepAwake, useHaptics, useSession } from "../../hooks";
 import { PALETTE, RADIUS, SPACING, TYPOGRAPHY } from "../../theme";
 import {
   getTapCounterState,
@@ -67,6 +67,7 @@ export function SelectPlayersScreen({
   candidatesOverride,
 }: SelectPlayersScreenProps) {
   const router = useRouter();
+  useCourtKeepAwake("select-players");
   const params = useLocalSearchParams<{
     sessionId?: string;
     courtId?: string;

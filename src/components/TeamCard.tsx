@@ -47,7 +47,7 @@ export interface TeamCardProps {
 /**
  * Thẻ hiển thị đội hình đánh đôi (Đội A cyan / Đội B hổ phách) tại màn Chạm 3 & Chấm điểm.
  */
-export const TeamCard: React.FC<TeamCardProps> = ({
+export const TeamCard: React.FC<TeamCardProps> = React.memo(({
   team,
   title,
   players,
@@ -179,7 +179,7 @@ export const TeamCard: React.FC<TeamCardProps> = ({
       </View>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   card: {

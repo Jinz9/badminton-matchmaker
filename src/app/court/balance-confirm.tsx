@@ -34,7 +34,7 @@ import {
   swapPlayers,
 } from "../../domain/balancing";
 import { CourtCategory, RosterMember } from "../../domain/types";
-import { useAuth, useHaptics, useSession } from "../../hooks";
+import { useAuth, useCourtKeepAwake, useHaptics, useSession } from "../../hooks";
 import { PALETTE, RADIUS, SHADOWS, SPACING, TYPOGRAPHY } from "../../theme";
 import { getTapCounterState, recordOnCourtTap } from "../../utils/tapCounter";
 
@@ -75,6 +75,7 @@ export function BalanceConfirmScreen({
   onMatchConfirmed,
 }: BalanceConfirmScreenProps) {
   const router = useRouter();
+  useCourtKeepAwake("balance-confirm");
   const params = useLocalSearchParams<{
     sessionId?: string;
     courtId?: string;

@@ -27,3 +27,19 @@ Log thu được từ lần chạy `npm run test:ui`:
 ## 4. Kết luận
 - Thuật toán `balanceCourt` trên cấu hình tối đa `8 người/sân` (CR-01) hoàn thành trong `0–1 ms` (tức `< 10 ms`), nhỏ hơn rất nhiều so với ngưỡng `< 1000 ms` (1 giây) của bài kiểm thử B15.
 - Khi kiểm thử thực địa trên thiết bị thật (Expo Go / Q15), tiếp tục theo dõi thêm thời gian chuyển màn hình (`navigation push`) và render SVG `CourtDiagram` để đảm bảo trải nghiệm mượt mà dưới 1 giây.
+
+---
+
+## 5. Đo hiệu năng UI & Accessibility (Q16 — Nhánh `fix/perf-polish-a11y`)
+- **Thời điểm đo:** 2026-11-19
+- **Bài test đo:** `test/components/perf-a11y.test.tsx` (kiểm tra `React.memo` cho `PlayerChip`, `TeamCard`, `useCourtKeepAwake`, vùng chạm `>= 48dp`, `accessibilityLabel`)
+- **Số liệu đo thực tế:**
+```text
+[PERF_UI_PLAYER_CHIP_GRID_MS] {"initialRenderMs":240,"toggleMs":36,"chipsCount":8}
+```
+- **Tối ưu áp dụng:**
+  - Bọc `React.memo` cho `PlayerChip` và `TeamCard`.
+  - Bổ sung `getItemLayout`, `initialNumToRender=10`, `maxToRenderPerBatch=10`, `windowSize=5` cho `FlatList` trong `src/app/notifications.tsx`.
+  - Gắn `useCourtKeepAwake` (`expo-keep-awake`) trên 3 màn tại sân (`select-players.tsx`, `balance-confirm.tsx`, `score.tsx`) để màn hình không tự tắt khi Host thao tác.
+  - Khắc phục lỗi schema `app.json` (`splash`) theo `npx expo-doctor` (từ `17/20` lên `18/20`; còn 2 cảnh báo phụ thuộc: `react-native-worklets` peer dependency và version lệch nhỏ giữa SDK 58 / Jest 29).
+

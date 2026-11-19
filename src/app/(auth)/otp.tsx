@@ -54,6 +54,12 @@ export default function OtpVerificationScreen() {
 
   const handleVerify = async () => {
     setError(null);
+    if (!user) {
+      setError("Chưa có phiên đăng ký. Đang chuyển về màn Đăng nhập...");
+      router.replace("/(auth)/login" as never);
+      return;
+    }
+
     const vErr = validateOtpCode(code);
     if (vErr) {
       setError(vErr);

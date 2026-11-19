@@ -103,7 +103,11 @@ export default function RegisterScreen() {
       {/* Top bar */}
       <View style={styles.topBar}>
         <Pressable
-          onPress={() => router.back()}
+          onPress={() =>
+            router.canGoBack()
+              ? router.back()
+              : router.replace("/(auth)/login" as never)
+          }
           style={styles.backBtn}
           accessibilityRole="button"
           accessibilityLabel="Quay lại"

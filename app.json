@@ -7,14 +7,27 @@
     "icon": "./assets/icon.png",
     "scheme": "badminton",
     "userInterfaceStyle": "dark",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "ios": {
-      "supportsTablet": false
+      "bundleIdentifier": "vn.danang.badmintonmatchmaker",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSUserNotificationsUsageDescription": "Ứng dụng gửi thông báo nhắc lịch 1 giờ trước giờ đánh cầu lông."
+      }
     },
     "android": {
+      "package": "vn.danang.badmintonmatchmaker",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0B132B"
-      }
+      },
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

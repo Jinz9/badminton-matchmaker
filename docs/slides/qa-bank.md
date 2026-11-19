@@ -436,3 +436,68 @@
 > - Khi giảng viên hỏi về trải nghiệm người dùng, lỗi phát sinh thực tế hay kết quả kiểm thử, TV2 trả lời và có thể mở điện thoại thao tác minh họa trực tiếp.
 > - Luôn cảm ơn câu hỏi của Thầy/Cô trước khi trả lời.
 
+---
+
+## NHÓM 5: BỔ SUNG 15 CÂU HỎI CHUYÊN SÂU VỀ UI/UX, EXPO, KIỂM THỬ, OFFLINE & BẢO MẬT APP (PHẦN TV2)
+
+### Câu 36: Vì sao nhóm chọn Expo Router (file-based routing) thay vì cấu hình React Navigation thủ công?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Expo Router tự động ánh xạ cấu trúc thư mục `src/app/` thành màn hình và hỗ trợ sẵn deep link nội bộ (`/lobby/[id]`, `/notifications`), giúp giảm code cấu hình điều hướng và dễ truy vết luồng màn hình theo `navigation-map.md`.
+
+### Câu 37: Khi mở thẳng một màn hình con (như màn OTP) mà bấm nút Quay lại trên Expo Go thì nhóm xử lý lỗi `GO_BACK was not handled` như thế nào?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Nhóm kiểm tra `router.canGoBack()` trước khi gọi `router.back()`; nếu ngăn xếp điều hướng rỗng (ví dụ mở qua `router.replace` hoặc deep link), app tự điều hướng an toàn về màn đăng nhập/đăng ký bằng `router.replace`.
+
+### Câu 38: Tại sao giao diện tại sân lại dùng nền tối (`#0B1326`) kết hợp chữ neon (`#A3E636`) thay vì nền trắng truyền thống?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Các nhà thi đấu cầu lông thường có đèn LED trần chói hoặc ánh sáng hắt từ cửa sổ. Nền tối giảm lóa mắt, tiết kiệm pin màn hình OLED/AMOLED trong suốt buổi đánh 2 tiếng, đồng thời chữ sáng đạt tỷ lệ tương phản $\ge 4.5:1$ theo chuẩn WCAG 2.1 AA.
+
+### Câu 39: Làm sao đảm bảo app không chỉ phân biệt trạng thái bằng màu sắc (hỗ trợ người mù màu / dưới ánh nắng)?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Mọi thành phần đều kết hợp **biểu tượng + chữ + màu**: `PlayerChip` khi chọn có cả viền neon và dấu tích `✓`; `LevelBadge` ghi rõ `Cấp 1 · Yếu`..`Cấp 6 · Tốt`; `StatusPill` luôn kèm nhãn chữ tiếng Việt.
+
+### Câu 40: Quy tắc "vùng chạm tối thiểu 48dp" và "thao tác một tay" được kiểm chứng trong code như thế nào?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Nhóm chuẩn hóa hằng số `TOUCH.minTarget = 48` trong `src/theme/`, đặt nút CTA chính (`58px`) ở nửa dưới màn hình (`Thumb Zone`), và viết test tự động `test/components/perf-a11y.test.tsx` kiểm tra kích thước cùng `accessibilityRole` / `accessibilityLabel`.
+
+### Câu 41: Nhóm xử lý trường hợp người dùng tăng cỡ chữ hệ thống lên rất lớn (Dynamic Font Scaling) ra sao?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Các `Text` dùng `allowFontScaling` kèm giới hạn `maxFontSizeMultiplier` (`1.4` cho chữ thường, `1.2` cho số điểm lớn) và sử dụng `minHeight` thay vì `height` cố định để nút không bị cắt chữ.
+
+### Câu 42: Khi Host đang nhập tỷ số hoặc chia kèo mà không chạm vào màn hình 1–2 phút, làm sao tránh điện thoại tự khóa màn hình?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Nhóm tích hợp `expo-keep-awake` thông qua hook `useCourtKeepAwake` trên 3 màn tại sân (`select-players`, `balance-confirm`, `score`), tự bật khi vào màn và tự tắt khi rời màn để tiết kiệm pin.
+
+### Câu 43: Nhóm tối ưu hiệu năng danh sách `FlatList` và lưới chọn người chơi (`PlayerChip`) như thế nào để không giật trên máy tầm trung?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Bọc `React.memo` cho `PlayerChip` và `TeamCard` để tránh render lại toàn bộ lưới khi chạm chọn 1 VĐV; dùng `FlatList` với `keyExtractor`, `getItemLayout`, `initialNumToRender` và `windowSize` tối ưu.
+
+### Câu 44: Sự khác nhau giữa Expo Go và EAS Development Build trong đồ án này là gì (đặc biệt với Push Notification)?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Expo Go chạy tức thì bằng mã QR với chi phí 0 đồng, hỗ trợ đầy đủ thông báo cục bộ (`expo-notifications` hẹn lịch trước 1 giờ) và Trung tâm thông báo realtime từ Firestore. Còn Push từ xa qua FCM cần native code riêng của EAS Development Build (không chạy trong Expo Go SDK 53+).
+
+### Câu 45: Nếu đang ở giữa buổi đánh mà sân mất hoàn toàn sóng 4G/Wi-Fi, app lưu những dữ liệu gì ở máy?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** App lưu `SessionSnapshot` (danh sách người có mặt, điểm Elo, cặp đấu, `version`, `updatedAt`) và nháp tỷ số từng set vào `AsyncStorage`, đồng thời dùng `@react-native-community/netinfo` để hiện biểu ngữ `"Đang ngoại tuyến"` cùng số thao tác chờ đồng bộ.
+
+### Câu 46: Hàng đợi đồng bộ offline (`ActionQueue`) làm thế nào để không gửi trùng kết quả trận đấu 2 lần khi mạng chập chờn?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Mỗi thao tác gắn một `idempotencyKey` duy nhất (ví dụ `finish_<matchId>`), kết hợp cơ chế **Exponential Backoff** ($1\text{s} \to 2\text{s} \to \dots \to 30\text{s}$) khi lỗi mạng và lưu tập khóa đã đồng bộ vào `AsyncStorage` để chặn gửi lại.
+
+### Câu 47: Khi có mạng trở lại mà dữ liệu trên server đã bị sửa trước (xung đột version hoặc trận đã chốt Elo), client xử lý thế nào?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Tuân thủ quy tắc **Host-Authority** trong `offline-contract.md`: nếu server báo `MATCH_ALREADY_SETTLED` hoặc `failed-precondition`, sync engine loại bỏ thao tác trùng khỏi hàng đợi, giữ nguyên nguyên tắc không kẹt hàng đợi FIFO và hiển thị `ConflictNotice` cho Host.
+
+### Câu 48: Nhóm sử dụng React Native Testing Library (RNTL) để kiểm thử những gì ở tầng giao diện?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Kiểm thử đầy đủ các luồng P0 (đăng ký/OTP/Onboarding, chọn người 3 chạm, chia cặp/đổi tay, chấm điểm BWF & thẻ 5s, lọc kèo/Waitlist, Partner Finder biên 150–151 Elo, lịch sử/đồng đội ăn ý, thông báo) và bảo mật giao diện (`security-ui.test.tsx`).
+
+### Câu 49: Làm sao ngăn người chơi thường tự sửa điểm Elo hoặc bấm nút duyệt vãng lai ngay từ giao diện app?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Áp dụng bảo vệ 2 lớp: trên UI ẩn toàn bộ nút quản trị của Host (`Duyệt`, `Từ chối`, `Hủy kèo`) với non-host và không cung cấp ô nhập sửa Elo/role trên màn Hồ sơ (`TC-081`, `TC-082`); ở backend, Firestore Security Rules chặn tuyệt đối mọi lệnh ghi trái phép (`TC-083`, `TC-084`).
+
+### Câu 50: Nếu ngay tại phòng bảo vệ hội đồng mất mạng Wi-Fi hoàn toàn, nhóm có phương án dự phòng nào để vẫn demo được?
+- **Người trả lời chính:** TV2.
+- **Đáp án gợi ý:** Nhóm luôn chuẩn bị sẵn bản Expo Go chạy chế độ dữ liệu mẫu (`EXPO_PUBLIC_DATA_SOURCE=mock`) nhúng sẵn thuật toán và dữ liệu mẫu trên máy, kèm hotspot 4G dự phòng và video demo Full HD 1080p quay sẵn để chiếu thay thế ngay lập tức.
+
+
